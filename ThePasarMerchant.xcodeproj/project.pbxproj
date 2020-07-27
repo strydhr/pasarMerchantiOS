@@ -3,27 +3,53 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		D253A15A24CC0E4A00D75E26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D253A15924CC0E4A00D75E26 /* AppDelegate.swift */; };
-		D253A15C24CC0E4A00D75E26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D253A15B24CC0E4A00D75E26 /* SceneDelegate.swift */; };
 		D253A15E24CC0E4A00D75E26 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D253A15D24CC0E4A00D75E26 /* ViewController.swift */; };
 		D253A16124CC0E4A00D75E26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D253A15F24CC0E4A00D75E26 /* Main.storyboard */; };
 		D253A16324CC0E4D00D75E26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D253A16224CC0E4D00D75E26 /* Assets.xcassets */; };
 		D253A16624CC0E4D00D75E26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D253A16424CC0E4D00D75E26 /* LaunchScreen.storyboard */; };
+		D253A16E24CC10B800D75E26 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D253A16D24CC10B800D75E26 /* GoogleService-Info.plist */; };
+		D253A17724CC187900D75E26 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D253A17624CC187900D75E26 /* User.swift */; };
+		D253A17C24CC189900D75E26 /* SignupProfileImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D253A17824CC189700D75E26 /* SignupProfileImageVC.swift */; };
+		D253A17D24CC189900D75E26 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D253A17924CC189800D75E26 /* SignUpVC.swift */; };
+		D253A17E24CC189900D75E26 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D253A17A24CC189800D75E26 /* LoginVC.swift */; };
+		D253A17F24CC189900D75E26 /* MainTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D253A17B24CC189900D75E26 /* MainTabVC.swift */; };
+		D253A18124CC18BA00D75E26 /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D253A18024CC18BA00D75E26 /* AuthServices.swift */; };
+		D253A18524CC1A5600D75E26 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D253A18224CC1A5500D75E26 /* ImageCache.swift */; };
+		D253A18624CC1A5600D75E26 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D253A18324CC1A5500D75E26 /* RoundButton.swift */; };
+		D253A18724CC1A5600D75E26 /* RoundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D253A18424CC1A5600D75E26 /* RoundImage.swift */; };
+		D2BEFF7924CEBE5000B997EC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEFF7824CEBE5000B997EC /* Constant.swift */; };
+		D2BEFF7C24CEC8D900B997EC /* RegisterStoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEFF7B24CEC8D900B997EC /* RegisterStoreVC.swift */; };
+		E88ED2FE4D7A63BD04A7FB20 /* Pods_ThePasarMerchant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D97116B60FA1860105D5D6 /* Pods_ThePasarMerchant.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		39D97116B60FA1860105D5D6 /* Pods_ThePasarMerchant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePasarMerchant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CF3C16D218615D2865020E6 /* Pods-ThePasarMerchant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePasarMerchant.debug.xcconfig"; path = "Target Support Files/Pods-ThePasarMerchant/Pods-ThePasarMerchant.debug.xcconfig"; sourceTree = "<group>"; };
+		A1B8055D2AE2A69794F8A65C /* Pods-ThePasarMerchant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePasarMerchant.release.xcconfig"; path = "Target Support Files/Pods-ThePasarMerchant/Pods-ThePasarMerchant.release.xcconfig"; sourceTree = "<group>"; };
 		D253A15624CC0E4A00D75E26 /* ThePasarMerchant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThePasarMerchant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D253A15924CC0E4A00D75E26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D253A15B24CC0E4A00D75E26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D253A15D24CC0E4A00D75E26 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D253A16024CC0E4A00D75E26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D253A16224CC0E4D00D75E26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D253A16524CC0E4D00D75E26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D253A16724CC0E4D00D75E26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D253A16D24CC10B800D75E26 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D253A17624CC187900D75E26 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D253A17824CC189700D75E26 /* SignupProfileImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupProfileImageVC.swift; sourceTree = "<group>"; };
+		D253A17924CC189800D75E26 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		D253A17A24CC189800D75E26 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		D253A17B24CC189900D75E26 /* MainTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabVC.swift; sourceTree = "<group>"; };
+		D253A18024CC18BA00D75E26 /* AuthServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
+		D253A18224CC1A5500D75E26 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		D253A18324CC1A5500D75E26 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		D253A18424CC1A5600D75E26 /* RoundImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImage.swift; sourceTree = "<group>"; };
+		D2BEFF7824CEBE5000B997EC /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		D2BEFF7B24CEC8D900B997EC /* RegisterStoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStoreVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +57,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E88ED2FE4D7A63BD04A7FB20 /* Pods_ThePasarMerchant.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23CB71BCB2FEC3B298D271AB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6CF3C16D218615D2865020E6 /* Pods-ThePasarMerchant.debug.xcconfig */,
+				A1B8055D2AE2A69794F8A65C /* Pods-ThePasarMerchant.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A155F7F9AD2FB2CD88FA01A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				39D97116B60FA1860105D5D6 /* Pods_ThePasarMerchant.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D253A14D24CC0E4A00D75E26 = {
 			isa = PBXGroup;
 			children = (
 				D253A15824CC0E4A00D75E26 /* ThePasarMerchant */,
 				D253A15724CC0E4A00D75E26 /* Products */,
+				23CB71BCB2FEC3B298D271AB /* Pods */,
+				A155F7F9AD2FB2CD88FA01A5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +102,90 @@
 		D253A15824CC0E4A00D75E26 /* ThePasarMerchant */ = {
 			isa = PBXGroup;
 			children = (
+				D253A17524CC185D00D75E26 /* Model */,
+				D253A17424CC185500D75E26 /* View */,
+				D253A17324CC184E00D75E26 /* Controller */,
+				D253A17224CC184000D75E26 /* Services */,
+				D253A17124CC183500D75E26 /* Utilities */,
+				D253A17024CC182C00D75E26 /* Extension */,
+				D253A16F24CC182100D75E26 /* Constants */,
 				D253A15924CC0E4A00D75E26 /* AppDelegate.swift */,
-				D253A15B24CC0E4A00D75E26 /* SceneDelegate.swift */,
 				D253A15D24CC0E4A00D75E26 /* ViewController.swift */,
 				D253A15F24CC0E4A00D75E26 /* Main.storyboard */,
 				D253A16224CC0E4D00D75E26 /* Assets.xcassets */,
 				D253A16424CC0E4D00D75E26 /* LaunchScreen.storyboard */,
+				D253A16D24CC10B800D75E26 /* GoogleService-Info.plist */,
 				D253A16724CC0E4D00D75E26 /* Info.plist */,
 			);
 			path = ThePasarMerchant;
+			sourceTree = "<group>";
+		};
+		D253A16F24CC182100D75E26 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		D253A17024CC182C00D75E26 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D253A18224CC1A5500D75E26 /* ImageCache.swift */,
+				D253A18324CC1A5500D75E26 /* RoundButton.swift */,
+				D253A18424CC1A5600D75E26 /* RoundImage.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		D253A17124CC183500D75E26 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D2BEFF7824CEBE5000B997EC /* Constant.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		D253A17224CC184000D75E26 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D253A18024CC18BA00D75E26 /* AuthServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D253A17324CC184E00D75E26 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D2BEFF7A24CEC29000B997EC /* AccountVCs */,
+				D253A17B24CC189900D75E26 /* MainTabVC.swift */,
+				D2BEFF7B24CEC8D900B997EC /* RegisterStoreVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D253A17424CC185500D75E26 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D253A17524CC185D00D75E26 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D253A17624CC187900D75E26 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D2BEFF7A24CEC29000B997EC /* AccountVCs */ = {
+			isa = PBXGroup;
+			children = (
+				D253A17A24CC189800D75E26 /* LoginVC.swift */,
+				D253A17824CC189700D75E26 /* SignupProfileImageVC.swift */,
+				D253A17924CC189800D75E26 /* SignUpVC.swift */,
+			);
+			path = AccountVCs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +195,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D253A16A24CC0E4D00D75E26 /* Build configuration list for PBXNativeTarget "ThePasarMerchant" */;
 			buildPhases = (
+				916114B580CD5323C540554A /* [CP] Check Pods Manifest.lock */,
 				D253A15224CC0E4A00D75E26 /* Sources */,
 				D253A15324CC0E4A00D75E26 /* Frameworks */,
 				D253A15424CC0E4A00D75E26 /* Resources */,
+				242742E6C7627145B420A4E7 /* [CP] Embed Pods Frameworks */,
+				437748479F941E2A8F176FC6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -126,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D253A16624CC0E4D00D75E26 /* LaunchScreen.storyboard in Resources */,
+				D253A16E24CC10B800D75E26 /* GoogleService-Info.plist in Resources */,
 				D253A16324CC0E4D00D75E26 /* Assets.xcassets in Resources */,
 				D253A16124CC0E4A00D75E26 /* Main.storyboard in Resources */,
 			);
@@ -133,14 +258,83 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		242742E6C7627145B420A4E7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ThePasarMerchant/Pods-ThePasarMerchant-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ThePasarMerchant/Pods-ThePasarMerchant-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ThePasarMerchant/Pods-ThePasarMerchant-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		437748479F941E2A8F176FC6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ThePasarMerchant/Pods-ThePasarMerchant-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ThePasarMerchant/Pods-ThePasarMerchant-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ThePasarMerchant/Pods-ThePasarMerchant-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		916114B580CD5323C540554A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ThePasarMerchant-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D253A15224CC0E4A00D75E26 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D253A18524CC1A5600D75E26 /* ImageCache.swift in Sources */,
+				D253A17724CC187900D75E26 /* User.swift in Sources */,
+				D253A17C24CC189900D75E26 /* SignupProfileImageVC.swift in Sources */,
+				D253A17E24CC189900D75E26 /* LoginVC.swift in Sources */,
+				D253A18624CC1A5600D75E26 /* RoundButton.swift in Sources */,
+				D2BEFF7C24CEC8D900B997EC /* RegisterStoreVC.swift in Sources */,
 				D253A15E24CC0E4A00D75E26 /* ViewController.swift in Sources */,
 				D253A15A24CC0E4A00D75E26 /* AppDelegate.swift in Sources */,
-				D253A15C24CC0E4A00D75E26 /* SceneDelegate.swift in Sources */,
+				D253A17D24CC189900D75E26 /* SignUpVC.swift in Sources */,
+				D253A18124CC18BA00D75E26 /* AuthServices.swift in Sources */,
+				D253A18724CC1A5600D75E26 /* RoundImage.swift in Sources */,
+				D253A17F24CC189900D75E26 /* MainTabVC.swift in Sources */,
+				D2BEFF7924CEBE5000B997EC /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,11 +476,13 @@
 		};
 		D253A16B24CC0E4D00D75E26 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CF3C16D218615D2865020E6 /* Pods-ThePasarMerchant.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93SA3SA2TF;
 				INFOPLIST_FILE = ThePasarMerchant/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,11 +496,13 @@
 		};
 		D253A16C24CC0E4D00D75E26 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1B8055D2AE2A69794F8A65C /* Pods-ThePasarMerchant.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93SA3SA2TF;
 				INFOPLIST_FILE = ThePasarMerchant/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -7,29 +7,53 @@
 //
 
 import UIKit
+import Firebase
+import CodableFirebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
+    var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
+        let defaults = UserDefaults.standard
+        
+        if(!defaults.bool(forKey: "hasRunBefore")){
+            do{
+                try Auth.auth().signOut()
+            }catch{
+                
+            }
+            defaults.set(true, forKey: "hasRunBefore")
+            defaults.synchronize()
+            
+        }else{
+            print("here")
+            if Auth.auth().currentUser != nil{
+                let userInfo = db.collection("Merchant").document((Auth.auth().currentUser?.uid)!)
+                userInfo.getDocument { (snapshot, err) in
+                    if err == nil{
+                        if snapshot!.exists{
+                            guard let snapShot = snapshot?.data() else {return}
+                            userGlobal = try! FirestoreDecoder().decode(Merchant.self, from: snapShot )
+                            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                            let authVC = storyboard.instantiateViewController(withIdentifier: "loggedIn")
+                            authVC.modalPresentationStyle = .fullScreen
+                            self.window?.makeKeyAndVisible()
+                            
+                            self.window?.rootViewController?.present(authVC, animated: true, completion: nil )
+                        }else{
+                            try! Auth.auth().signOut()
+                        }
+                        
+                    }
+                }
+                
+                
+            }
+        }
         return true
-    }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
 
