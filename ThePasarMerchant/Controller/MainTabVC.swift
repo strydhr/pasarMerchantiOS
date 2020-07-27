@@ -22,7 +22,14 @@ class MainTabVC: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "registerStoreSegue"{
+            
+        }
+    }
+    
     @IBAction func registerBtnPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "registerStoreSegue", sender: self)
     }
     
     /*

@@ -425,6 +425,7 @@
                         <outlet property="popupBackground" destination="pes-gs-PN5" id="TIr-HK-llQ"/>
                         <outlet property="popupView" destination="nkC-s1-tFb" id="WA2-mc-CVJ"/>
                         <outlet property="registerBtn" destination="crP-SE-sSG" id="fpA-uk-NVu"/>
+                        <segue destination="XJJ-0H-SFU" kind="show" identifier="registerStoreSegue" id="u2v-pH-unj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="keg-H7-fsp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -438,9 +439,25 @@
                     <view key="view" contentMode="scaleToFill" id="coZ-yt-Q2F">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bGx-C6-WOZ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="aF5-ds-LW4" firstAttribute="bottom" secondItem="bGx-C6-WOZ" secondAttribute="bottom" id="JlG-dv-0FO"/>
+                            <constraint firstItem="bGx-C6-WOZ" firstAttribute="leading" secondItem="aF5-ds-LW4" secondAttribute="leading" id="Ljr-m5-2O0"/>
+                            <constraint firstItem="aF5-ds-LW4" firstAttribute="trailing" secondItem="bGx-C6-WOZ" secondAttribute="trailing" id="aW2-lD-QaA"/>
+                            <constraint firstItem="bGx-C6-WOZ" firstAttribute="top" secondItem="aF5-ds-LW4" secondAttribute="top" id="oFP-iT-8bq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="aF5-ds-LW4"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Ku0-fH-lO5"/>
+                    <connections>
+                        <outlet property="editTable" destination="bGx-C6-WOZ" id="aeX-Ag-ZvT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoP-sJ-ube" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -740,6 +757,7 @@
                 <tabBarController storyboardIdentifier="loggedIn" automaticallyAdjustsScrollViewInsets="NO" id="DgB-v6-0RF" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1hj-Mg-v2U">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

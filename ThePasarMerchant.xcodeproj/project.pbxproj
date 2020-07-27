@@ -24,6 +24,8 @@
 		D253A18724CC1A5600D75E26 /* RoundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D253A18424CC1A5600D75E26 /* RoundImage.swift */; };
 		D2BEFF7924CEBE5000B997EC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEFF7824CEBE5000B997EC /* Constant.swift */; };
 		D2BEFF7C24CEC8D900B997EC /* RegisterStoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEFF7B24CEC8D900B997EC /* RegisterStoreVC.swift */; };
+		D2BEFF7F24CEDC3600B997EC /* registerStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEFF7D24CEDC3600B997EC /* registerStoreCell.swift */; };
+		D2BEFF8024CEDC3600B997EC /* registerStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2BEFF7E24CEDC3600B997EC /* registerStoreCell.xib */; };
 		E88ED2FE4D7A63BD04A7FB20 /* Pods_ThePasarMerchant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D97116B60FA1860105D5D6 /* Pods_ThePasarMerchant.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +52,8 @@
 		D253A18424CC1A5600D75E26 /* RoundImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImage.swift; sourceTree = "<group>"; };
 		D2BEFF7824CEBE5000B997EC /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		D2BEFF7B24CEC8D900B997EC /* RegisterStoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStoreVC.swift; sourceTree = "<group>"; };
+		D2BEFF7D24CEDC3600B997EC /* registerStoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerStoreCell.swift; sourceTree = "<group>"; };
+		D2BEFF7E24CEDC3600B997EC /* registerStoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = registerStoreCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,8 @@
 		D253A17424CC185500D75E26 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D2BEFF7D24CEDC3600B997EC /* registerStoreCell.swift */,
+				D2BEFF7E24CEDC3600B997EC /* registerStoreCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -250,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D253A16624CC0E4D00D75E26 /* LaunchScreen.storyboard in Resources */,
+				D2BEFF8024CEDC3600B997EC /* registerStoreCell.xib in Resources */,
 				D253A16E24CC10B800D75E26 /* GoogleService-Info.plist in Resources */,
 				D253A16324CC0E4D00D75E26 /* Assets.xcassets in Resources */,
 				D253A16124CC0E4A00D75E26 /* Main.storyboard in Resources */,
@@ -332,6 +339,7 @@
 				D253A15A24CC0E4A00D75E26 /* AppDelegate.swift in Sources */,
 				D253A17D24CC189900D75E26 /* SignUpVC.swift in Sources */,
 				D253A18124CC18BA00D75E26 /* AuthServices.swift in Sources */,
+				D2BEFF7F24CEDC3600B997EC /* registerStoreCell.swift in Sources */,
 				D253A18724CC1A5600D75E26 /* RoundImage.swift in Sources */,
 				D253A17F24CC189900D75E26 /* MainTabVC.swift in Sources */,
 				D2BEFF7924CEBE5000B997EC /* Constant.swift in Sources */,
