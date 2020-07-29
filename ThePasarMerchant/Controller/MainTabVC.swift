@@ -24,12 +24,24 @@ class MainTabVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "registerStoreSegue"{
+            let destination = segue.destination as! RegisterStoreVC
+            destination.delegate = self
+        }else if segue.identifier == "productSegue"{
+            let destination = segue.destination as! ProductVC
+            StoreServices.instance.listMyStore { (storelist) in
+                destination.myStore = storelist.first?.store
+            }
             
         }
     }
     
     @IBAction func registerBtnPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "registerStoreSegue", sender: self)
+    }
+    @IBAction func productBtnPressed(_ sender: UIButton) {
+        if userGlobal?.storeCount == 1{
+            performSegue(withIdentifier: "productSegue", sender: self)
+        }
     }
     
     /*
@@ -42,4 +54,14 @@ class MainTabVC: UIViewController {
     }
     */
 
+}
+extension MainTabVC: hasStoreDelegate{
+    func hasStore(status: Bool) {
+        if status{
+            popupBackground.isHidden = true
+            popupView.isHidden = true
+        }
+    }
+    
+    
 }

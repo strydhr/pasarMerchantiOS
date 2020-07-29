@@ -327,6 +327,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPv-0U-ZRE">
                                         <rect key="frame" x="207" y="0.0" width="207" height="414"/>
                                         <state key="normal" title="Products"/>
+                                        <connections>
+                                            <action selector="productBtnPressed:" destination="rld-3q-eJu" eventType="touchUpInside" id="aZj-ZG-OLA"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -426,6 +429,8 @@
                         <outlet property="popupView" destination="nkC-s1-tFb" id="WA2-mc-CVJ"/>
                         <outlet property="registerBtn" destination="crP-SE-sSG" id="fpA-uk-NVu"/>
                         <segue destination="XJJ-0H-SFU" kind="show" identifier="registerStoreSegue" id="u2v-pH-unj"/>
+                        <segue destination="mYW-rQ-Mxn" kind="show" identifier="productSegue" id="O2H-a7-owe"/>
+                        <segue destination="M6I-Ir-BF3" kind="show" identifier="storeSegue" id="zwK-d4-U8U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="keg-H7-fsp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -441,14 +446,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bGx-C6-WOZ">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="675"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FIK-oP-gYc">
+                                <rect key="frame" x="0.0" y="763" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.2784313725" green="0.69803921570000005" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Uzt-Rl-pSe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Confirm">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="confirmBtnPressed:" destination="XJJ-0H-SFU" eventType="touchUpInside" id="UgN-yj-gpJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="aF5-ds-LW4" firstAttribute="bottom" secondItem="bGx-C6-WOZ" secondAttribute="bottom" id="JlG-dv-0FO"/>
+                            <constraint firstItem="aF5-ds-LW4" firstAttribute="bottom" secondItem="FIK-oP-gYc" secondAttribute="bottom" id="3XB-Ti-tAo"/>
+                            <constraint firstItem="FIK-oP-gYc" firstAttribute="top" secondItem="bGx-C6-WOZ" secondAttribute="bottom" id="6rE-cc-ejj"/>
+                            <constraint firstItem="FIK-oP-gYc" firstAttribute="leading" secondItem="aF5-ds-LW4" secondAttribute="leading" id="Lc2-v4-Bhx"/>
                             <constraint firstItem="bGx-C6-WOZ" firstAttribute="leading" secondItem="aF5-ds-LW4" secondAttribute="leading" id="Ljr-m5-2O0"/>
+                            <constraint firstItem="aF5-ds-LW4" firstAttribute="trailing" secondItem="FIK-oP-gYc" secondAttribute="trailing" id="RY9-0i-60P"/>
                             <constraint firstItem="aF5-ds-LW4" firstAttribute="trailing" secondItem="bGx-C6-WOZ" secondAttribute="trailing" id="aW2-lD-QaA"/>
                             <constraint firstItem="bGx-C6-WOZ" firstAttribute="top" secondItem="aF5-ds-LW4" secondAttribute="top" id="oFP-iT-8bq"/>
                         </constraints>
@@ -456,12 +478,76 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ku0-fH-lO5"/>
                     <connections>
+                        <outlet property="confirmBtn" destination="FIK-oP-gYc" id="zXK-jx-3m6"/>
                         <outlet property="editTable" destination="bGx-C6-WOZ" id="aeX-Ag-ZvT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoP-sJ-ube" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7984" y="122"/>
+            <point key="canvasLocation" x="7982.6086956521749" y="121.875"/>
+        </scene>
+        <!--StoreVC-->
+        <scene sceneID="JDv-tv-Mxk">
+            <objects>
+                <viewController id="M6I-Ir-BF3" customClass="StoreVC" customModule="ThePasarMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mf1-gH-uas">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g6p-rG-xD3">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="J8R-pP-kNP" firstAttribute="trailing" secondItem="g6p-rG-xD3" secondAttribute="trailing" id="Nev-oE-jsF"/>
+                            <constraint firstItem="g6p-rG-xD3" firstAttribute="top" secondItem="J8R-pP-kNP" secondAttribute="top" id="ab7-Rp-97I"/>
+                            <constraint firstItem="J8R-pP-kNP" firstAttribute="bottom" secondItem="g6p-rG-xD3" secondAttribute="bottom" id="qfE-xy-r4s"/>
+                            <constraint firstItem="g6p-rG-xD3" firstAttribute="leading" secondItem="J8R-pP-kNP" secondAttribute="leading" id="yQr-vd-O1b"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="J8R-pP-kNP"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="NPU-5z-B4z"/>
+                    <connections>
+                        <outlet property="storeTable" destination="g6p-rG-xD3" id="4ux-ob-zoC"/>
+                        <segue destination="mYW-rQ-Mxn" kind="show" identifier="viewProductSegue" id="Y8i-Nc-zZo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uso-Nf-mZk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7889" y="834"/>
+        </scene>
+        <!--ProductVC-->
+        <scene sceneID="b9J-FJ-242">
+            <objects>
+                <viewController id="mYW-rQ-Mxn" customClass="ProductVC" customModule="ThePasarMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fTe-T6-Qps">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LHJ-7b-ehb">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="LHJ-7b-ehb" firstAttribute="leading" secondItem="bod-fP-tTH" secondAttribute="leading" id="3kn-Kn-ls0"/>
+                            <constraint firstItem="bod-fP-tTH" firstAttribute="bottom" secondItem="LHJ-7b-ehb" secondAttribute="bottom" id="4bU-l5-Cni"/>
+                            <constraint firstItem="bod-fP-tTH" firstAttribute="trailing" secondItem="LHJ-7b-ehb" secondAttribute="trailing" id="IdK-hl-e3g"/>
+                            <constraint firstItem="LHJ-7b-ehb" firstAttribute="top" secondItem="bod-fP-tTH" secondAttribute="top" id="tL3-uf-kqK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bod-fP-tTH"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="JEE-Pg-7iT"/>
+                    <connections>
+                        <outlet property="productTable" destination="LHJ-7b-ehb" id="OGO-uF-uvw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EbZ-oB-hJ8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8987" y="839"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="S9f-3V-Ezc">
@@ -770,6 +856,9 @@
             <point key="canvasLocation" x="5242.0289855072469" y="123.88392857142857"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="O2H-a7-owe"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="1920" height="1080"/>
         <image name="defaultImage" width="222" height="222"/>

@@ -55,6 +55,13 @@ class AuthServices {
     
     
         }
+    func updateStoreCount(merchant:Merchant,requestComplete: @escaping(_ status: Bool)->()){
+        db.collection("Merchant").document(merchant.uid).updateData(["storeCount":merchant.storeCount + 1]) { (err) in
+            if err == nil{
+                requestComplete(true)
+            }
+        }
+    }
     
 //    func registerNewUser(email:String,password:String,requestComplete:@escaping(_ status: Bool,_ error: Error?)->()){
 //        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
