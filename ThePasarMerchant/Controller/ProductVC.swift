@@ -20,8 +20,13 @@ class ProductVC: UIViewController {
         addBtn = UIBarButtonItem(title: "Add Item", style: .done, target: self, action: #selector(addProduct))
         navigationItem.rightBarButtonItems = [addBtn]
         productTable.register(UINib(nibName: "productCell", bundle: nil), forCellReuseIdentifier: "productCell")
+        
         productTable.delegate = self
         productTable.dataSource = self
+        
+
+        loadDatas()
+        
         
     }
     

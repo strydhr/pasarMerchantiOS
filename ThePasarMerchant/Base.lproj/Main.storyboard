@@ -340,6 +340,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="207" height="311"/>
                                         <color key="backgroundColor" red="0.2784313725" green="0.69803921570000005" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Purchases"/>
+                                        <connections>
+                                            <action selector="purchasesBtnPressed:" destination="rld-3q-eJu" eventType="touchUpInside" id="Txg-wo-Kcr"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8e-t9-rHI">
                                         <rect key="frame" x="207" y="0.0" width="207" height="311"/>
@@ -431,11 +434,50 @@
                         <segue destination="XJJ-0H-SFU" kind="show" identifier="registerStoreSegue" id="u2v-pH-unj"/>
                         <segue destination="mYW-rQ-Mxn" kind="show" identifier="productSegue" id="O2H-a7-owe"/>
                         <segue destination="M6I-Ir-BF3" kind="show" identifier="storeSegue" id="zwK-d4-U8U"/>
+                        <segue destination="sHF-Ea-5mF" kind="show" identifier="orderSegue" id="gSK-RM-fqz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="keg-H7-fsp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7062.3188405797109" y="123.88392857142857"/>
+        </scene>
+        <!--OrdersVC-->
+        <scene sceneID="lGX-Tu-OVB">
+            <objects>
+                <viewController id="sHF-Ea-5mF" customClass="OrdersVC" customModule="ThePasarMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rwX-WF-GEc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="BKJ-8j-mi7">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6jP-8g-4yQ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="BKJ-8j-mi7" firstAttribute="trailing" secondItem="Qdw-BA-WX6" secondAttribute="trailing" id="1EP-I3-WOo"/>
+                            <constraint firstItem="BKJ-8j-mi7" firstAttribute="leading" secondItem="Qdw-BA-WX6" secondAttribute="leading" id="605-2u-ko4"/>
+                            <constraint firstAttribute="bottom" secondItem="BKJ-8j-mi7" secondAttribute="bottom" id="GuO-81-SAo"/>
+                            <constraint firstItem="BKJ-8j-mi7" firstAttribute="top" secondItem="rwX-WF-GEc" secondAttribute="top" id="hv0-0s-4Ko"/>
+                            <constraint firstItem="6jP-8g-4yQ" firstAttribute="top" secondItem="Qdw-BA-WX6" secondAttribute="top" id="odz-tJ-FSb"/>
+                            <constraint firstItem="Qdw-BA-WX6" firstAttribute="bottom" secondItem="6jP-8g-4yQ" secondAttribute="bottom" id="umv-TM-JRN"/>
+                            <constraint firstItem="Qdw-BA-WX6" firstAttribute="trailing" secondItem="6jP-8g-4yQ" secondAttribute="trailing" id="wDj-l3-Dpe"/>
+                            <constraint firstItem="6jP-8g-4yQ" firstAttribute="leading" secondItem="Qdw-BA-WX6" secondAttribute="leading" id="wHS-Mt-Syz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Qdw-BA-WX6"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="tK8-cZ-55n"/>
+                    <connections>
+                        <outlet property="ordersTable" destination="6jP-8g-4yQ" id="Btw-yh-wrZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0aL-4k-K6k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7972" y="-574"/>
         </scene>
         <!--Register StoreVC-->
         <scene sceneID="F5C-xa-D6s">

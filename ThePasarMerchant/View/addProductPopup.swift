@@ -19,6 +19,7 @@ protocol updateProductsDelegate{
 class addProductPopup: UIViewController {
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var nameTF: UITextField!
+    @IBOutlet weak var typeTF: UITextField!
     @IBOutlet weak var priceTF: UITextField!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var confirmBtn: UIButton!
@@ -27,6 +28,10 @@ class addProductPopup: UIViewController {
     var delegate:updateProductsDelegate?
     
     var store:Store?
+    let typePicker = UIPickerView()
+    let doneBtn = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector (donePicking))
+    let category = ["Meals","Pastry","Dessert","Handmade"]
+    
     var isProductImageSet = false
     var selectedImage: UIImage?
     
@@ -40,6 +45,9 @@ class addProductPopup: UIViewController {
         detailsTF.layer.borderWidth = 1
         
         background.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(softkeyboarddown)))
+        
+        initTextField()
+        print(store?.ownerId)
     }
     @objc func softkeyboarddown(){
         nameTF.resignFirstResponder()
@@ -70,9 +78,14 @@ class addProductPopup: UIViewController {
         
         self.present(alert, animated: true, completion: nil)
     }
+    
+    @objc func donePicking(){
+        typeTF.resignFirstResponder()
+        
+    }
 
     @IBAction func confirmBtnPressed(_ sender: UIButton) {
-        errorHandler(productName: nameTF.text!, productPrice: priceTF.text!,productDetails: detailsTF.text!)
+        errorHandler(productName: nameTF.text!, productPrice: priceTF.text!,productDetails: detailsTF.text!, productType: typeTF.text!)
     }
 
 }
@@ -122,8 +135,8 @@ extension addProductPopup:UIImagePickerControllerDelegate,UINavigationController
     }
 }
 extension addProductPopup{
-    func errorHandler(productName:String,productPrice:String,productDetails:String){
-        if(productName.isEmpty || productPrice.isEmpty || productDetails.isEmpty){
+    func errorHandler(productName:String,productPrice:String,productDetails:String,productType:String){
+        if(productName.isEmpty || productPrice.isEmpty || productDetails.isEmpty || productType.isEmpty){
             if(productName.isEmpty){
                 
                 //Alert
@@ -150,6 +163,15 @@ extension addProductPopup{
                 alert.addAction(okAction)
                 self.present(alert, animated: true, completion: nil)
             }
+            if(productType.isEmpty){
+                
+                //Alert
+                let alert = UIAlertController(title: "Error", message: "Product type is empty", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                alert.addAction(okAction)
+                self.present(alert, animated: true, completion: nil)
+            }
+            
         }else{
             if !isProductImageSet{
                 //Alert
@@ -173,4 +195,57 @@ extension addProductPopup{
             }
         }
     }
+    
+    func initTextField(){
+        nameTF.placeholder = "Product Name"
+        priceTF.placeholder = "Product Price"
+        typePicker.delegate = self
+        typePicker.dataSource = self
+        typeTF.placeholder = "Type"
+        detailsTF.text = "Product Detail"
+        detailsTF.textColor = #colorLiteral(red: 0.8633741736, green: 0.8699255586, blue: 0.8700513244, alpha: 1)
+        detailsTF.delegate = self
+        createTypePicker()
+    }
+    
+    func createTypePicker(){
+        typePicker.showsSelectionIndicator = true
+        typeTF.inputView = typePicker
+        
+        let newToolbar = UIToolbar()
+        newToolbar.sizeToFit()
+        
+        
+        newToolbar.setItems([doneBtn], animated: false)
+        newToolbar.isUserInteractionEnabled = true
+        typeTF.inputAccessoryView = newToolbar
+    }
+}
+
+extension addProductPopup:UIPickerViewDelegate,UIPickerViewDataSource,UITextViewDelegate{
+     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+           return 1
+       }
+       
+       func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+           return category.count
+           
+       }
+       func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+               return category[row]
+       }
+       
+       func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+           doneBtn.isEnabled = true
+        typeTF.text = category[row]
+
+       }
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "Product Detail"{
+            textView.text = ""
+            textView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        }
+    }
+    
+    
 }
