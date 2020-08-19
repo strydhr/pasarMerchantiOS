@@ -46,6 +46,7 @@ extension OrdersVC:UITableViewDelegate,UITableViewDataSource{
         let header = ordersList[section]
         cell.deliveryAddress.text = header.purchaserAddress
         cell.delegate = self
+        cell.delegate2 = self
         cell.item = header
         var totalItems = 0
         for item in header.items{
@@ -94,9 +95,16 @@ extension OrdersVC{
     }
 }
 
-extension OrdersVC:rejectOrderDelegate{
+extension OrdersVC:rejectOrderDelegate,confirmOrderDelegate{
+    func confirmOrder(item: Receipts) {
+        
+    }
+    
     func rejectOrder(item: Receipts) {
-        print(item.date)
+        let rejectedPopup = rejectedCommentPopup()
+        rejectedPopup.order = selectedOrder.order
+        rejectedPopup.modalPresentationStyle = .custom
+        present(rejectedPopup, animated: true, completion: nil)
     }
     
     

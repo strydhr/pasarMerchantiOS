@@ -42,35 +42,35 @@ class OrderServices {
         }
     }
     
-    func realtimeListUpdate(requestComplete:@escaping(_ orderList:[Receipts])->()){
-                var orderList = [Receipts]()
-        
-        let dbRef = db.collection("receipts").whereField("ownerId", isEqualTo: (userGlobal?.uid)!).whereField("hasDelivered", isEqualTo: false)
-        dbRef.addSnapshotListener { (snapshot, error) in
-             if error == nil{
-                           guard let document = snapshot?.documents else {return}
-                           if document.isEmpty{
-                               requestComplete(orderList)
-                           }else{
-                               for items in document{
-                                   let docData = items.data()
-                                   print(docData)
-                                   let receipts = try! FirestoreDecoder().decode(Receipts.self, from: docData)
-                                   orderList.append(receipts)
-
-                                   
-                               }
-                               requestComplete(orderList)
-                               
-                           }
-                       }
-        }
-    
-    }
+//    func realtimeListUpdate(requestComplete:@escaping(_ orderList:[Receipts])->()){
+//                var orderList = [Receipts]()
+//
+//        let dbRef = db.collection("receipts").whereField("ownerId", isEqualTo: (userGlobal?.uid)!).whereField("hasDelivered", isEqualTo: false)
+//        dbRef.addSnapshotListener { (snapshot, error) in
+//             if error == nil{
+//                           guard let document = snapshot?.documents else {return}
+//                           if document.isEmpty{
+//                               requestComplete(orderList)
+//                           }else{
+//                               for items in document{
+//                                   let docData = items.data()
+//                                   print(docData)
+//                                   let receipts = try! FirestoreDecoder().decode(Receipts.self, from: docData)
+//                                   orderList.append(receipts)
+//
+//
+//                               }
+//                               requestComplete(orderList)
+//
+//                           }
+//                       }
+//        }
+//
+//    }
     func realtimeListUpdate2(requestComplete:@escaping(_ orderList:[Receipts])->()){
         var orderList = [Receipts]()
         
-        let dbRef = db.collection("receipts").whereField("ownerId", isEqualTo: (userGlobal?.uid)!).whereField("hasDelivered", isEqualTo: false)
+        let dbRef = db.collection("orders").whereField("ownerId", isEqualTo: (userGlobal?.uid)!).whereField("hasDelivered", isEqualTo: false)
         dbRef.addSnapshotListener { (snapshot, error) in
             if error == nil{
                 guard let document = snapshot else {return}
@@ -98,5 +98,20 @@ class OrderServices {
             }
         }
         
+    }
+    func confirmOrder(order:OrderDocument,requestComplete:@escaping(_ status:Bool)->()){
+        db.collection("orders").document(order.documentId!).updateData(["isConfirmed":true]) { (error) in
+            if error == nil{
+                requestComplete(true)
+            }
+        }
+    }
+    
+    func rejectOrder(order:OrderDocument,requestComplete:@escaping(_ status:Bool)->()){
+        db.collection("orders").document(order.documentId!).delete { (error) in
+            if error == nil{
+                requestComplete(true)
+            }
+        }
     }
 }

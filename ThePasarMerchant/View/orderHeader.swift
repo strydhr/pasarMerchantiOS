@@ -11,14 +11,19 @@ import UIKit
 protocol rejectOrderDelegate{
     func rejectOrder(item:Receipts)
 }
+protocol confirmOrderDelegate{
+    func confirmOrder(item:Receipts)
+}
 
 class orderHeader: UITableViewCell {
     @IBOutlet weak var deliveryTime: UILabel!
     @IBOutlet weak var deliveryAddress: UILabel!
     @IBOutlet weak var orderCount: UILabel!
     @IBOutlet weak var rejectBtn: UIButton!
+    @IBOutlet weak var confirmBtn: UIButton!
     
     var delegate: rejectOrderDelegate?
+    var delegate2: confirmOrderDelegate?
     var item: Receipts?
     
     
@@ -34,6 +39,9 @@ class orderHeader: UITableViewCell {
     }
     @IBAction func rejectBtnPressed(_ sender: UIButton) {
         delegate?.rejectOrder(item: item!)
+    }
+    @IBAction func confirmBtnPressed(_ sender: UIButton) {
+        delegate2?.confirmOrder(item: item!)
     }
     
 }

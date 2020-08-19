@@ -60,36 +60,57 @@
                             </label>
                         </subviews>
                     </stackView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4YQ-1j-f2k">
-                        <rect key="frame" x="371" y="93" width="91" height="34"/>
-                        <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="34" id="Ujg-SX-UrA"/>
-                            <constraint firstAttribute="width" constant="91" id="aDp-JR-7gL"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                        <state key="normal" title="Reject">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                        <connections>
-                            <action selector="rejectBtnPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="PoX-mm-204"/>
-                        </connections>
-                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9Yf-1O-Q49">
+                        <rect key="frame" x="272" y="93" width="190" height="34"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0p-Ec-6cD">
+                                <rect key="frame" x="0.0" y="0.0" width="91" height="34"/>
+                                <color key="backgroundColor" red="0.2784313725" green="0.69803921570000005" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="3F8-rt-YMo"/>
+                                    <constraint firstAttribute="width" constant="91" id="tkw-gj-CvK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Confirm">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="confirmBtnPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Nob-J5-3ff"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4YQ-1j-f2k">
+                                <rect key="frame" x="99" y="0.0" width="91" height="34"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="Ujg-SX-UrA"/>
+                                    <constraint firstAttribute="width" constant="91" id="aDp-JR-7gL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Reject">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="rejectBtnPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="PoX-mm-204"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="SsT-8q-egp" firstAttribute="top" secondItem="Imo-yN-dx4" secondAttribute="bottom" constant="8" id="3Ue-y2-THt"/>
+                    <constraint firstItem="9Yf-1O-Q49" firstAttribute="top" secondItem="HSu-vk-PQz" secondAttribute="bottom" constant="15" id="5cU-zU-pfl"/>
                     <constraint firstItem="Imo-yN-dx4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="LhL-2W-I3C"/>
+                    <constraint firstAttribute="trailing" secondItem="9Yf-1O-Q49" secondAttribute="trailing" constant="20" id="RMP-am-X6D"/>
                     <constraint firstItem="Imo-yN-dx4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="Ycp-do-uTd"/>
                     <constraint firstAttribute="trailing" secondItem="HSu-vk-PQz" secondAttribute="trailing" constant="20" id="b4z-1T-X7A"/>
                     <constraint firstItem="HSu-vk-PQz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="haU-em-WTE"/>
                     <constraint firstItem="SsT-8q-egp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="mXU-Th-C24"/>
-                    <constraint firstItem="4YQ-1j-f2k" firstAttribute="top" secondItem="HSu-vk-PQz" secondAttribute="bottom" constant="15" id="mdc-Nq-kTt"/>
-                    <constraint firstAttribute="trailing" secondItem="4YQ-1j-f2k" secondAttribute="trailing" constant="20" id="t3Z-cq-5Sw"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="confirmBtn" destination="m0p-Ec-6cD" id="FgZ-jU-Ynn"/>
                 <outlet property="deliveryAddress" destination="SsT-8q-egp" id="wNs-dk-rp5"/>
                 <outlet property="deliveryTime" destination="dMy-ue-GPq" id="TAH-bw-QvW"/>
                 <outlet property="orderCount" destination="kho-jh-sJh" id="xXG-8W-PPq"/>

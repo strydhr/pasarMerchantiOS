@@ -58,6 +58,43 @@ class itemPurchasing: Codable{
         self.deliveryTime = deliveryTime
     }
 }
+class Order: Codable{
+    var items:[itemPurchasing]
+    var date: Timestamp
+    var hasDeliveryTime:Bool
+    var deliveryTime:Timestamp
+    var purchaserId:String
+    var purchaserName:String
+    var purchaserAddress:String
+    var storeId:String
+    var storeName:String
+    var ownerId:String
+    var hasDelivered:Bool
+    var confirmationStatus:Int
+    var comment:String
+    
+    init(items:[itemPurchasing],date:Timestamp,hasDeliveryTime:Bool,deliveryTime:Timestamp,purchaserId:String,purchaserName:String,purchaserAddress:String,storeId:String,storeName:String,ownerId:String,hasDelivered:Bool,confirmationStatus:Int,comment:String) {
+        self.items = items
+        self.date = date
+        self.hasDeliveryTime = hasDeliveryTime
+        self.deliveryTime = deliveryTime
+        self.purchaserId = purchaserId
+        self.purchaserName = purchaserName
+        self.purchaserAddress = purchaserAddress
+        self.storeId = storeId
+        self.storeName = storeName
+        self.ownerId = ownerId
+        self.hasDelivered = hasDelivered
+        self.confirmationStatus = confirmationStatus //0:rejected 1: unconfirmed 2: confirm
+        self.comment = comment
+    }
+}
+
+struct OrderDocument {
+    var documentId:String?
+    var order:Order?
+}
+
 
 class Receipts: Codable{
     var items:[itemPurchasing]

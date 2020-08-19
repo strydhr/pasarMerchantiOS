@@ -434,7 +434,6 @@
                         <segue destination="XJJ-0H-SFU" kind="show" identifier="registerStoreSegue" id="u2v-pH-unj"/>
                         <segue destination="mYW-rQ-Mxn" kind="show" identifier="productSegue" id="O2H-a7-owe"/>
                         <segue destination="M6I-Ir-BF3" kind="show" identifier="storeSegue" id="zwK-d4-U8U"/>
-                        <segue destination="sHF-Ea-5mF" kind="show" identifier="orderSegue" id="gSK-RM-fqz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="keg-H7-fsp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -477,7 +476,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0aL-4k-K6k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7972" y="-574"/>
+            <point key="canvasLocation" x="7062" y="1193"/>
         </scene>
         <!--Register StoreVC-->
         <scene sceneID="F5C-xa-D6s">
@@ -558,7 +557,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uso-Nf-mZk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7889" y="834"/>
+            <point key="canvasLocation" x="8798.5507246376819" y="833.70535714285711"/>
         </scene>
         <!--ProductVC-->
         <scene sceneID="b9J-FJ-242">
@@ -589,7 +588,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EbZ-oB-hJ8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8987" y="839"/>
+            <point key="canvasLocation" x="9897.1014492753638" y="838.39285714285711"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="S9f-3V-Ezc">
@@ -891,11 +890,31 @@
                     </tabBar>
                     <connections>
                         <segue destination="mHg-U1-2BD" kind="relationship" relationship="viewControllers" id="9Kw-Xn-ydx"/>
+                        <segue destination="b6X-i6-Z77" kind="relationship" relationship="viewControllers" id="eZp-IM-uCR"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bjl-d4-bPB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5242.0289855072469" y="123.88392857142857"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="EvN-EZ-HfV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b6X-i6-Z77" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="apk-aR-1gE"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BFJ-te-nA7">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sHF-Ea-5mF" kind="relationship" relationship="rootViewController" id="RJd-f6-xfz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KLk-Jt-efO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6152" y="1193"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
