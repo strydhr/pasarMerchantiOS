@@ -123,3 +123,7 @@ class Receipts: Codable{
         self.hasDelivered = hasDelivered
     }
 }
+struct ReceiptDocument {
+    var documentId:String?
+    var order:Receipts?
+}

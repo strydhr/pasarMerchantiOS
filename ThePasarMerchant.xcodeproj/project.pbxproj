@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D24C649624EF921B00C5A31B /* ConfirmedOrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24C649524EF921B00C5A31B /* ConfirmedOrdersVC.swift */; };
 		D25283B124DA8D0400325978 /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25283B024DA8D0400325978 /* OrdersVC.swift */; };
 		D25283B424DA9E6300325978 /* orderHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25283B224DA9E6300325978 /* orderHeader.swift */; };
 		D25283B524DA9E6300325978 /* orderHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25283B324DA9E6300325978 /* orderHeader.xib */; };
@@ -53,6 +54,7 @@
 		39D97116B60FA1860105D5D6 /* Pods_ThePasarMerchant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePasarMerchant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CF3C16D218615D2865020E6 /* Pods-ThePasarMerchant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePasarMerchant.debug.xcconfig"; path = "Target Support Files/Pods-ThePasarMerchant/Pods-ThePasarMerchant.debug.xcconfig"; sourceTree = "<group>"; };
 		A1B8055D2AE2A69794F8A65C /* Pods-ThePasarMerchant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePasarMerchant.release.xcconfig"; path = "Target Support Files/Pods-ThePasarMerchant/Pods-ThePasarMerchant.release.xcconfig"; sourceTree = "<group>"; };
+		D24C649524EF921B00C5A31B /* ConfirmedOrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmedOrdersVC.swift; sourceTree = "<group>"; };
 		D25283B024DA8D0400325978 /* OrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersVC.swift; sourceTree = "<group>"; };
 		D25283B224DA9E6300325978 /* orderHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderHeader.swift; sourceTree = "<group>"; };
 		D25283B324DA9E6300325978 /* orderHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = orderHeader.xib; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				D2C2D51624D0228B007A4526 /* ProductVC.swift */,
 				D2C2D51824D02711007A4526 /* StoreVC.swift */,
 				D25283B024DA8D0400325978 /* OrdersVC.swift */,
+				D24C649524EF921B00C5A31B /* ConfirmedOrdersVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				D25A3C4C24D057CB00E91AC5 /* addProductPopup.swift in Sources */,
 				D2C2D50E24CFF9D0007A4526 /* registerStoreImageCell.swift in Sources */,
 				D2C2D51124D006B7007A4526 /* Store.swift in Sources */,
+				D24C649624EF921B00C5A31B /* ConfirmedOrdersVC.swift in Sources */,
 				D25A3C4F24D05ED700E91AC5 /* Product.swift in Sources */,
 				D252E55024DBBF90000C6A22 /* OrderServices.swift in Sources */,
 				D253A17C24CC189900D75E26 /* SignupProfileImageVC.swift in Sources */,

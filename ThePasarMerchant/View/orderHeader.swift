@@ -9,10 +9,10 @@
 import UIKit
 
 protocol rejectOrderDelegate{
-    func rejectOrder(item:Receipts)
+    func rejectOrder(item:OrderDocument)
 }
 protocol confirmOrderDelegate{
-    func confirmOrder(item:Receipts)
+    func confirmOrder(item:OrderDocument)
 }
 
 class orderHeader: UITableViewCell {
@@ -24,7 +24,7 @@ class orderHeader: UITableViewCell {
     
     var delegate: rejectOrderDelegate?
     var delegate2: confirmOrderDelegate?
-    var item: Receipts?
+    var item: OrderDocument?
     
     
     override func awakeFromNib() {

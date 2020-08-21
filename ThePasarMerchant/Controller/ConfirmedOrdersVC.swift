@@ -1,17 +1,17 @@
 //
-//  OrdersVC.swift
+//  ConfirmedOrdersVC.swift
 //  ThePasarMerchant
 //
-//  Created by Satyia Anand on 05/08/2020.
+//  Created by Satyia Anand on 21/08/2020.
 //  Copyright © 2020 Satyia Anand. All rights reserved.
 //
 
 import UIKit
 
-class OrdersVC: UIViewController {
+class ConfirmedOrdersVC: UIViewController {
     @IBOutlet weak var ordersTable: UITableView!
     
-    var ordersList = [OrderDocument]()
+    var ordersList = [ReceiptDocument]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,18 +25,8 @@ class OrdersVC: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
-extension OrdersVC:UITableViewDelegate,UITableViewDataSource{
+extension ConfirmedOrdersVC:UITableViewDelegate,UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return ordersList.count
@@ -45,8 +35,8 @@ extension OrdersVC:UITableViewDelegate,UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "orderHeader")as? orderHeader else {return UITableViewCell()}
         let header = ordersList[section]
         cell.deliveryAddress.text = header.order?.purchaserAddress
-        cell.delegate = self
-        cell.delegate2 = self
+        cell.confirmBtn.isHidden = true
+        cell.rejectBtn.isHidden = true
         cell.item = header
         var totalItems = 0
         for item in header.order!.items{
@@ -81,7 +71,7 @@ extension OrdersVC:UITableViewDelegate,UITableViewDataSource{
     }
 }
 
-extension OrdersVC{
+extension ConfirmedOrdersVC{
     func loadDatas(){
         OrderServices.instance.realtimeListUpdate2{ (orderlist) in
 //            let todaysDate = Date()
@@ -94,35 +84,4 @@ extension OrdersVC{
             self.ordersTable.reloadData()
         }
     }
-}
-
-extension OrdersVC:rejectOrderDelegate,confirmOrderDelegate,removeRejectedOrderDelegate{
-    func removeFromList(item: OrderDocument) {
-        if let removeOrderIndex = ordersList.firstIndex(where: {$0.documentId == item.documentId}){
-            ordersList.remove(at: removeOrderIndex)
-            self.ordersTable.reloadData()
-        }
-    }
-    
-    func rejectOrder(item: OrderDocument) {
-        let rejectedPopup = rejectedCommentPopup()
-        rejectedPopup.order = item
-        rejectedPopup.delegate = self
-        rejectedPopup.modalPresentationStyle = .custom
-        present(rejectedPopup, animated: true, completion: nil)
-    }
-    
-    func confirmOrder(item: OrderDocument) {
-        OrderServices.instance.confirmOrder(order: item) { (isSuccess) in
-            if isSuccess{
-                if let confirmOrderIndex = self.ordersList.firstIndex(where: {$0.documentId == item.documentId}){
-                    self.ordersList[confirmOrderIndex].order?.confirmationStatus = 2
-                    self.ordersList[confirmOrderIndex].order?.hasDelivered = true
-                    self.ordersTable.reloadData()
-                }
-            }
-        }
-    }
-    
-    
 }

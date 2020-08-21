@@ -8,16 +8,20 @@
 
 import UIKit
 
+protocol removeRejectedOrderDelegate {
+    func removeFromList(item:OrderDocument)
+}
+
 class rejectedCommentPopup: UIViewController {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var comments: UITextView!
     @IBOutlet weak var sendBtn: UIButton!
     
-    var order:Order?
+    var delegate:removeRejectedOrderDelegate?
+    var order:OrderDocument?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        comments.text = order?.comment
         backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissPopup)))
     }
 
@@ -26,5 +30,11 @@ class rejectedCommentPopup: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func sendBtnPressed(_ sender: UIButton) {
+        OrderServices.instance.rejectOrder(rejectionComments: comments.text, order: order!) { (isSuccess) in
+            if isSuccess{
+                self.delegate?.removeFromList(item: self.order!)
+                self.dismissPopup()
+            }
+        }
     }
 }

@@ -434,6 +434,7 @@
                         <segue destination="XJJ-0H-SFU" kind="show" identifier="registerStoreSegue" id="u2v-pH-unj"/>
                         <segue destination="mYW-rQ-Mxn" kind="show" identifier="productSegue" id="O2H-a7-owe"/>
                         <segue destination="M6I-Ir-BF3" kind="show" identifier="storeSegue" id="zwK-d4-U8U"/>
+                        <segue destination="xlD-tI-n22" kind="show" identifier="confirmedOrderSegue" id="I1m-BH-hgc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="keg-H7-fsp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -525,7 +526,38 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoP-sJ-ube" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7982.6086956521749" y="121.875"/>
+            <point key="canvasLocation" x="7061" y="-638"/>
+        </scene>
+        <!--Confirmed OrdersVC-->
+        <scene sceneID="3wh-oA-oIW">
+            <objects>
+                <viewController id="xlD-tI-n22" customClass="ConfirmedOrdersVC" customModule="ThePasarMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yIx-iV-oDx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="saj-o5-AG3">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="sNb-Tr-0xB" firstAttribute="bottom" secondItem="saj-o5-AG3" secondAttribute="bottom" id="8Mi-SH-kPB"/>
+                            <constraint firstItem="sNb-Tr-0xB" firstAttribute="trailing" secondItem="saj-o5-AG3" secondAttribute="trailing" id="SNV-aa-kSE"/>
+                            <constraint firstItem="saj-o5-AG3" firstAttribute="leading" secondItem="sNb-Tr-0xB" secondAttribute="leading" id="gBf-2E-aYB"/>
+                            <constraint firstItem="saj-o5-AG3" firstAttribute="top" secondItem="sNb-Tr-0xB" secondAttribute="top" id="s1q-OW-8dK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sNb-Tr-0xB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yZt-vJ-J1X"/>
+                    <connections>
+                        <outlet property="ordersTable" destination="saj-o5-AG3" id="frW-OF-cf3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J8t-gc-nJ3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8792" y="145"/>
         </scene>
         <!--StoreVC-->
         <scene sceneID="JDv-tv-Mxk">

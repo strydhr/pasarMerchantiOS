@@ -67,8 +67,10 @@ class OrderServices {
 //        }
 //
 //    }
-    func realtimeListUpdate2(requestComplete:@escaping(_ orderList:[Receipts])->()){
-        var orderList = [Receipts]()
+    func realtimeListUpdate2(requestComplete:@escaping(_ orderList:[OrderDocument])->()){
+        var orderList = [OrderDocument]()
+        let todaysDate = Date()
+        let calendar = Calendar.current
         
         let dbRef = db.collection("orders").whereField("ownerId", isEqualTo: (userGlobal?.uid)!).whereField("hasDelivered", isEqualTo: false)
         dbRef.addSnapshotListener { (snapshot, error) in
@@ -76,39 +78,35 @@ class OrderServices {
                 guard let document = snapshot else {return}
                 document.documentChanges.forEach { (diff) in
                     if(diff.type == .added){
-                        let receipts = try! FirestoreDecoder().decode(Receipts.self, from: diff.document.data())
-                        orderList.append(receipts)
+                        let order = try! FirestoreDecoder().decode(Order.self, from: diff.document.data())
+                        let orderDoc = OrderDocument(documentId: diff.document.documentID, order: order)
+                        orderList.append(orderDoc)
                     }
                     requestComplete(orderList)
                 }
-//                if document.isEmpty{
-//                    requestComplete(orderList)
-//                }else{
-//                    for items in document{
-//                        let docData = items.data()
-//                        print(docData)
-//                        let receipts = try! FirestoreDecoder().decode(Receipts.self, from: docData)
-//                        orderList.append(receipts)
-//                        
-//                        
-//                    }
-//                    requestComplete(orderList)
-//                    
-//                }
             }
         }
         
     }
     func confirmOrder(order:OrderDocument,requestComplete:@escaping(_ status:Bool)->()){
-        db.collection("orders").document(order.documentId!).updateData(["isConfirmed":true]) { (error) in
+        db.collection("orders").document(order.documentId!).updateData(["confirmationStatus":2,"hasDelivered":true]) { (error) in
             if error == nil{
-                requestComplete(true)
+                let receipt = Receipts(items: order.order!.items, date: order.order!.date, hasDeliveryTime: order.order!.hasDeliveryTime, deliveryTime: order.order!.deliveryTime, purchaserId: order.order!.purchaserId, purchaserName: order.order!.purchaserName, purchaserAddress: order.order!.purchaserAddress, storeId: order.order!.storeId, storeName: order.order!.storeName, ownerId: order.order!.ownerId, hasDelivered: order.order!.hasDelivered)
+                let docData = try! FirestoreEncoder().encode(receipt)
+                
+                db.collection("receipt").addDocument(data: docData) { (error) in
+                    if error == nil{
+                        requestComplete(true)
+                    }
+                }
             }
         }
     }
     
-    func rejectOrder(order:OrderDocument,requestComplete:@escaping(_ status:Bool)->()){
-        db.collection("orders").document(order.documentId!).delete { (error) in
+    
+    
+    func rejectOrder(rejectionComments:String,order:OrderDocument,requestComplete:@escaping(_ status:Bool)->()){
+        db.collection("orders").document(order.documentId!).updateData(["confirmationStatus":1,"comment":rejectionComments,"hasDelivered":true]) { (error) in
             if error == nil{
                 requestComplete(true)
             }
