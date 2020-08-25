@@ -20,7 +20,7 @@ class ConfirmedOrdersVC: UIViewController {
         ordersTable.delegate = self
         ordersTable.dataSource = self
         ordersTable.separatorStyle = .none
-        ordersTable.register(UINib(nibName: "orderHeader", bundle: nil), forCellReuseIdentifier: "orderHeader")
+        ordersTable.register(UINib(nibName: "receiptHeader", bundle: nil), forCellReuseIdentifier: "receiptHeader")
         ordersTable.register(UINib(nibName: "orderCell", bundle: nil), forCellReuseIdentifier: "orderCell")
     }
     
@@ -32,11 +32,10 @@ extension ConfirmedOrdersVC:UITableViewDelegate,UITableViewDataSource{
         return ordersList.count
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "orderHeader")as? orderHeader else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "receiptHeader")as? receiptHeader else {return UITableViewCell()}
         let header = ordersList[section]
         cell.deliveryAddress.text = header.order?.purchaserAddress
-        cell.confirmBtn.isHidden = true
-        cell.rejectBtn.isHidden = true
+        cell.delegate = self
         cell.item = header
         var totalItems = 0
         for item in header.order!.items{
@@ -44,11 +43,16 @@ extension ConfirmedOrdersVC:UITableViewDelegate,UITableViewDataSource{
         }
         
         cell.orderCount.text = String(totalItems)
-        cell.deliveryTime.text = getTimeLabel(dates: header.order!.deliveryTime.dateValue())
+        if header.order!.hasDeliveryTime{
+            cell.deliveryTime.text = getTimeLabel(dates: header.order!.deliveryTime.dateValue())
+        }else{
+            cell.deliveryTime.text = getDateLabel(dates: header.order!.deliveryTime.dateValue())
+        }
+        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 130
+        return 115
     }
     
     
@@ -73,7 +77,7 @@ extension ConfirmedOrdersVC:UITableViewDelegate,UITableViewDataSource{
 
 extension ConfirmedOrdersVC{
     func loadDatas(){
-        OrderServices.instance.realtimeListUpdate2{ (orderlist) in
+        OrderServices.instance.realtimeReceiptListUpdate{ (orderlist) in
 //            let todaysDate = Date()
 //            let calendar = Calendar.current
 //            let components = calendar.dateComponents([.day], from: todaysDate)
@@ -84,4 +88,16 @@ extension ConfirmedOrdersVC{
             self.ordersTable.reloadData()
         }
     }
+}
+
+extension ConfirmedOrdersVC:completeOrderDelegate{
+    func completeOrder(item: ReceiptDocument) {
+        OrderServices.instance.orderHaveBeenDelivered(receipt: item) { (isSuccess) in
+            if isSuccess{
+                
+            }
+        }
+    }
+    
+    
 }

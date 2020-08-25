@@ -83,7 +83,7 @@ extension OrdersVC:UITableViewDelegate,UITableViewDataSource{
 
 extension OrdersVC{
     func loadDatas(){
-        OrderServices.instance.realtimeListUpdate2{ (orderlist) in
+        OrderServices.instance.realtimeOrderListUpdate{ (orderlist) in
 //            let todaysDate = Date()
 //            let calendar = Calendar.current
 //            let components = calendar.dateComponents([.day], from: todaysDate)
@@ -116,8 +116,9 @@ extension OrdersVC:rejectOrderDelegate,confirmOrderDelegate,removeRejectedOrderD
         OrderServices.instance.confirmOrder(order: item) { (isSuccess) in
             if isSuccess{
                 if let confirmOrderIndex = self.ordersList.firstIndex(where: {$0.documentId == item.documentId}){
-                    self.ordersList[confirmOrderIndex].order?.confirmationStatus = 2
-                    self.ordersList[confirmOrderIndex].order?.hasDelivered = true
+                    self.ordersList.remove(at: confirmOrderIndex)
+//                    self.ordersList[confirmOrderIndex].order?.confirmationStatus = 2
+//                    self.ordersList[confirmOrderIndex].order?.hasDelivered = true
                     self.ordersTable.reloadData()
                 }
             }

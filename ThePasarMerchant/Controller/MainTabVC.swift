@@ -32,7 +32,7 @@ class MainTabVC: UIViewController {
             destination.myStore = storeList.first?.store
             
             
-        }else if segue.identifier == "orderSegue"{
+        }else if segue.identifier == "confirmedOrderSegue"{
             
         }
     }
@@ -52,7 +52,7 @@ class MainTabVC: UIViewController {
         }
     }
     @IBAction func purchasesBtnPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "orderSegue", sender: self)
+        performSegue(withIdentifier: "confirmedOrderSegue", sender: self)
     }
     
     /*

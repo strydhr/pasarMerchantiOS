@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D24C649624EF921B00C5A31B /* ConfirmedOrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24C649524EF921B00C5A31B /* ConfirmedOrdersVC.swift */; };
+		D24C649924EF9B3E00C5A31B /* receiptHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24C649724EF9B3E00C5A31B /* receiptHeader.swift */; };
+		D24C649A24EF9B3E00C5A31B /* receiptHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24C649824EF9B3E00C5A31B /* receiptHeader.xib */; };
 		D25283B124DA8D0400325978 /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25283B024DA8D0400325978 /* OrdersVC.swift */; };
 		D25283B424DA9E6300325978 /* orderHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25283B224DA9E6300325978 /* orderHeader.swift */; };
 		D25283B524DA9E6300325978 /* orderHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25283B324DA9E6300325978 /* orderHeader.xib */; };
@@ -55,6 +57,8 @@
 		6CF3C16D218615D2865020E6 /* Pods-ThePasarMerchant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePasarMerchant.debug.xcconfig"; path = "Target Support Files/Pods-ThePasarMerchant/Pods-ThePasarMerchant.debug.xcconfig"; sourceTree = "<group>"; };
 		A1B8055D2AE2A69794F8A65C /* Pods-ThePasarMerchant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePasarMerchant.release.xcconfig"; path = "Target Support Files/Pods-ThePasarMerchant/Pods-ThePasarMerchant.release.xcconfig"; sourceTree = "<group>"; };
 		D24C649524EF921B00C5A31B /* ConfirmedOrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmedOrdersVC.swift; sourceTree = "<group>"; };
+		D24C649724EF9B3E00C5A31B /* receiptHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = receiptHeader.swift; sourceTree = "<group>"; };
+		D24C649824EF9B3E00C5A31B /* receiptHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = receiptHeader.xib; sourceTree = "<group>"; };
 		D25283B024DA8D0400325978 /* OrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersVC.swift; sourceTree = "<group>"; };
 		D25283B224DA9E6300325978 /* orderHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderHeader.swift; sourceTree = "<group>"; };
 		D25283B324DA9E6300325978 /* orderHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = orderHeader.xib; sourceTree = "<group>"; };
@@ -233,6 +237,8 @@
 				D25283B324DA9E6300325978 /* orderHeader.xib */,
 				D25283B624DAA73900325978 /* orderCell.swift */,
 				D25283B724DAA73900325978 /* orderCell.xib */,
+				D24C649724EF9B3E00C5A31B /* receiptHeader.swift */,
+				D24C649824EF9B3E00C5A31B /* receiptHeader.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -329,6 +335,7 @@
 				D253A16E24CC10B800D75E26 /* GoogleService-Info.plist in Resources */,
 				D253A16324CC0E4D00D75E26 /* Assets.xcassets in Resources */,
 				D253A16124CC0E4A00D75E26 /* Main.storyboard in Resources */,
+				D24C649A24EF9B3E00C5A31B /* receiptHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +406,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D253A18524CC1A5600D75E26 /* ImageCache.swift in Sources */,
+				D24C649924EF9B3E00C5A31B /* receiptHeader.swift in Sources */,
 				D25283B124DA8D0400325978 /* OrdersVC.swift in Sources */,
 				D253A17724CC187900D75E26 /* User.swift in Sources */,
 				D25A3C4C24D057CB00E91AC5 /* addProductPopup.swift in Sources */,

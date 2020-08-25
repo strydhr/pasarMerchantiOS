@@ -67,7 +67,7 @@ class OrderServices {
 //        }
 //
 //    }
-    func realtimeListUpdate2(requestComplete:@escaping(_ orderList:[OrderDocument])->()){
+    func realtimeOrderListUpdate(requestComplete:@escaping(_ orderList:[OrderDocument])->()){
         var orderList = [OrderDocument]()
         let todaysDate = Date()
         let calendar = Calendar.current
@@ -80,6 +80,27 @@ class OrderServices {
                     if(diff.type == .added){
                         let order = try! FirestoreDecoder().decode(Order.self, from: diff.document.data())
                         let orderDoc = OrderDocument(documentId: diff.document.documentID, order: order)
+                        orderList.append(orderDoc)
+                    }
+                    requestComplete(orderList)
+                }
+            }
+        }
+        
+    }
+    func realtimeReceiptListUpdate(requestComplete:@escaping(_ orderList:[ReceiptDocument])->()){
+        var orderList = [ReceiptDocument]()
+        let todaysDate = Date()
+        let calendar = Calendar.current
+        
+        let dbRef = db.collection("receipt").whereField("ownerId", isEqualTo: (userGlobal?.uid)!).whereField("hasDelivered", isEqualTo: false)
+        dbRef.addSnapshotListener { (snapshot, error) in
+            if error == nil{
+                guard let document = snapshot else {return}
+                document.documentChanges.forEach { (diff) in
+                    if(diff.type == .added){
+                        let order = try! FirestoreDecoder().decode(Receipts.self, from: diff.document.data())
+                        let orderDoc = ReceiptDocument(documentId: diff.document.documentID, order: order)
                         orderList.append(orderDoc)
                     }
                     requestComplete(orderList)
@@ -107,6 +128,14 @@ class OrderServices {
     
     func rejectOrder(rejectionComments:String,order:OrderDocument,requestComplete:@escaping(_ status:Bool)->()){
         db.collection("orders").document(order.documentId!).updateData(["confirmationStatus":1,"comment":rejectionComments,"hasDelivered":true]) { (error) in
+            if error == nil{
+                requestComplete(true)
+            }
+        }
+    }
+    
+    func orderHaveBeenDelivered(receipt:ReceiptDocument,requestComplete:@escaping(_ status:Bool)->()){
+        db.collection("receipt").document(receipt.documentId!).updateData(["hasDelivered":true]) { (error) in
             if error == nil{
                 requestComplete(true)
             }
