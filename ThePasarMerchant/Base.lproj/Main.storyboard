@@ -323,6 +323,9 @@
                                         <state key="normal" title="Accounts">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="accountBtnPressed:" destination="rld-3q-eJu" eventType="touchUpInside" id="3vO-Rh-cAW"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPv-0U-ZRE">
                                         <rect key="frame" x="207" y="0.0" width="207" height="414"/>
@@ -435,6 +438,7 @@
                         <segue destination="mYW-rQ-Mxn" kind="show" identifier="productSegue" id="O2H-a7-owe"/>
                         <segue destination="M6I-Ir-BF3" kind="show" identifier="storeSegue" id="zwK-d4-U8U"/>
                         <segue destination="xlD-tI-n22" kind="show" identifier="confirmedOrderSegue" id="I1m-BH-hgc"/>
+                        <segue destination="K7I-gs-RU6" kind="show" identifier="salesSegue" id="SEE-kY-d06"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="keg-H7-fsp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -590,6 +594,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uso-Nf-mZk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8798.5507246376819" y="833.70535714285711"/>
+        </scene>
+        <!--SalesVC-->
+        <scene sceneID="kno-uZ-6zA">
+            <objects>
+                <viewController id="K7I-gs-RU6" customClass="SalesVC" customModule="ThePasarMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tyu-Ze-wFb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="auL-aA-gBx">
+                                <rect key="frame" x="0.0" y="158" width="414" height="655"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZM-YD-jsP">
+                                <rect key="frame" x="0.0" y="88" width="414" height="70"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XuM-Kr-cxk">
+                                        <rect key="frame" x="179" y="21" width="56" height="28"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Unt-JG-H4Y"/>
+                                    <constraint firstItem="XuM-Kr-cxk" firstAttribute="centerY" secondItem="mZM-YD-jsP" secondAttribute="centerY" id="Z3r-xw-Mdp"/>
+                                    <constraint firstItem="XuM-Kr-cxk" firstAttribute="centerX" secondItem="mZM-YD-jsP" secondAttribute="centerX" id="xIL-hJ-zRn"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="mZM-YD-jsP" firstAttribute="leading" secondItem="abl-SR-Bao" secondAttribute="leading" id="90V-gY-O01"/>
+                            <constraint firstItem="abl-SR-Bao" firstAttribute="trailing" secondItem="mZM-YD-jsP" secondAttribute="trailing" id="G2a-Ne-OX0"/>
+                            <constraint firstItem="abl-SR-Bao" firstAttribute="bottom" secondItem="auL-aA-gBx" secondAttribute="bottom" id="QFk-4z-Gj8"/>
+                            <constraint firstItem="auL-aA-gBx" firstAttribute="top" secondItem="mZM-YD-jsP" secondAttribute="bottom" id="Qcd-2H-yUj"/>
+                            <constraint firstItem="mZM-YD-jsP" firstAttribute="top" secondItem="abl-SR-Bao" secondAttribute="top" id="YP1-kO-gde"/>
+                            <constraint firstItem="auL-aA-gBx" firstAttribute="leading" secondItem="abl-SR-Bao" secondAttribute="leading" id="er3-s3-aEv"/>
+                            <constraint firstItem="abl-SR-Bao" firstAttribute="trailing" secondItem="auL-aA-gBx" secondAttribute="trailing" id="tPd-gG-Tvs"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="abl-SR-Bao"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="u6E-iQ-xUN"/>
+                    <connections>
+                        <outlet property="salesTable" destination="auL-aA-gBx" id="ERe-pq-dob"/>
+                        <outlet property="yearLabel" destination="XuM-Kr-cxk" id="wUb-4v-Whw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iku-yW-9gX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8769.5652173913059" y="1577.6785714285713"/>
         </scene>
         <!--ProductVC-->
         <scene sceneID="b9J-FJ-242">

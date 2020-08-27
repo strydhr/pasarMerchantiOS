@@ -49,6 +49,12 @@ extension ConfirmedOrdersVC:UITableViewDelegate,UITableViewDataSource{
             cell.deliveryTime.text = getDateLabel(dates: header.order!.deliveryTime.dateValue())
         }
         
+        if header.order!.hasDelivered{
+            cell.completeBtn.isHidden = true
+        }else{
+            cell.completeBtn.isHidden = false
+        }
+        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -94,7 +100,10 @@ extension ConfirmedOrdersVC:completeOrderDelegate{
     func completeOrder(item: ReceiptDocument) {
         OrderServices.instance.orderHaveBeenDelivered(receipt: item) { (isSuccess) in
             if isSuccess{
-                
+                if let doneDeliveredIndex = self.ordersList.firstIndex(where: {$0.documentId == item.documentId}){
+                    self.ordersList[doneDeliveredIndex].order?.hasDelivered = true
+                    self.ordersTable.reloadData()
+                }
             }
         }
     }

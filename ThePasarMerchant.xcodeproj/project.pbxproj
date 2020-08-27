@@ -10,6 +10,10 @@
 		D24C649624EF921B00C5A31B /* ConfirmedOrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24C649524EF921B00C5A31B /* ConfirmedOrdersVC.swift */; };
 		D24C649924EF9B3E00C5A31B /* receiptHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24C649724EF9B3E00C5A31B /* receiptHeader.swift */; };
 		D24C649A24EF9B3E00C5A31B /* receiptHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24C649824EF9B3E00C5A31B /* receiptHeader.xib */; };
+		D24DF46E24F6126C0047BA32 /* SalesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24DF46D24F6126C0047BA32 /* SalesVC.swift */; };
+		D24DF47124F618530047BA32 /* monthlySalesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24DF46F24F618530047BA32 /* monthlySalesCell.swift */; };
+		D24DF47224F618530047BA32 /* monthlySalesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24DF47024F618530047BA32 /* monthlySalesCell.xib */; };
+		D24DF47424F628160047BA32 /* SalesServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24DF47324F628160047BA32 /* SalesServices.swift */; };
 		D25283B124DA8D0400325978 /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25283B024DA8D0400325978 /* OrdersVC.swift */; };
 		D25283B424DA9E6300325978 /* orderHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25283B224DA9E6300325978 /* orderHeader.swift */; };
 		D25283B524DA9E6300325978 /* orderHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25283B324DA9E6300325978 /* orderHeader.xib */; };
@@ -33,6 +37,7 @@
 		D253A18724CC1A5600D75E26 /* RoundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D253A18424CC1A5600D75E26 /* RoundImage.swift */; };
 		D254C02924D12B2400E7C69E /* productCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D254C02724D12B2400E7C69E /* productCell.swift */; };
 		D254C02A24D12B2400E7C69E /* productCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D254C02824D12B2400E7C69E /* productCell.xib */; };
+		D25548C324F76980007793AE /* Sales.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25548C224F76980007793AE /* Sales.swift */; };
 		D25A3C4C24D057CB00E91AC5 /* addProductPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A3C4A24D057CB00E91AC5 /* addProductPopup.swift */; };
 		D25A3C4D24D057CB00E91AC5 /* addProductPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25A3C4B24D057CB00E91AC5 /* addProductPopup.xib */; };
 		D25A3C4F24D05ED700E91AC5 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A3C4E24D05ED700E91AC5 /* Product.swift */; };
@@ -59,6 +64,10 @@
 		D24C649524EF921B00C5A31B /* ConfirmedOrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmedOrdersVC.swift; sourceTree = "<group>"; };
 		D24C649724EF9B3E00C5A31B /* receiptHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = receiptHeader.swift; sourceTree = "<group>"; };
 		D24C649824EF9B3E00C5A31B /* receiptHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = receiptHeader.xib; sourceTree = "<group>"; };
+		D24DF46D24F6126C0047BA32 /* SalesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesVC.swift; sourceTree = "<group>"; };
+		D24DF46F24F618530047BA32 /* monthlySalesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = monthlySalesCell.swift; sourceTree = "<group>"; };
+		D24DF47024F618530047BA32 /* monthlySalesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = monthlySalesCell.xib; sourceTree = "<group>"; };
+		D24DF47324F628160047BA32 /* SalesServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesServices.swift; sourceTree = "<group>"; };
 		D25283B024DA8D0400325978 /* OrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersVC.swift; sourceTree = "<group>"; };
 		D25283B224DA9E6300325978 /* orderHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderHeader.swift; sourceTree = "<group>"; };
 		D25283B324DA9E6300325978 /* orderHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = orderHeader.xib; sourceTree = "<group>"; };
@@ -84,6 +93,7 @@
 		D253A18424CC1A5600D75E26 /* RoundImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImage.swift; sourceTree = "<group>"; };
 		D254C02724D12B2400E7C69E /* productCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = productCell.swift; sourceTree = "<group>"; };
 		D254C02824D12B2400E7C69E /* productCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = productCell.xib; sourceTree = "<group>"; };
+		D25548C224F76980007793AE /* Sales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sales.swift; sourceTree = "<group>"; };
 		D25A3C4A24D057CB00E91AC5 /* addProductPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addProductPopup.swift; sourceTree = "<group>"; };
 		D25A3C4B24D057CB00E91AC5 /* addProductPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addProductPopup.xib; sourceTree = "<group>"; };
 		D25A3C4E24D05ED700E91AC5 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -202,6 +212,7 @@
 				D253A18024CC18BA00D75E26 /* AuthServices.swift */,
 				D2C2D51224D00F64007A4526 /* StoreServices.swift */,
 				D252E54F24DBBF90000C6A22 /* OrderServices.swift */,
+				D24DF47324F628160047BA32 /* SalesServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -216,6 +227,7 @@
 				D2C2D51824D02711007A4526 /* StoreVC.swift */,
 				D25283B024DA8D0400325978 /* OrdersVC.swift */,
 				D24C649524EF921B00C5A31B /* ConfirmedOrdersVC.swift */,
+				D24DF46D24F6126C0047BA32 /* SalesVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -239,6 +251,8 @@
 				D25283B724DAA73900325978 /* orderCell.xib */,
 				D24C649724EF9B3E00C5A31B /* receiptHeader.swift */,
 				D24C649824EF9B3E00C5A31B /* receiptHeader.xib */,
+				D24DF46F24F618530047BA32 /* monthlySalesCell.swift */,
+				D24DF47024F618530047BA32 /* monthlySalesCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -249,6 +263,7 @@
 				D253A17624CC187900D75E26 /* User.swift */,
 				D2C2D51024D006B7007A4526 /* Store.swift */,
 				D25A3C4E24D05ED700E91AC5 /* Product.swift */,
+				D25548C224F76980007793AE /* Sales.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -325,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2C2D50F24CFF9D0007A4526 /* registerStoreImageCell.xib in Resources */,
+				D24DF47224F618530047BA32 /* monthlySalesCell.xib in Resources */,
 				D25283B524DA9E6300325978 /* orderHeader.xib in Resources */,
 				D25DE00A24ED004500E2BB56 /* rejectedCommentPopup.xib in Resources */,
 				D254C02A24D12B2400E7C69E /* productCell.xib in Resources */,
@@ -406,8 +422,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D253A18524CC1A5600D75E26 /* ImageCache.swift in Sources */,
+				D24DF46E24F6126C0047BA32 /* SalesVC.swift in Sources */,
 				D24C649924EF9B3E00C5A31B /* receiptHeader.swift in Sources */,
 				D25283B124DA8D0400325978 /* OrdersVC.swift in Sources */,
+				D24DF47424F628160047BA32 /* SalesServices.swift in Sources */,
 				D253A17724CC187900D75E26 /* User.swift in Sources */,
 				D25A3C4C24D057CB00E91AC5 /* addProductPopup.swift in Sources */,
 				D2C2D50E24CFF9D0007A4526 /* registerStoreImageCell.swift in Sources */,
@@ -424,6 +442,7 @@
 				D2BEFF7C24CEC8D900B997EC /* RegisterStoreVC.swift in Sources */,
 				D253A15E24CC0E4A00D75E26 /* ViewController.swift in Sources */,
 				D2C2D51524D01436007A4526 /* GeoHash.swift in Sources */,
+				D24DF47124F618530047BA32 /* monthlySalesCell.swift in Sources */,
 				D253A15A24CC0E4A00D75E26 /* AppDelegate.swift in Sources */,
 				D253A17D24CC189900D75E26 /* SignUpVC.swift in Sources */,
 				D253A18124CC18BA00D75E26 /* AuthServices.swift in Sources */,
@@ -434,6 +453,7 @@
 				D25283B424DA9E6300325978 /* orderHeader.swift in Sources */,
 				D253A17F24CC189900D75E26 /* MainTabVC.swift in Sources */,
 				D2C2D51324D00F64007A4526 /* StoreServices.swift in Sources */,
+				D25548C324F76980007793AE /* Sales.swift in Sources */,
 				D2BEFF7924CEBE5000B997EC /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
