@@ -616,12 +616,32 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgi-hJ-JFm">
+                                        <rect key="frame" x="364" y="17.5" width="40" height="35"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <state key="normal" title="Next"/>
+                                        <connections>
+                                            <action selector="nextBtnPressed:" destination="K7I-gs-RU6" eventType="touchUpInside" id="dPc-9r-shf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r5o-Wp-0CX">
+                                        <rect key="frame" x="10" y="17.5" width="74" height="35"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <state key="normal" title="Previous"/>
+                                        <connections>
+                                            <action selector="previousBtnPressed:" destination="K7I-gs-RU6" eventType="touchUpInside" id="tjT-Ay-bdV"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstItem="r5o-Wp-0CX" firstAttribute="centerY" secondItem="XuM-Kr-cxk" secondAttribute="centerY" id="OOC-2J-y6G"/>
                                     <constraint firstAttribute="height" constant="70" id="Unt-JG-H4Y"/>
                                     <constraint firstItem="XuM-Kr-cxk" firstAttribute="centerY" secondItem="mZM-YD-jsP" secondAttribute="centerY" id="Z3r-xw-Mdp"/>
+                                    <constraint firstItem="r5o-Wp-0CX" firstAttribute="leading" secondItem="mZM-YD-jsP" secondAttribute="leading" constant="10" id="dyu-R6-mrF"/>
+                                    <constraint firstItem="mgi-hJ-JFm" firstAttribute="centerY" secondItem="XuM-Kr-cxk" secondAttribute="centerY" id="qnT-hm-oWN"/>
                                     <constraint firstItem="XuM-Kr-cxk" firstAttribute="centerX" secondItem="mZM-YD-jsP" secondAttribute="centerX" id="xIL-hJ-zRn"/>
+                                    <constraint firstAttribute="trailing" secondItem="mgi-hJ-JFm" secondAttribute="trailing" constant="10" id="ylx-6v-t9v"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -639,6 +659,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="u6E-iQ-xUN"/>
                     <connections>
+                        <outlet property="nextBtn" destination="mgi-hJ-JFm" id="cVx-7T-zB7"/>
+                        <outlet property="previousBtn" destination="r5o-Wp-0CX" id="d68-ZX-fxo"/>
                         <outlet property="salesTable" destination="auL-aA-gBx" id="ERe-pq-dob"/>
                         <outlet property="yearLabel" destination="XuM-Kr-cxk" id="wUb-4v-Whw"/>
                     </connections>

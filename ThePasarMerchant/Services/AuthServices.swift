@@ -27,7 +27,7 @@ class AuthServices {
     }
     func addUserToDatabase(name:String,address:String,profileImage:String,requestComplete:@escaping(_ status: Bool)->()){
         
-        let user = Merchant(uid: Auth.auth().currentUser!.uid, name: name, phone: "", address: address, accType: "Merchant", storeCount: 0, profileImage: profileImage, isActivated: true, isActive: true)
+        let user = Merchant(uid: Auth.auth().currentUser!.uid, name: name, phone: "", address: address, accType: "Merchant", storeCount: 0, profileImage: profileImage, isActivated: true, isActive: true, registeredDate: Timestamp(date: Date()))
         userGlobal = user
         
         let docData = try! FirestoreEncoder().encode(user)

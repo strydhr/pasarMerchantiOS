@@ -44,8 +44,9 @@ class Merchant: Codable {
     var isActivated:Bool
     var isActive:Bool
     var deviceToken:String?
+    var registeredDate:Timestamp?
     
-    init(uid:String,name:String,phone:String,address:String,accType:String,storeCount:Int,profileImage:String,isActivated:Bool,isActive:Bool) {
+    init(uid:String,name:String,phone:String,address:String,accType:String,storeCount:Int,profileImage:String,isActivated:Bool,isActive:Bool,registeredDate:Timestamp) {
         self.uid = uid
         self.name = name
         self.phone = phone
@@ -55,5 +56,6 @@ class Merchant: Codable {
         self.profileImage = profileImage
         self.isActivated = isActivated
         self.isActive = isActive
+        self.registeredDate = registeredDate
     }
 }
