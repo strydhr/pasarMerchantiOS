@@ -20,6 +20,7 @@ class SalesVC: UIViewController {
     var monthlySalesList = [SalesMonth]()
     
     var currentMonthInt = 0
+    var currentViewingYear = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +37,16 @@ class SalesVC: UIViewController {
     }
     
     @IBAction func nextBtnPressed(_ sender: UIButton) {
+        currentViewingYear += 1
+        //        currentViewingYear * (-1)
+                loadNextYear(year: currentViewingYear)
     }
     
     @IBAction func previousBtnPressed(_ sender: UIButton) {
+        currentViewingYear -= 1
+//        currentViewingYear * (-1)
+        loadPreviewsYear(year: currentViewingYear)
+        print(currentViewingYear)
     }
     
 }
@@ -46,17 +54,17 @@ class SalesVC: UIViewController {
 extension SalesVC{
     func loadDatas(){
         SalesServices.instance.listMySales { (saleslist) in
+            print("total sales count")
             print(saleslist.count)
             let calendar = Calendar.current
             let today = Date()
             let components = calendar.dateComponents([.year], from: today)
-            
+            self.allSalesList = saleslist
             
 
             let startOfYear = calendar.date(from: components)
             let startOfThisYear = calendar.date(byAdding: DateComponents(year: 0, day: 0), to: startOfYear!)
-            print(startOfThisYear)
-            self.salesList = self.salesList.sorted(by: {$0.date.dateValue().compare($1.date.dateValue()) == .orderedDescending})
+            self.salesList = self.allSalesList.sorted(by: {$0.date.dateValue().compare($1.date.dateValue()) == .orderedDescending})
             self.salesList = saleslist.filter({$0.date.dateValue() > startOfThisYear!})
             let groupedSales = Dictionary(grouping: self.salesList, by: {calendar.dateComponents([.month], from: $0.date.dateValue()).month})
             for (key,value) in groupedSales{
@@ -67,6 +75,9 @@ extension SalesVC{
             
             self.salesTable.reloadData()
             
+            self.nextBtn.isEnabled = false
+            self.nextBtn.setTitleColor(#colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1), for: .normal)
+            
         }
     }
     
@@ -76,7 +87,8 @@ extension SalesVC{
 
         let today = Date()
         let tcomponents = calendar.dateComponents([.year], from: today)
-        let startOfYear = calendar.date(from: tcomponents)
+        yearLabel.text = "\((tcomponents.year)!)"
+        
         
         if tcomponents.year! > dcomponents.year!{
             previousBtn.isEnabled = true
@@ -85,6 +97,83 @@ extension SalesVC{
             previousBtn.isEnabled = false
         }
         
+    }
+    
+    func loadPreviewsYear(year:Int){
+        let calendar = Calendar.current
+        let today = Date()
+        let components = calendar.dateComponents([.year], from: today)
+        
+        let startOfYear = calendar.date(from: components)
+        let startOfxYear = calendar.date(byAdding: DateComponents(year: year, day: 0), to: startOfYear!)
+        let endOfXYear = calendar.date(byAdding: DateComponents(year: (year + 1), day: -1), to: startOfYear!)
+        
+        currentMonthInt = 0
+        monthlySalesList.removeAll()
+        self.salesList = allSalesList.filter({$0.date.dateValue() > startOfxYear! && $0.date.dateValue() <= endOfXYear!})
+        print(allSalesList.count)
+        print(salesList.count)
+        let groupedSales = Dictionary(grouping: self.salesList, by: {calendar.dateComponents([.month], from: $0.date.dateValue()).month})
+        for (key,value) in groupedSales{
+            let monthStr = Calendar.current.monthSymbols[key! - 1]
+            let monthlySales = SalesMonth(Month: key, monthName: monthStr, salesList: value)
+            self.monthlySalesList.append(monthlySales)
+        }
+        
+        self.salesTable.reloadData()
+        
+        nextBtn.isEnabled = true
+        nextBtn.setTitleColor(#colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1), for: .normal)
+        
+        
+        let dcomponents = calendar.dateComponents([.year], from: (userGlobal?.registeredDate?.dateValue())!)
+        let ccomponents = calendar.dateComponents([.year], from: startOfxYear!)
+        yearLabel.text = "\((ccomponents.year)!)"
+        if ccomponents.year! > dcomponents.year!{
+            previousBtn.isEnabled = true
+        }else{
+            previousBtn.setTitleColor(#colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1), for: .normal)
+            previousBtn.isEnabled = false
+        }
+    }
+    
+    func loadNextYear(year:Int){
+        let calendar = Calendar.current
+        let today = Date()
+        let components = calendar.dateComponents([.year], from: today)
+        
+        let startOfYear = calendar.date(from: components)
+        let startOfxYear = calendar.date(byAdding: DateComponents(year: year, day: 0), to: startOfYear!)
+        let endOfXYear = calendar.date(byAdding: DateComponents(year: (year + 1), day: -1), to: startOfYear!)
+        
+        currentMonthInt = 0
+        monthlySalesList.removeAll()
+        
+        let ccomponents = calendar.dateComponents([.year], from: startOfxYear!)
+        yearLabel.text = "\((ccomponents.year)!)"
+        previousBtn.isEnabled = true
+        previousBtn.setTitleColor(#colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1), for: .normal)
+        
+        if ccomponents.year == components.year{
+            let currentMonth = calendar.dateComponents([.month], from: Date())
+            self.currentMonthInt = currentMonth.month!
+            print("hello")
+            print(currentMonthInt)
+            nextBtn.setTitleColor(#colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1), for: .normal)
+            nextBtn.isEnabled = false
+        }
+        
+        
+        self.salesList = allSalesList.filter({$0.date.dateValue() > startOfxYear! && $0.date.dateValue() <= endOfXYear!})
+        print(salesList.count)
+        let groupedSales = Dictionary(grouping: self.salesList, by: {calendar.dateComponents([.month], from: $0.date.dateValue()).month})
+        for (key,value) in groupedSales{
+            let monthStr = Calendar.current.monthSymbols[key! - 1]
+            let monthlySales = SalesMonth(Month: key, monthName: monthStr, salesList: value)
+            self.monthlySalesList.append(monthlySales)
+        }
+        
+        self.salesTable.reloadData()
     }
 }
 
