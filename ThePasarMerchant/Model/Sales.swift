@@ -15,3 +15,13 @@ struct SalesMonth{
     var monthName:String?
     var salesList: [Receipts]?
 }
+
+struct GroupedProduct{
+    var ProductName:String?
+    var totalSales:Int?
+}
+
+struct test {
+    var count:Double
+    var type:String
+}

@@ -43,6 +43,7 @@
 		D25A3C4F24D05ED700E91AC5 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A3C4E24D05ED700E91AC5 /* Product.swift */; };
 		D25DE00A24ED004500E2BB56 /* rejectedCommentPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25DE00824ED004400E2BB56 /* rejectedCommentPopup.xib */; };
 		D25DE00B24ED004500E2BB56 /* rejectedCommentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25DE00924ED004400E2BB56 /* rejectedCommentPopup.swift */; };
+		D2AC0AF024FF8DD100C649C6 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AC0AEF24FF8DD100C649C6 /* PieChart.swift */; };
 		D2BEFF7924CEBE5000B997EC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEFF7824CEBE5000B997EC /* Constant.swift */; };
 		D2BEFF7C24CEC8D900B997EC /* RegisterStoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEFF7B24CEC8D900B997EC /* RegisterStoreVC.swift */; };
 		D2BEFF7F24CEDC3600B997EC /* registerStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEFF7D24CEDC3600B997EC /* registerStoreCell.swift */; };
@@ -99,6 +100,7 @@
 		D25A3C4E24D05ED700E91AC5 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		D25DE00824ED004400E2BB56 /* rejectedCommentPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = rejectedCommentPopup.xib; sourceTree = "<group>"; };
 		D25DE00924ED004400E2BB56 /* rejectedCommentPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rejectedCommentPopup.swift; sourceTree = "<group>"; };
+		D2AC0AEF24FF8DD100C649C6 /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
 		D2BEFF7824CEBE5000B997EC /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		D2BEFF7B24CEC8D900B997EC /* RegisterStoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStoreVC.swift; sourceTree = "<group>"; };
 		D2BEFF7D24CEDC3600B997EC /* registerStoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerStoreCell.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				D253A18224CC1A5500D75E26 /* ImageCache.swift */,
 				D253A18324CC1A5500D75E26 /* RoundButton.swift */,
 				D253A18424CC1A5600D75E26 /* RoundImage.swift */,
+				D2AC0AEF24FF8DD100C649C6 /* PieChart.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				D24DF47124F618530047BA32 /* monthlySalesCell.swift in Sources */,
 				D253A15A24CC0E4A00D75E26 /* AppDelegate.swift in Sources */,
 				D253A17D24CC189900D75E26 /* SignUpVC.swift in Sources */,
+				D2AC0AF024FF8DD100C649C6 /* PieChart.swift in Sources */,
 				D253A18124CC18BA00D75E26 /* AuthServices.swift in Sources */,
 				D25283B824DAA73900325978 /* orderCell.swift in Sources */,
 				D2C2D51924D02711007A4526 /* StoreVC.swift in Sources */,

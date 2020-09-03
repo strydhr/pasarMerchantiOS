@@ -46,7 +46,6 @@ class SalesVC: UIViewController {
         currentViewingYear -= 1
 //        currentViewingYear * (-1)
         loadPreviewsYear(year: currentViewingYear)
-        print(currentViewingYear)
     }
     
 }
@@ -55,7 +54,6 @@ extension SalesVC{
     func loadDatas(){
         SalesServices.instance.listMySales { (saleslist) in
             print("total sales count")
-            print(saleslist.count)
             let calendar = Calendar.current
             let today = Date()
             let components = calendar.dateComponents([.year], from: today)
@@ -111,8 +109,6 @@ extension SalesVC{
         currentMonthInt = 0
         monthlySalesList.removeAll()
         self.salesList = allSalesList.filter({$0.date.dateValue() > startOfxYear! && $0.date.dateValue() <= endOfXYear!})
-        print(allSalesList.count)
-        print(salesList.count)
         let groupedSales = Dictionary(grouping: self.salesList, by: {calendar.dateComponents([.month], from: $0.date.dateValue()).month})
         for (key,value) in groupedSales{
             let monthStr = Calendar.current.monthSymbols[key! - 1]
@@ -157,15 +153,12 @@ extension SalesVC{
         if ccomponents.year == components.year{
             let currentMonth = calendar.dateComponents([.month], from: Date())
             self.currentMonthInt = currentMonth.month!
-            print("hello")
-            print(currentMonthInt)
             nextBtn.setTitleColor(#colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1), for: .normal)
             nextBtn.isEnabled = false
         }
         
         
         self.salesList = allSalesList.filter({$0.date.dateValue() > startOfxYear! && $0.date.dateValue() <= endOfXYear!})
-        print(salesList.count)
         let groupedSales = Dictionary(grouping: self.salesList, by: {calendar.dateComponents([.month], from: $0.date.dateValue()).month})
         for (key,value) in groupedSales{
             let monthStr = Calendar.current.monthSymbols[key! - 1]
@@ -200,7 +193,32 @@ extension SalesVC:UITableViewDelegate,UITableViewDataSource{
                 }
                 totalSales += subtotal
             }
+            //
+            let saleList = sales.salesList
+            var arrayOfProduct = [itemPurchasing]()
+            for item in sales.salesList!{
+                arrayOfProduct.append(contentsOf: item.items)
+//                let groupedItem = Dictionary(grouping: item.items, by: {$0.productName})
+//                for (key,value) in groupedItem{
+//                    let groupProduct = GroupedProduct(ProductName: key, purchases: value)
+//                    arrayOfProduct?.append(GroupedProduct)
+//                }
+            }
+            let groupItem = Dictionary(grouping: arrayOfProduct, by: {$0.productName})
+            var arrayOfGroupedProduct = [GroupedProduct]()
+            for (key,value) in groupItem{
+                var total = 0
+                for item in value{
+                    total += item.itemCount
+                }
+                let groupedProduct = GroupedProduct(ProductName: key, totalSales: total)
+                arrayOfGroupedProduct.append(groupedProduct)
+            }
+            //
+            
+            cell.barsValues = arrayOfGroupedProduct
             cell.totalAmountLabel.text = "RM \(String(format: "%.2f", totalSales))"
+            cell.play(withDelay: 0.5)
         }
         
             
@@ -209,11 +227,22 @@ extension SalesVC:UITableViewDelegate,UITableViewDataSource{
             let monthStr = Calendar.current.monthSymbols[indexPath.row]
             cell.monthLabel.text = monthStr
             cell.totalAmountLabel.text = "RM 0"
+            cell.pieLabel = ""
+//            cell.pieChart.word = " "
         }
         
           
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let test =  monthlySalesList.firstIndex(where: {$0.Month == (indexPath.row + 1)}){
+            let sales = monthlySalesList[test]
+            return 218
+        }else{
+            return 50
+        }
     }
     
     
