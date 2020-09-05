@@ -194,15 +194,11 @@ extension SalesVC:UITableViewDelegate,UITableViewDataSource{
                 totalSales += subtotal
             }
             //
-            let saleList = sales.salesList
+
             var arrayOfProduct = [itemPurchasing]()
             for item in sales.salesList!{
                 arrayOfProduct.append(contentsOf: item.items)
-//                let groupedItem = Dictionary(grouping: item.items, by: {$0.productName})
-//                for (key,value) in groupedItem{
-//                    let groupProduct = GroupedProduct(ProductName: key, purchases: value)
-//                    arrayOfProduct?.append(GroupedProduct)
-//                }
+
             }
             let groupItem = Dictionary(grouping: arrayOfProduct, by: {$0.productName})
             var arrayOfGroupedProduct = [GroupedProduct]()
@@ -214,11 +210,15 @@ extension SalesVC:UITableViewDelegate,UITableViewDataSource{
                 let groupedProduct = GroupedProduct(ProductName: key, totalSales: total)
                 arrayOfGroupedProduct.append(groupedProduct)
             }
+            let maxCount = arrayOfGroupedProduct.max(by: {$1.totalSales > $0.totalSales})?.totalSales
             //
-            
+            print(maxCount)
+            cell.barCounts = arrayOfGroupedProduct.count
+            cell.maxProductCount = maxCount
             cell.barsValues = arrayOfGroupedProduct
             cell.totalAmountLabel.text = "RM \(String(format: "%.2f", totalSales))"
             cell.play(withDelay: 0.5)
+            cell.pieChart.isHidden = false
         }
         
             
@@ -228,6 +228,7 @@ extension SalesVC:UITableViewDelegate,UITableViewDataSource{
             cell.monthLabel.text = monthStr
             cell.totalAmountLabel.text = "RM 0"
             cell.pieLabel = ""
+            cell.pieChart.isHidden = true
 //            cell.pieChart.word = " "
         }
         
@@ -239,9 +240,9 @@ extension SalesVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let test =  monthlySalesList.firstIndex(where: {$0.Month == (indexPath.row + 1)}){
             let sales = monthlySalesList[test]
-            return 218
+            return 250
         }else{
-            return 50
+            return 60
         }
     }
     

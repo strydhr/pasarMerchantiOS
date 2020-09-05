@@ -18,6 +18,7 @@ class monthlySalesCell: UITableViewCell {
     var barsValues:[GroupedProduct]?
     var barCounts:Int?
     var barCaptions:[String]?
+    var maxProductCount:Int?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,11 +30,12 @@ class monthlySalesCell: UITableViewCell {
     
     func play(withDelay: TimeInterval) {
         for item in barsValues!{
-            barCaptions?.append(item.ProductName!)
+            barCaptions?.append(item.ProductName)
         }
         pieChart.barsValues = barsValues!
         let count = barsValues?.count
         pieChart.barsCount = count!
+        pieChart.maxCount = maxProductCount!
 //        pieChart.barsCaptions = barCaptions!
         
         self.perform(#selector(animateViews), with: .none, afterDelay: withDelay)

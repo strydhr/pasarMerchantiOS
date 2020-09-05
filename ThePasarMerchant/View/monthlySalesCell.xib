@@ -31,9 +31,6 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a4G-b2-qjR" customClass="PieChart" customModule="ThePasarMerchant" customModuleProvider="target">
                         <rect key="frame" x="20" y="45" width="324" height="128"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="128" id="2Hz-Nf-Ngs"/>
-                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
@@ -44,6 +41,7 @@
                     <constraint firstItem="5NZ-Z8-A2h" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="e9x-p5-vcB"/>
                     <constraint firstAttribute="trailing" secondItem="a4G-b2-qjR" secondAttribute="trailing" constant="20" id="ftE-lX-cuP"/>
                     <constraint firstItem="5NZ-Z8-A2h" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="hzs-zv-ckm"/>
+                    <constraint firstItem="YY7-TR-ZlX" firstAttribute="top" secondItem="a4G-b2-qjR" secondAttribute="bottom" constant="9" id="kBY-xv-d3f"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

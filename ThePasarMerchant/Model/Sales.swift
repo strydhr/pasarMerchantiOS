@@ -16,9 +16,18 @@ struct SalesMonth{
     var salesList: [Receipts]?
 }
 
-struct GroupedProduct{
-    var ProductName:String?
-    var totalSales:Int?
+struct GroupedProduct:Comparable{
+    let ProductName:String
+    let totalSales:Int
+    
+    static func < (lhs: GroupedProduct, rhs: GroupedProduct) -> Bool {
+        return lhs.totalSales < rhs.totalSales
+    }
+    static func == (lhs: GroupedProduct, rhs: GroupedProduct) -> Bool {
+        return lhs == rhs
+    }
+    
+    
 }
 
 struct test {
