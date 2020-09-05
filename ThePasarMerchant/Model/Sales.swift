@@ -19,6 +19,7 @@ struct SalesMonth{
 struct GroupedProduct:Comparable{
     let ProductName:String
     let totalSales:Int
+    let colorClass:Int
     
     static func < (lhs: GroupedProduct, rhs: GroupedProduct) -> Bool {
         return lhs.totalSales < rhs.totalSales

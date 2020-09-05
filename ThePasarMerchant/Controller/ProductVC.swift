@@ -35,6 +35,7 @@ class ProductVC: UIViewController {
         let addProduct = addProductPopup()
         addProduct.store = myStore
         addProduct.delegate = self
+        addProduct.currentTotalProduct = productList.count
         addProduct.modalPresentationStyle = .custom
         present(addProduct, animated: true, completion: nil)
     }

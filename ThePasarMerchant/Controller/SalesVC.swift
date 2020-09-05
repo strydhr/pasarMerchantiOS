@@ -204,10 +204,12 @@ extension SalesVC:UITableViewDelegate,UITableViewDataSource{
             var arrayOfGroupedProduct = [GroupedProduct]()
             for (key,value) in groupItem{
                 var total = 0
+                var colorClass = 0
                 for item in value{
                     total += item.itemCount
+                    colorClass = item.colorClass
                 }
-                let groupedProduct = GroupedProduct(ProductName: key, totalSales: total)
+                let groupedProduct = GroupedProduct(ProductName: key, totalSales: total, colorClass: colorClass)
                 arrayOfGroupedProduct.append(groupedProduct)
             }
             let maxCount = arrayOfGroupedProduct.max(by: {$1.totalSales > $0.totalSales})?.totalSales
@@ -240,7 +242,7 @@ extension SalesVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let test =  monthlySalesList.firstIndex(where: {$0.Month == (indexPath.row + 1)}){
             let sales = monthlySalesList[test]
-            return 250
+            return 270
         }else{
             return 60
         }

@@ -21,8 +21,9 @@ class Product: Codable {
     var availability:Bool
     var profileImage:String
     var hasCounter:Bool
+    var colorClass:Int
     
-    init(uid:String,name:String,type:String,details:String,sid:String,count:Int,price:Double,availability:Bool,profileImage:String,hasCounter:Bool) {
+    init(uid:String,name:String,type:String,details:String,sid:String,count:Int,price:Double,availability:Bool,profileImage:String,hasCounter:Bool,colorClass:Int) {
         self.uid = uid
         self.name = name
         self.type = type
@@ -33,6 +34,7 @@ class Product: Codable {
         self.availability = availability
         self.profileImage = profileImage
         self.hasCounter = hasCounter
+        self.colorClass = colorClass
     }
 }
 
@@ -48,14 +50,16 @@ class itemPurchasing: Codable{
     var itemCount:Int
     var hasDeliveryTime:Bool
     var deliveryTime:Timestamp
+    var colorClass:Int
     
-    init(productId:String,productName:String,productPrice:Double,itemCount:Int,hasDeliveryTime:Bool,deliveryTime:Timestamp) {
+    init(productId:String,productName:String,productPrice:Double,itemCount:Int,hasDeliveryTime:Bool,deliveryTime:Timestamp,colorClass:Int) {
         self.productId = productId
         self.productName = productName
         self.productPrice = productPrice
         self.itemCount = itemCount
         self.hasDeliveryTime = hasDeliveryTime
         self.deliveryTime = deliveryTime
+        self.colorClass = colorClass
     }
 }
 class Order: Codable{

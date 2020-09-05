@@ -26,6 +26,7 @@ class addProductPopup: UIViewController {
     @IBOutlet weak var detailsTF: UITextView!
     
     var delegate:updateProductsDelegate?
+    var currentTotalProduct:Int?
     
     var store:Store?
     let typePicker = UIPickerView()
@@ -184,7 +185,7 @@ extension addProductPopup{
                 let uid = autoID(length: 28)
                 let productPricing = Double(productPrice)
                 uploadImages(image: selectedImage!, imageName: uid) { (imageurl) in
-                    let product = Product(uid: uid, name: productName, type: self.store!.type, details: productDetails, sid: self.store!.uid, count: 0, price: productPricing!, availability: true, profileImage: imageurl, hasCounter: false)
+                    let product = Product(uid: uid, name: productName, type: self.store!.type, details: productDetails, sid: self.store!.uid, count: 0, price: productPricing!, availability: true, profileImage: imageurl, hasCounter: false, colorClass: self.currentTotalProduct! + 1)
                     StoreServices.instance.addItem(item: product) { (isSuccess) in
                         if isSuccess{
                             self.delegate?.reloadTable()
