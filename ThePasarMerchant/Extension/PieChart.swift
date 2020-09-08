@@ -15,7 +15,7 @@ class PieChart: MacawView {
     private var backgroundGroup = Group()
     private var mainGroup = Group()
     private var captionsGroup = Group()
-    private var testGroup = Group()
+    private var outlineGroup = Group()
     private var bottomGroup = Group()
     
     private var barAnimations = [Animation]()
@@ -52,18 +52,18 @@ class PieChart: MacawView {
         
         
         //
-        testGroup = Group()
+        outlineGroup = Group()
         let xAxis = Line(0, 200, 275, 200).stroke(color: Color.black)
         let yAxis = Line(0, 0, 0, 200).stroke(color: Color.black)
 
         let yAxisText = Text(text: "\(maxCount)",font: Font(name: "Serif", size: 20),fill: Color.black, align: .max, baseline: .mid, place: .move(-5, 0))
         let dotedLine = Line(0, 0, 275, 0).stroke(color: Color.black.with(a: 0.25))
-        testGroup.contents.append(dotedLine)
+        outlineGroup.contents.append(dotedLine)
         
-        testGroup.contents.append(yAxisText)
-        testGroup.contents.append(xAxis)
-        testGroup.contents.append(yAxis)
-        testGroup.place = Transform.move(dx: barsCenterX, dy: 70)
+        outlineGroup.contents.append(yAxisText)
+        outlineGroup.contents.append(xAxis)
+        outlineGroup.contents.append(yAxis)
+        outlineGroup.place = Transform.move(dx: barsCenterX, dy: 70)
         //
         
         backgroundGroup = Group()
@@ -141,7 +141,7 @@ class PieChart: MacawView {
         )
         bottomGroup.contents.append(bottomspace)
         
-        self.node = [mainGroup, captionsGroup, testGroup,bottomGroup].group()
+        self.node = [mainGroup, captionsGroup, outlineGroup,bottomGroup].group()
         self.backgroundColor = UIColor.white
     }
     
@@ -153,8 +153,8 @@ class PieChart: MacawView {
 //                print(heightValue)
                 let heightValue = (Double(barsValues[index].totalSales) / Double(maxCount)) * Double(barHeight)
                 let colorClass = barsValues[index].colorClass
-                print("max : \(maxCount)")
-                print("current : \(Double(maxCount) / Double(barsValues[index].totalSales))")
+//                print("max : \(maxCount)")
+//                print("current : \(Double(maxCount) / Double(barsValues[index].totalSales))")
                 let animation = group.contentsVar.animation({ t in
                     let value = Double(heightValue) / 100 * (t * 100)
                     let barShape = Shape(

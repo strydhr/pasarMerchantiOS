@@ -26,7 +26,7 @@ class SalesServices {
                 }else{
                     for items in document{
                         let docData = items.data()
-                        print(docData)
+                    
                         let receipts = try! FirestoreDecoder().decode(Receipts.self, from: docData)
                         salesList.append(receipts)
 

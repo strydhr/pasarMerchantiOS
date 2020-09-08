@@ -55,6 +55,8 @@
 		D2C2D51524D01436007A4526 /* GeoHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C2D51424D01436007A4526 /* GeoHash.swift */; };
 		D2C2D51724D0228B007A4526 /* ProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C2D51624D0228B007A4526 /* ProductVC.swift */; };
 		D2C2D51924D02711007A4526 /* StoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C2D51824D02711007A4526 /* StoreVC.swift */; };
+		D2D8987B25038D0200309541 /* legendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D8987925038D0200309541 /* legendCell.swift */; };
+		D2D8987C25038D0200309541 /* legendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D8987A25038D0200309541 /* legendCell.xib */; };
 		E88ED2FE4D7A63BD04A7FB20 /* Pods_ThePasarMerchant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D97116B60FA1860105D5D6 /* Pods_ThePasarMerchant.framework */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +114,8 @@
 		D2C2D51424D01436007A4526 /* GeoHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoHash.swift; sourceTree = "<group>"; };
 		D2C2D51624D0228B007A4526 /* ProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVC.swift; sourceTree = "<group>"; };
 		D2C2D51824D02711007A4526 /* StoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreVC.swift; sourceTree = "<group>"; };
+		D2D8987925038D0200309541 /* legendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = legendCell.swift; sourceTree = "<group>"; };
+		D2D8987A25038D0200309541 /* legendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = legendCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +260,8 @@
 				D24C649824EF9B3E00C5A31B /* receiptHeader.xib */,
 				D24DF46F24F618530047BA32 /* monthlySalesCell.swift */,
 				D24DF47024F618530047BA32 /* monthlySalesCell.xib */,
+				D2D8987925038D0200309541 /* legendCell.swift */,
+				D2D8987A25038D0200309541 /* legendCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -344,6 +350,7 @@
 			files = (
 				D2C2D50F24CFF9D0007A4526 /* registerStoreImageCell.xib in Resources */,
 				D24DF47224F618530047BA32 /* monthlySalesCell.xib in Resources */,
+				D2D8987C25038D0200309541 /* legendCell.xib in Resources */,
 				D25283B524DA9E6300325978 /* orderHeader.xib in Resources */,
 				D25DE00A24ED004500E2BB56 /* rejectedCommentPopup.xib in Resources */,
 				D254C02A24D12B2400E7C69E /* productCell.xib in Resources */,
@@ -430,6 +437,7 @@
 				D25283B124DA8D0400325978 /* OrdersVC.swift in Sources */,
 				D24DF47424F628160047BA32 /* SalesServices.swift in Sources */,
 				D253A17724CC187900D75E26 /* User.swift in Sources */,
+				D2D8987B25038D0200309541 /* legendCell.swift in Sources */,
 				D25A3C4C24D057CB00E91AC5 /* addProductPopup.swift in Sources */,
 				D2C2D50E24CFF9D0007A4526 /* registerStoreImageCell.swift in Sources */,
 				D2C2D51124D006B7007A4526 /* Store.swift in Sources */,

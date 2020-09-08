@@ -20,6 +20,8 @@ class MainTabVC: UIViewController {
         if userGlobal?.storeCount == 0{
             popupBackground.isHidden = false
             popupView.isHidden = false
+        }else{
+            loadStore()
         }
     }
     
@@ -34,6 +36,9 @@ class MainTabVC: UIViewController {
             
         }else if segue.identifier == "confirmedOrderSegue"{
             
+        }else if segue.identifier == "salesSegue"{
+            let destination = segue.destination as! SalesVC
+            destination.myStore = storeList.first?.store
         }
     }
     
@@ -70,4 +75,13 @@ extension MainTabVC: hasStoreDelegate{
     }
     
     
+}
+
+extension MainTabVC{
+    func loadStore(){
+        StoreServices.instance.listMyStore { (storelist) in
+            self.storeList = storelist
+            
+        }
+    }
 }

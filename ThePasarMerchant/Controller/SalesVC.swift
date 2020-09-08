@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import Macaw
 
 class SalesVC: UIViewController {
     @IBOutlet weak var salesTable: UITableView!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var previousBtn: UIButton!
     @IBOutlet weak var nextBtn: UIButton!
+    @IBOutlet weak var legendCollectView: UICollectionView!
+    
+    var myStore:Store?
+    var productList = [ProductDocument]()
     
     var allSalesList = [Receipts]()
     var salesList = [Receipts]()
@@ -21,6 +26,8 @@ class SalesVC: UIViewController {
     
     var currentMonthInt = 0
     var currentViewingYear = 0
+    
+    private let colorPalette = [0xf08c00, 0xbf1a04, 0xffd505, 0x8fcc16, 0xd1aae3]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +41,12 @@ class SalesVC: UIViewController {
         salesTable.separatorStyle = .none
         salesTable.register(UINib(nibName: "monthlySalesCell", bundle: nil), forCellReuseIdentifier: "monthlySalesCell")
         registeredDateChecker(date: (userGlobal?.registeredDate?.dateValue())!)
+        
+        print(myStore?.location)
+        loadLegend()
+        legendCollectView.register(UINib(nibName: "legendCell", bundle: nil), forCellWithReuseIdentifier: "legendCell")
+        legendCollectView.delegate = self
+        legendCollectView.dataSource = self
     }
     
     @IBAction func nextBtnPressed(_ sender: UIButton) {
@@ -53,7 +66,7 @@ class SalesVC: UIViewController {
 extension SalesVC{
     func loadDatas(){
         SalesServices.instance.listMySales { (saleslist) in
-            print("total sales count")
+//            print("total sales count")
             let calendar = Calendar.current
             let today = Date()
             let components = calendar.dateComponents([.year], from: today)
@@ -95,6 +108,15 @@ extension SalesVC{
             previousBtn.isEnabled = false
         }
         
+    }
+    
+    func loadLegend(){
+        StoreServices.instance.listMyStoreProducts(store: myStore!) { (productlist) in
+            self.productList = productlist
+            print("Productlist")
+            print(productlist.count)
+            self.legendCollectView.reloadData()
+        }
     }
     
     func loadPreviewsYear(year:Int){
@@ -170,6 +192,27 @@ extension SalesVC{
     }
 }
 
+extension SalesVC:UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return productList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "legendCell", for: indexPath)as? legendCell else {return UICollectionViewCell()}
+        let product = productList[indexPath.row]
+        let color = colorPalette[product.product!.colorClass]
+        
+        cell.productColor.backgroundColor = UIColor(rgb: color)
+        cell.productLabel.text = product.product?.name
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 170, height: 50)
+    }
+    
+}
+
 extension SalesVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if currentMonthInt != 0{
@@ -214,7 +257,7 @@ extension SalesVC:UITableViewDelegate,UITableViewDataSource{
             }
             let maxCount = arrayOfGroupedProduct.max(by: {$1.totalSales > $0.totalSales})?.totalSales
             //
-            print(maxCount)
+//            print(maxCount)
             cell.barCounts = arrayOfGroupedProduct.count
             cell.maxProductCount = maxCount
             cell.barsValues = arrayOfGroupedProduct
@@ -249,4 +292,22 @@ extension SalesVC:UITableViewDelegate,UITableViewDataSource{
     }
     
     
+}
+
+extension UIColor {
+   convenience init(red: Int, green: Int, blue: Int) {
+       assert(red >= 0 && red <= 255, "Invalid red component")
+       assert(green >= 0 && green <= 255, "Invalid green component")
+       assert(blue >= 0 && blue <= 255, "Invalid blue component")
+
+       self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+   }
+
+   convenience init(rgb: Int) {
+       self.init(
+           red: (rgb >> 16) & 0xFF,
+           green: (rgb >> 8) & 0xFF,
+           blue: rgb & 0xFF
+       )
+   }
 }
