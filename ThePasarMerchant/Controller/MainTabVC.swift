@@ -13,7 +13,7 @@ class MainTabVC: UIViewController {
     @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var registerBtn: UIButton!
     
-    var storeList = [StoreDocument]()
+//    var storeList = [StoreDocument]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,14 +31,14 @@ class MainTabVC: UIViewController {
             destination.delegate = self
         }else if segue.identifier == "productSegue"{
             let destination = segue.destination as! ProductVC
-            destination.myStore = storeList.first?.store
+            destination.myStore = userGlobalStores.first?.store
             
             
         }else if segue.identifier == "confirmedOrderSegue"{
             
         }else if segue.identifier == "salesSegue"{
             let destination = segue.destination as! SalesVC
-            destination.myStore = storeList.first?.store
+            destination.myStore = userGlobalStores.first?.store
         }
     }
     
@@ -48,7 +48,7 @@ class MainTabVC: UIViewController {
     @IBAction func productBtnPressed(_ sender: UIButton) {
         if userGlobal?.storeCount == 1{
             StoreServices.instance.listMyStore { (storelist) in
-                self.storeList = storelist
+//                self.storeList = storelist
                 self.performSegue(withIdentifier: "productSegue", sender: self)
                 
                 
@@ -80,7 +80,7 @@ extension MainTabVC: hasStoreDelegate{
 extension MainTabVC{
     func loadStore(){
         StoreServices.instance.listMyStore { (storelist) in
-            self.storeList = storelist
+            userGlobalStores = storelist
             
         }
     }

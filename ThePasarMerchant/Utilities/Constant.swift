@@ -12,6 +12,7 @@ let GOOGLEAPI = "AIzaSyD0B7e0r5qkUK5QQdmQjDOZz1GCBKqTa7Y"
 
 var userGlobal:Merchant?
 var userStores = [Store]()
+var userGlobalStores = [StoreDocument]()
 
 func autoID(length: Int)->String{
     let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"

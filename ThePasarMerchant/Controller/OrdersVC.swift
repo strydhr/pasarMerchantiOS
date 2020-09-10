@@ -13,10 +13,12 @@ class OrdersVC: UIViewController {
     
     var ordersList = [OrderDocument]()
     
+    var productList = [ProductDocument]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadDatas()
-        
+        loadProduct()
         ordersTable.delegate = self
         ordersTable.dataSource = self
         ordersTable.separatorStyle = .none
@@ -94,6 +96,13 @@ extension OrdersVC{
             self.ordersTable.reloadData()
         }
     }
+    
+    func loadProduct(){
+        StoreServices.instance.listMyStoreProducts(store: userGlobalStores.first!.store!) { (productlist) in
+            self.productList = productlist
+        }
+    }
+    
 }
 
 extension OrdersVC:rejectOrderDelegate,confirmOrderDelegate,removeRejectedOrderDelegate{
@@ -113,13 +122,17 @@ extension OrdersVC:rejectOrderDelegate,confirmOrderDelegate,removeRejectedOrderD
     }
     
     func confirmOrder(item: OrderDocument) {
-        OrderServices.instance.confirmOrder(order: item) { (isSuccess) in
+        OrderServices.instance.confirmReadyOrder(order: item) { (isSuccess) in
             if isSuccess{
                 if let confirmOrderIndex = self.ordersList.firstIndex(where: {$0.documentId == item.documentId}){
                     self.ordersList.remove(at: confirmOrderIndex)
 //                    self.ordersList[confirmOrderIndex].order?.confirmationStatus = 2
 //                    self.ordersList[confirmOrderIndex].order?.hasDelivered = true
-                    self.ordersTable.reloadData()
+                    OrderServices.instance.updateStock(productList: self.productList, order: item) { (productlist) in
+                        self.productList = productlist
+                        self.ordersTable.reloadData()
+                    }
+                    
                 }
             }
         }

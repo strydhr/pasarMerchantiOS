@@ -109,7 +109,7 @@ class OrderServices {
         }
         
     }
-    func confirmOrder(order:OrderDocument,requestComplete:@escaping(_ status:Bool)->()){
+    func confirmReadyOrder(order:OrderDocument,requestComplete:@escaping(_ status:Bool)->()){
         db.collection("orders").document(order.documentId!).updateData(["confirmationStatus":2,"hasDelivered":true]) { (error) in
             if error == nil{
                 let receipt = Receipts(items: order.order!.items, date: order.order!.date, hasDeliveryTime: order.order!.hasDeliveryTime, deliveryTime: order.order!.deliveryTime, purchaserId: order.order!.purchaserId, purchaserName: order.order!.purchaserName, purchaserAddress: order.order!.purchaserAddress, storeId: order.order!.storeId, storeName: order.order!.storeName, ownerId: order.order!.ownerId, hasDelivered: order.order!.hasDelivered, caseClosed: false)
@@ -124,6 +124,38 @@ class OrderServices {
         }
     }
     
+    func confirmStockOrder(order:OrderDocument,requestComplete:@escaping(_ status:Bool)->()){
+        db.collection("orders").document(order.documentId!).updateData(["confirmationStatus":2,"hasDelivered":true]) { (error) in
+            if error == nil{
+                let receipt = Receipts(items: order.order!.items, date: order.order!.date, hasDeliveryTime: order.order!.hasDeliveryTime, deliveryTime: order.order!.deliveryTime, purchaserId: order.order!.purchaserId, purchaserName: order.order!.purchaserName, purchaserAddress: order.order!.purchaserAddress, storeId: order.order!.storeId, storeName: order.order!.storeName, ownerId: order.order!.ownerId, hasDelivered: order.order!.hasDelivered, caseClosed: false)
+                let docData = try! FirestoreEncoder().encode(receipt)
+                
+                db.collection("receipt").addDocument(data: docData) { (error) in
+                    if error == nil{
+                        
+                        requestComplete(true)
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateStock(productList:[ProductDocument],order:OrderDocument,requestComplete:@escaping(_ newProductList:[ProductDocument])->()){
+        let products = order.order?.items
+        for item in products!{
+            let product = productList.filter({$0.documentId == item.productId}).first
+            print(product?.product?.count)
+            print(item.itemCount)
+            let newCount = (product?.product!.count)! - item.itemCount
+            print(newCount)
+            print(item.productId)
+            db.collection("product").document(item.productId).updateData(["count":newCount])
+            productList.filter({$0.documentId == item.productId}).first?.product?.count = newCount
+        }
+        
+        requestComplete(productList)
+    }
+    
     
     
     func rejectOrder(rejectionComments:String,order:OrderDocument,requestComplete:@escaping(_ status:Bool)->()){
@@ -135,7 +167,7 @@ class OrderServices {
     }
     
     func orderHaveBeenDelivered(receipt:ReceiptDocument,requestComplete:@escaping(_ status:Bool)->()){
-        db.collection("receipt").document(receipt.documentId!).updateData(["hasDelivered":true]) { (error) in
+        db.collection("receipt").document(receipt.documentId!).updateData(["hasDelivered":true,"caseClosed":true]) { (error) in
             if error == nil{
                 requestComplete(true)
             }

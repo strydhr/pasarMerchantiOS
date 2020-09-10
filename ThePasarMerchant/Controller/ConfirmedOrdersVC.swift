@@ -51,8 +51,10 @@ extension ConfirmedOrdersVC:UITableViewDelegate,UITableViewDataSource{
         
         if header.order!.hasDelivered{
             cell.completeBtn.isHidden = true
+            cell.slideBtn.isHidden = true
         }else{
             cell.completeBtn.isHidden = false
+            cell.slideBtn.isHidden = false
         }
         
         return cell

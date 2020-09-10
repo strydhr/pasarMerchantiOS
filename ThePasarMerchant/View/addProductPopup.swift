@@ -20,11 +20,13 @@ class addProductPopup: UIViewController {
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var typeTF: UITextField!
+    @IBOutlet weak var countTF: UITextField!
     @IBOutlet weak var priceTF: UITextField!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var confirmBtn: UIButton!
     @IBOutlet weak var detailsTF: UITextView!
     
+    @IBOutlet weak var priceHeightConstraint: NSLayoutConstraint!
     var delegate:updateProductsDelegate?
     var currentTotalProduct:Int?
     
@@ -35,6 +37,8 @@ class addProductPopup: UIViewController {
     
     var isProductImageSet = false
     var selectedImage: UIImage?
+    
+    var stockCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -182,10 +186,16 @@ extension addProductPopup{
                 self.present(alert, animated: true, completion: nil)
             }else{
                 confirmBtn.isEnabled = false
+                if  typeTF.text == "Homemade"{
+                    stockCount = Int(String(countTF.text!))!
+                }else{
+                    stockCount = 0
+                }
+                
                 let uid = autoID(length: 28)
                 let productPricing = Double(productPrice)
                 uploadImages(image: selectedImage!, imageName: uid) { (imageurl) in
-                    let product = Product(uid: uid, name: productName, type: self.store!.type, details: productDetails, sid: self.store!.uid, count: 0, price: productPricing!, availability: true, profileImage: imageurl, hasCounter: false, colorClass: self.currentTotalProduct! + 1)
+                    let product = Product(uid: uid, name: productName, type: productType, details: productDetails, sid: self.store!.uid, count: self.stockCount, price: productPricing!, availability: true, profileImage: imageurl, hasCounter: false, colorClass: self.currentTotalProduct! + 1)
                     StoreServices.instance.addItem(item: product) { (isSuccess) in
                         if isSuccess{
                             self.delegate?.reloadTable()
@@ -200,6 +210,7 @@ extension addProductPopup{
     func initTextField(){
         nameTF.placeholder = "Product Name"
         priceTF.placeholder = "Product Price"
+        countTF.placeholder = "Stock Count"
         typePicker.delegate = self
         typePicker.dataSource = self
         typeTF.placeholder = "Type"
@@ -207,6 +218,9 @@ extension addProductPopup{
         detailsTF.textColor = #colorLiteral(red: 0.8633741736, green: 0.8699255586, blue: 0.8700513244, alpha: 1)
         detailsTF.delegate = self
         createTypePicker()
+        
+        countTF.isHidden = true
+        priceHeightConstraint.constant = 20
     }
     
     func createTypePicker(){
@@ -239,6 +253,14 @@ extension addProductPopup:UIPickerViewDelegate,UIPickerViewDataSource,UITextView
        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
            doneBtn.isEnabled = true
         typeTF.text = category[row]
+        
+        if row == 3 {
+            countTF.isHidden = false
+            priceHeightConstraint.constant = 80
+        }else{
+            countTF.isHidden = true
+            priceHeightConstraint.constant = 20
+        }
 
        }
     func textViewDidBeginEditing(_ textView: UITextView) {

@@ -49,16 +49,14 @@ class itemPurchasing: Codable{
     var productPrice:Double
     var itemCount:Int
     var hasDeliveryTime:Bool
-    var deliveryTime:Timestamp
     var colorClass:Int
     
-    init(productId:String,productName:String,productPrice:Double,itemCount:Int,hasDeliveryTime:Bool,deliveryTime:Timestamp,colorClass:Int) {
+    init(productId:String,productName:String,productPrice:Double,itemCount:Int,hasDeliveryTime:Bool,colorClass:Int) {
         self.productId = productId
         self.productName = productName
         self.productPrice = productPrice
         self.itemCount = itemCount
         self.hasDeliveryTime = hasDeliveryTime
-        self.deliveryTime = deliveryTime
         self.colorClass = colorClass
     }
 }

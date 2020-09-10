@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -11,9 +11,11 @@
             <connections>
                 <outlet property="background" destination="BLV-zN-VGx" id="vdq-yU-LZz"/>
                 <outlet property="confirmBtn" destination="bXB-bw-0ie" id="d26-TI-1uk"/>
+                <outlet property="countTF" destination="bGU-TM-Wq5" id="fzT-gj-6gW"/>
                 <outlet property="detailsTF" destination="QcP-xT-jBN" id="n6v-fQ-IDX"/>
                 <outlet property="image" destination="kvo-tD-XPd" id="wrR-Av-UIt"/>
                 <outlet property="nameTF" destination="osL-ql-e73" id="nrZ-GO-VzF"/>
+                <outlet property="priceHeightConstraint" destination="Ehy-JV-b7K" id="Bvi-I7-FAA"/>
                 <outlet property="priceTF" destination="Gck-eF-S5n" id="nrr-bo-eeo"/>
                 <outlet property="typeTF" destination="Y8b-yc-gLe" id="RXH-f6-hEt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -29,7 +31,7 @@
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EM4-qA-BXW">
-                    <rect key="frame" x="50" y="143" width="314" height="610"/>
+                    <rect key="frame" x="50" y="118" width="314" height="660"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJd-Wn-IMM">
                             <rect key="frame" x="110" y="20" width="94" height="29"/>
@@ -46,7 +48,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gck-eF-S5n">
-                            <rect key="frame" x="35" y="199" width="244" height="40"/>
+                            <rect key="frame" x="35" y="259" width="244" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="zGj-eC-n2V"/>
                             </constraints>
@@ -54,13 +56,13 @@
                             <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                         </textField>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultImg" translatesAutoresizingMaskIntoConstraints="NO" id="kvo-tD-XPd">
-                            <rect key="frame" x="35" y="339" width="244" height="140"/>
+                            <rect key="frame" x="35" y="399" width="244" height="140"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="140" id="4F8-fZ-dFw"/>
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXB-bw-0ie">
-                            <rect key="frame" x="35" y="519" width="244" height="40"/>
+                            <rect key="frame" x="35" y="579" width="244" height="40"/>
                             <color key="backgroundColor" red="0.2784313725" green="0.69803921570000005" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Gje-mz-idO"/>
@@ -74,7 +76,7 @@
                             </connections>
                         </button>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QcP-xT-jBN">
-                            <rect key="frame" x="35" y="259" width="244" height="80"/>
+                            <rect key="frame" x="35" y="319" width="244" height="80"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="80" id="94u-A0-yWh"/>
@@ -91,13 +93,24 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bGU-TM-Wq5">
+                            <rect key="frame" x="35" y="199" width="244" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="lMU-tf-uLr"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="bGU-TM-Wq5" secondAttribute="trailing" constant="35" id="2eg-qZ-4zH"/>
                         <constraint firstItem="zJd-Wn-IMM" firstAttribute="top" secondItem="EM4-qA-BXW" secondAttribute="top" constant="20" id="6cw-b8-SQq"/>
                         <constraint firstAttribute="trailing" secondItem="bXB-bw-0ie" secondAttribute="trailing" constant="35" id="78Q-a5-vc7"/>
-                        <constraint firstItem="Gck-eF-S5n" firstAttribute="top" secondItem="Y8b-yc-gLe" secondAttribute="bottom" constant="20" id="CF3-BH-JS4"/>
                         <constraint firstItem="Gck-eF-S5n" firstAttribute="leading" secondItem="EM4-qA-BXW" secondAttribute="leading" constant="35" id="CYm-hm-GA8"/>
+                        <constraint firstItem="bGU-TM-Wq5" firstAttribute="leading" secondItem="EM4-qA-BXW" secondAttribute="leading" constant="35" id="ChV-xo-DWU"/>
+                        <constraint firstItem="Gck-eF-S5n" firstAttribute="top" secondItem="Y8b-yc-gLe" secondAttribute="bottom" constant="80" id="Ehy-JV-b7K"/>
+                        <constraint firstItem="bGU-TM-Wq5" firstAttribute="top" secondItem="Y8b-yc-gLe" secondAttribute="bottom" constant="20" id="P7p-hd-jHI"/>
                         <constraint firstItem="Y8b-yc-gLe" firstAttribute="leading" secondItem="EM4-qA-BXW" secondAttribute="leading" constant="35" id="Y8Z-Cm-Sea"/>
                         <constraint firstItem="kvo-tD-XPd" firstAttribute="top" secondItem="Gck-eF-S5n" secondAttribute="bottom" constant="100" id="cG3-Hq-UFR"/>
                         <constraint firstItem="osL-ql-e73" firstAttribute="leading" secondItem="EM4-qA-BXW" secondAttribute="leading" constant="35" id="cjn-5m-xA7"/>
@@ -114,7 +127,7 @@
                         <constraint firstAttribute="trailing" secondItem="kvo-tD-XPd" secondAttribute="trailing" constant="35" id="rGl-kL-Qc5"/>
                         <constraint firstItem="zJd-Wn-IMM" firstAttribute="centerX" secondItem="EM4-qA-BXW" secondAttribute="centerX" id="uvd-VV-yiK"/>
                         <constraint firstItem="QcP-xT-jBN" firstAttribute="leading" secondItem="EM4-qA-BXW" secondAttribute="leading" constant="35" id="xoB-DR-EYf"/>
-                        <constraint firstAttribute="height" constant="610" id="yry-6S-dbp"/>
+                        <constraint firstAttribute="height" constant="660" id="yry-6S-dbp"/>
                     </constraints>
                 </view>
             </subviews>

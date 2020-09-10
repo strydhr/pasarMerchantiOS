@@ -987,11 +987,11 @@
             </objects>
             <point key="canvasLocation" x="1000.0000000000001" y="115.84821428571428"/>
         </scene>
-        <!--Item-->
+        <!--Main-->
         <scene sceneID="ItE-SJ-flh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mHg-U1-2BD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="MtX-bu-TE7"/>
+                    <tabBarItem key="tabBarItem" title="Main" id="MtX-bu-TE7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Wg-tH-Xs5">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1025,11 +1025,11 @@
             </objects>
             <point key="canvasLocation" x="5242.0289855072469" y="123.88392857142857"/>
         </scene>
-        <!--Item-->
+        <!--Orders-->
         <scene sceneID="EvN-EZ-HfV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b6X-i6-Z77" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="apk-aR-1gE"/>
+                    <tabBarItem key="tabBarItem" title="Orders" id="apk-aR-1gE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BFJ-te-nA7">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
