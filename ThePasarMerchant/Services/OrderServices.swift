@@ -139,9 +139,10 @@ class OrderServices {
             }
         }
     }
-    
-    func updateStock(productList:[ProductDocument],order:OrderDocument,requestComplete:@escaping(_ newProductList:[ProductDocument])->()){
+//    func updateStock(productList:[ProductDocument],order:OrderDocument) ->(Bool,[ProductDocument]){
+    func updateStock(productList:[ProductDocument],order:OrderDocument,requestComplete:@escaping(_ status:Bool,_ newProductList:[ProductDocument])->()){
         let products = order.order?.items
+        
         for item in products!{
             let product = productList.filter({$0.documentId == item.productId}).first
             print(product?.product?.count)
@@ -153,7 +154,24 @@ class OrderServices {
             productList.filter({$0.documentId == item.productId}).first?.product?.count = newCount
         }
         
-        requestComplete(productList)
+        requestComplete(true,productList)
+    }
+    func isStockEnough(productList:[ProductDocument],order:OrderDocument,requestComplete:@escaping(_ status:Bool)->()){
+        let products = order.order?.items
+        var status = true
+        
+        for item in products!{
+           let product = productList.filter({$0.documentId == item.productId}).first
+            if item.itemCount > (product?.product!.count)!{
+                status = false
+            }
+        }
+        
+        if status == false{
+            requestComplete(false)
+        }else{
+            requestComplete(true)
+        }
     }
     
     

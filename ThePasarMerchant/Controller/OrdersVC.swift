@@ -121,21 +121,61 @@ extension OrdersVC:rejectOrderDelegate,confirmOrderDelegate,removeRejectedOrderD
         present(rejectedPopup, animated: true, completion: nil)
     }
     
+//    func csonfirmOrder(item: OrderDocument) {
+//        OrderServices.instance.confirmReadyOrder(order: item) { (isSuccess) in
+//            if isSuccess{
+//                if let confirmOrderIndex = self.ordersList.firstIndex(where: {$0.documentId == item.documentId}){
+//                    self.ordersList.remove(at: confirmOrderIndex)
+////                    self.ordersList[confirmOrderIndex].order?.confirmationStatus = 2
+////                    self.ordersList[confirmOrderIndex].order?.hasDelivered = true
+//                    OrderServices.instance.updateStock(productList: self.productList, order: item) { (isSuccess,productlist)  in
+//                        self.productList = productlist
+//                        self.ordersTable.reloadData()
+//                    }
+//                    
+//                }
+//            }
+//        }
+//    }
+    
     func confirmOrder(item: OrderDocument) {
-        OrderServices.instance.confirmReadyOrder(order: item) { (isSuccess) in
-            if isSuccess{
-                if let confirmOrderIndex = self.ordersList.firstIndex(where: {$0.documentId == item.documentId}){
-                    self.ordersList.remove(at: confirmOrderIndex)
-//                    self.ordersList[confirmOrderIndex].order?.confirmationStatus = 2
-//                    self.ordersList[confirmOrderIndex].order?.hasDelivered = true
-                    OrderServices.instance.updateStock(productList: self.productList, order: item) { (productlist) in
-                        self.productList = productlist
+        if item.order!.hasDeliveryTime{
+            OrderServices.instance.confirmReadyOrder(order: item) { (isConfirmed) in
+                if isConfirmed{
+                    if let confirmOrderIndex = self.ordersList.firstIndex(where: {$0.documentId == item.documentId}){
+                        self.ordersList.remove(at: confirmOrderIndex)
                         self.ordersTable.reloadData()
                     }
                     
                 }
             }
+        }else{
+            OrderServices.instance.isStockEnough(productList: productList, order: item) { (isSuccess) in
+                if isSuccess{
+                    print("yes")
+                    OrderServices.instance.updateStock(productList: self.productList, order: item) { (doneUpdating, newUpdatedList) in
+                        if doneUpdating{
+                            self.productList = newUpdatedList
+                            OrderServices.instance.confirmStockOrder(order: item) { (isConfirmed) in
+                                if isConfirmed{
+                                    if let confirmOrderIndex = self.ordersList.firstIndex(where: {$0.documentId == item.documentId}){
+                                        self.ordersList.remove(at: confirmOrderIndex)
+                                        self.ordersTable.reloadData()
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    }
+                }else{
+                    print("no")
+                }
+            }
         }
+        
+        
+        
+        
     }
     
     
