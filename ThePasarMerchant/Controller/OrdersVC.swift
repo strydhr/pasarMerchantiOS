@@ -17,8 +17,9 @@ class OrdersVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadDatas()
         loadProduct()
+        loadDatas()
+        
         ordersTable.delegate = self
         ordersTable.dataSource = self
         ordersTable.separatorStyle = .none
@@ -75,6 +76,15 @@ extension OrdersVC:UITableViewDelegate,UITableViewDataSource{
         cell.orderName.text = item.productName
         cell.setupCell()
         cell.isResolved = false
+        
+        if !item.hasDeliveryTime{
+            cell.stockCntBg.isHidden = false
+            if let productIndex = self.productList.firstIndex(where: {$0.documentId == item.productId}){
+                cell.stockCount.text = "\((productList[productIndex].product?.count)!)"
+            }
+        }else{
+            cell.stockCntBg.isHidden = true
+        }
 
         return cell
     }
@@ -100,6 +110,7 @@ extension OrdersVC{
     func loadProduct(){
         StoreServices.instance.listMyStoreProducts(store: userGlobalStores.first!.store!) { (productlist) in
             self.productList = productlist
+            self.ordersTable.reloadData()
         }
     }
     
@@ -168,7 +179,12 @@ extension OrdersVC:rejectOrderDelegate,confirmOrderDelegate,removeRejectedOrderD
                         }
                     }
                 }else{
-                    print("no")
+                    let appliedDoneAlert = UIAlertController(title: "Not enough stock", message: "Please call customer that there aren't enough stock", preferredStyle: .alert)
+                    self.present(appliedDoneAlert, animated: true, completion: nil)
+                    let timer = DispatchTime.now() + 3.5
+                    DispatchQueue.main.asyncAfter(deadline: timer, execute: {
+                        appliedDoneAlert.dismiss(animated: true, completion: nil)
+                    })
                 }
             }
         }

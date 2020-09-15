@@ -12,6 +12,8 @@ class orderCell: UITableViewCell {
     @IBOutlet weak var orderName: UILabel!
     @IBOutlet weak var orderCount: UILabel!
     @IBOutlet weak var tickIcon: UIImageView!
+    @IBOutlet weak var stockCntBg: UIView!
+    @IBOutlet weak var stockCount: UILabel!
     
     var isResolved:Bool?
 
@@ -19,6 +21,8 @@ class orderCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        stockCntBg.layer.cornerRadius = 17.5
+        stockCntBg.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
