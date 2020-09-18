@@ -20,6 +20,9 @@
 		D25283B824DAA73900325978 /* orderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25283B624DAA73900325978 /* orderCell.swift */; };
 		D25283B924DAA73900325978 /* orderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25283B724DAA73900325978 /* orderCell.xib */; };
 		D252E55024DBBF90000C6A22 /* OrderServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D252E54F24DBBF90000C6A22 /* OrderServices.swift */; };
+		D2535A712510B91200554D58 /* RestockVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2535A702510B91200554D58 /* RestockVC.swift */; };
+		D2535A742510B9B300554D58 /* stockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2535A722510B9B300554D58 /* stockCell.swift */; };
+		D2535A752510B9B300554D58 /* stockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2535A732510B9B300554D58 /* stockCell.xib */; };
 		D253A15A24CC0E4A00D75E26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D253A15924CC0E4A00D75E26 /* AppDelegate.swift */; };
 		D253A15E24CC0E4A00D75E26 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D253A15D24CC0E4A00D75E26 /* ViewController.swift */; };
 		D253A16124CC0E4A00D75E26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D253A15F24CC0E4A00D75E26 /* Main.storyboard */; };
@@ -78,6 +81,9 @@
 		D25283B624DAA73900325978 /* orderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderCell.swift; sourceTree = "<group>"; };
 		D25283B724DAA73900325978 /* orderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = orderCell.xib; sourceTree = "<group>"; };
 		D252E54F24DBBF90000C6A22 /* OrderServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderServices.swift; sourceTree = "<group>"; };
+		D2535A702510B91200554D58 /* RestockVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestockVC.swift; sourceTree = "<group>"; };
+		D2535A722510B9B300554D58 /* stockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stockCell.swift; sourceTree = "<group>"; };
+		D2535A732510B9B300554D58 /* stockCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = stockCell.xib; sourceTree = "<group>"; };
 		D253A15624CC0E4A00D75E26 /* ThePasarMerchant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThePasarMerchant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D253A15924CC0E4A00D75E26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D253A15D24CC0E4A00D75E26 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +244,7 @@
 				D25283B024DA8D0400325978 /* OrdersVC.swift */,
 				D24C649524EF921B00C5A31B /* ConfirmedOrdersVC.swift */,
 				D24DF46D24F6126C0047BA32 /* SalesVC.swift */,
+				D2535A702510B91200554D58 /* RestockVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -265,6 +272,8 @@
 				D24DF47024F618530047BA32 /* monthlySalesCell.xib */,
 				D2D8987925038D0200309541 /* legendCell.swift */,
 				D2D8987A25038D0200309541 /* legendCell.xib */,
+				D2535A722510B9B300554D58 /* stockCell.swift */,
+				D2535A732510B9B300554D58 /* stockCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -359,6 +368,7 @@
 				D254C02A24D12B2400E7C69E /* productCell.xib in Resources */,
 				D253A16624CC0E4D00D75E26 /* LaunchScreen.storyboard in Resources */,
 				D2BEFF8024CEDC3600B997EC /* registerStoreCell.xib in Resources */,
+				D2535A752510B9B300554D58 /* stockCell.xib in Resources */,
 				D25A3C4D24D057CB00E91AC5 /* addProductPopup.xib in Resources */,
 				D25283B924DAA73900325978 /* orderCell.xib in Resources */,
 				D253A16E24CC10B800D75E26 /* GoogleService-Info.plist in Resources */,
@@ -454,6 +464,7 @@
 				D2C2D51724D0228B007A4526 /* ProductVC.swift in Sources */,
 				D253A18624CC1A5600D75E26 /* RoundButton.swift in Sources */,
 				D2BEFF7C24CEC8D900B997EC /* RegisterStoreVC.swift in Sources */,
+				D2535A712510B91200554D58 /* RestockVC.swift in Sources */,
 				D253A15E24CC0E4A00D75E26 /* ViewController.swift in Sources */,
 				D2C2D51524D01436007A4526 /* GeoHash.swift in Sources */,
 				D24DF47124F618530047BA32 /* monthlySalesCell.swift in Sources */,
@@ -465,6 +476,7 @@
 				D2C7532325073A9900D5C8E9 /* SlidingButton.swift in Sources */,
 				D2C2D51924D02711007A4526 /* StoreVC.swift in Sources */,
 				D2BEFF7F24CEDC3600B997EC /* registerStoreCell.swift in Sources */,
+				D2535A742510B9B300554D58 /* stockCell.swift in Sources */,
 				D253A18724CC1A5600D75E26 /* RoundImage.swift in Sources */,
 				D25283B424DA9E6300325978 /* orderHeader.swift in Sources */,
 				D253A17F24CC189900D75E26 /* MainTabVC.swift in Sources */,

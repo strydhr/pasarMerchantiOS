@@ -64,7 +64,10 @@ class MainTabVC: UIViewController {
         performSegue(withIdentifier: "salesSegue", sender: self)
     }
     
-
+    @IBAction func restockBtnPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "restockSegue", sender: self)
+    }
+    
 }
 extension MainTabVC: hasStoreDelegate{
     func hasStore(status: Bool) {

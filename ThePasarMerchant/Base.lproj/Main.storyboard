@@ -353,6 +353,9 @@
                                         <state key="normal" title="Restocks">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="restockBtnPressed:" destination="rld-3q-eJu" eventType="touchUpInside" id="qcO-s7-7mL"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -439,6 +442,7 @@
                         <segue destination="M6I-Ir-BF3" kind="show" identifier="storeSegue" id="zwK-d4-U8U"/>
                         <segue destination="xlD-tI-n22" kind="show" identifier="confirmedOrderSegue" id="I1m-BH-hgc"/>
                         <segue destination="K7I-gs-RU6" kind="show" identifier="salesSegue" id="SEE-kY-d06"/>
+                        <segue destination="10e-SU-RFA" kind="show" identifier="restockSegue" id="X6V-2Y-jZ4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="keg-H7-fsp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -561,7 +565,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J8t-gc-nJ3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8792" y="145"/>
+            <point key="canvasLocation" x="8838" y="-970"/>
         </scene>
         <!--StoreVC-->
         <scene sceneID="JDv-tv-Mxk">
@@ -593,7 +597,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uso-Nf-mZk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8798.5507246376819" y="833.70535714285711"/>
+            <point key="canvasLocation" x="8845" y="-281"/>
         </scene>
         <!--SalesVC-->
         <scene sceneID="kno-uZ-6zA">
@@ -685,7 +689,55 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iku-yW-9gX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8769.5652173913059" y="1577.6785714285713"/>
+            <point key="canvasLocation" x="8816" y="463"/>
+        </scene>
+        <!--RestockVC-->
+        <scene sceneID="5Qf-KL-gEv">
+            <objects>
+                <viewController id="10e-SU-RFA" customClass="RestockVC" customModule="ThePasarMerchant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6bV-Ju-wrZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="exx-2I-GG8">
+                                <rect key="frame" x="0.0" y="88" width="414" height="675"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rxz-ak-rrk">
+                                <rect key="frame" x="0.0" y="763" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="iak-zu-eLs"/>
+                                </constraints>
+                                <state key="normal" title="Confirm">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="confirmBtnPressed:" destination="10e-SU-RFA" eventType="touchUpInside" id="LrB-oR-gsg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Rxz-ak-rrk" firstAttribute="leading" secondItem="9ff-kN-10p" secondAttribute="leading" id="BXR-8G-kFg"/>
+                            <constraint firstItem="Rxz-ak-rrk" firstAttribute="top" secondItem="exx-2I-GG8" secondAttribute="bottom" id="FZY-li-28G"/>
+                            <constraint firstItem="exx-2I-GG8" firstAttribute="top" secondItem="9ff-kN-10p" secondAttribute="top" id="Y9K-Bj-t1o"/>
+                            <constraint firstItem="exx-2I-GG8" firstAttribute="leading" secondItem="9ff-kN-10p" secondAttribute="leading" id="Ys0-TN-qaA"/>
+                            <constraint firstItem="9ff-kN-10p" firstAttribute="bottom" secondItem="Rxz-ak-rrk" secondAttribute="bottom" id="nKL-WL-oGC"/>
+                            <constraint firstItem="9ff-kN-10p" firstAttribute="trailing" secondItem="Rxz-ak-rrk" secondAttribute="trailing" id="sws-EM-iTs"/>
+                            <constraint firstItem="9ff-kN-10p" firstAttribute="trailing" secondItem="exx-2I-GG8" secondAttribute="trailing" id="xp2-PT-DTu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9ff-kN-10p"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vJC-uJ-cfr"/>
+                    <connections>
+                        <outlet property="confirmBtn" destination="Rxz-ak-rrk" id="bx3-sx-N1Z"/>
+                        <outlet property="stockTable" destination="exx-2I-GG8" id="SuN-jh-arl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0aA-uf-fFJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8840.579710144928" y="1180.5803571428571"/>
         </scene>
         <!--ProductVC-->
         <scene sceneID="b9J-FJ-242">
@@ -716,7 +768,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EbZ-oB-hJ8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9897.1014492753638" y="838.39285714285711"/>
+            <point key="canvasLocation" x="9943" y="-276"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="S9f-3V-Ezc">
