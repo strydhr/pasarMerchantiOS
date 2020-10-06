@@ -12,12 +12,14 @@ class RestockVC: UIViewController {
     @IBOutlet weak var stockTable: UITableView!
     @IBOutlet weak var confirmBtn: UIButton!
     
+    var currentStockList = [ProductDocument]()
     var myStore:Store?
     var productList = [ProductDocument]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadDatas()
+        loadStock()
         stockTable.register(UINib(nibName: "stockCell", bundle: nil), forCellReuseIdentifier: "stockCell")
         
         stockTable.delegate = self
@@ -26,6 +28,8 @@ class RestockVC: UIViewController {
     
 
     @IBAction func confirmBtnPressed(_ sender: UIButton) {
+        updateStock()
+//        test()
     }
     /*
     // MARK: - Navigation
@@ -70,11 +74,34 @@ extension RestockVC:UITableViewDelegate,UITableViewDataSource{
 extension RestockVC{
     func loadDatas(){
         StoreServices.instance.listMyStoreProducts(store: (userGlobalStores.first?.store)!) { (productlist) in
+//            self.currentStockList = productlist
+            
             self.productList = productlist.filter({$0.product?.type == "Handmade" })
+            
             self.productList = self.productList.sorted(by: {$0.product!.count > $1.product!.count})
             self.stockTable.reloadData()
         }
     }
+    func loadStock(){
+        StoreServices.instance.listMyStoreProducts(store: (userGlobalStores.first?.store)!) { (productlist) in
+            self.currentStockList = productlist
+            
+        }
+    }
+    
+    func updateStock(){
+        for item in productList{
+            let focusProduct = currentStockList.filter({$0.documentId == item.documentId}).first
+            if  (item.product!.count > (focusProduct?.product!.count)! ||  item.product!.count < (focusProduct?.product!.count)!){
+                StoreServices.instance.updateProductStock(product: item) { (isSuccess) in
+                    if isSuccess{
+                        print("Updated : \(item.documentId)")
+                    }
+                }
+            }
+        }
+    }
+    
 }
 
 extension RestockVC:StockDelegate{
@@ -89,6 +116,7 @@ extension RestockVC:StockDelegate{
         if let productIndex = self.productList.firstIndex(where: {$0.documentId == product.documentId}){
             self.productList[productIndex].product!.count += 1
             stockTable.reloadData()
+
         }
     }
     

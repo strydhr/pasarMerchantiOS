@@ -102,7 +102,7 @@ extension OrdersVC{
 //            let startOfDay = calendar.startOfDay(for: todaysDate)
 //            self.ordersList = orderlist.filter({$0.order!.deliveryTime.dateValue() > todaysDate})
 //            print(orderlist.count)
-            self.ordersList = orderlist
+            self.ordersList = orderlist.sorted(by: {$0.order!.deliveryTime.dateValue().compare($1.order!.deliveryTime.dateValue()) == .orderedDescending})
             self.ordersTable.reloadData()
         }
     }

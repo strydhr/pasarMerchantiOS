@@ -177,7 +177,7 @@ class OrderServices {
     
     
     func rejectOrder(rejectionComments:String,order:OrderDocument,requestComplete:@escaping(_ status:Bool)->()){
-        db.collection("orders").document(order.documentId!).updateData(["confirmationStatus":1,"comment":rejectionComments,"hasDelivered":true]) { (error) in
+        db.collection("orders").document(order.documentId!).updateData(["confirmationStatus":0,"comment":rejectionComments,"hasDelivered":true]) { (error) in
             if error == nil{
                 requestComplete(true)
             }

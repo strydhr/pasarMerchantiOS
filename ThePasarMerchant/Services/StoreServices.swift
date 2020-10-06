@@ -86,5 +86,12 @@ class StoreServices {
         
         }
     }
-
+    
+    func updateProductStock(product:ProductDocument,requestComplete:@escaping(_ status:Bool)->()){
+        db.collection("product").document(product.documentId!).updateData(["count":product.product?.count]) { (error) in
+            if error == nil{
+                requestComplete(true)
+            }
+        }
+    }
 }

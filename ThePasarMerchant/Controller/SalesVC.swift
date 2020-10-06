@@ -27,7 +27,7 @@ class SalesVC: UIViewController {
     var currentMonthInt = 0
     var currentViewingYear = 0
     
-    private let colorPalette = [0xf08c00, 0xbf1a04, 0xffd505, 0x8fcc16, 0xd1aae3]
+    private let colorPalette = [0xa93226, 0x9b59b6, 0x2980b9, 0x1abc9c, 0x27ae60, 0xf1c40f, 0xe67e22, 0x00ffff, 0xff00ff, 0x34495e]
     
     override func viewDidLoad() {
         super.viewDidLoad()

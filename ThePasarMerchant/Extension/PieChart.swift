@@ -30,7 +30,7 @@ class PieChart: MacawView {
     var maxCount = 0
     private let emptyBarColor = Color.rgba(r: 138, g: 147, b: 219, a: 0.5)
     private let gradientColor = LinearGradient(degree: 90, from: Color(val: 0xfc0c7e), to: Color(val: 0xffd85e))
-    private let colorPalette = [0xf08c00, 0xbf1a04, 0xffd505, 0x8fcc16, 0xd1aae3].map { val in Color(val: val)}
+    private let colorPalette = [0xa93226, 0x9b59b6, 0x2980b9, 0x1abc9c, 0x27ae60, 0xf1c40f, 0xe67e22, 0x00ffff, 0xff00ff, 0x34495e].map { val in Color(val: val)}
     
     private func createScene() {
         let viewCenterX = Double(self.frame.width / 2)
