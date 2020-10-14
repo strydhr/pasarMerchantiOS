@@ -112,7 +112,7 @@ class OrderServices {
     func confirmReadyOrder(order:OrderDocument,requestComplete:@escaping(_ status:Bool)->()){
         db.collection("orders").document(order.documentId!).updateData(["confirmationStatus":2,"hasDelivered":true]) { (error) in
             if error == nil{
-                let receipt = Receipts(items: order.order!.items, date: order.order!.date, hasDeliveryTime: order.order!.hasDeliveryTime, deliveryTime: order.order!.deliveryTime, purchaserId: order.order!.purchaserId, purchaserName: order.order!.purchaserName, purchaserAddress: order.order!.purchaserAddress, storeId: order.order!.storeId, storeName: order.order!.storeName, ownerId: order.order!.ownerId, hasDelivered: order.order!.hasDelivered, caseClosed: false)
+                let receipt = Receipts(items: order.order!.items, date: order.order!.date, hasDeliveryTime: order.order!.hasDeliveryTime, deliveryTime: order.order!.deliveryTime, purchaserId: order.order!.purchaserId, purchaserName: order.order!.purchaserName, purchaserAddress: order.order!.purchaserAddress, storeId: order.order!.storeId, storeName: order.order!.storeName, ownerId: order.order!.ownerId, hasDelivered: order.order!.hasDelivered, caseClosed: false, orderId: order.documentId!)
                 let docData = try! FirestoreEncoder().encode(receipt)
                 
                 db.collection("receipt").addDocument(data: docData) { (error) in
@@ -127,7 +127,7 @@ class OrderServices {
     func confirmStockOrder(order:OrderDocument,requestComplete:@escaping(_ status:Bool)->()){
         db.collection("orders").document(order.documentId!).updateData(["confirmationStatus":2,"hasDelivered":true]) { (error) in
             if error == nil{
-                let receipt = Receipts(items: order.order!.items, date: order.order!.date, hasDeliveryTime: order.order!.hasDeliveryTime, deliveryTime: order.order!.deliveryTime, purchaserId: order.order!.purchaserId, purchaserName: order.order!.purchaserName, purchaserAddress: order.order!.purchaserAddress, storeId: order.order!.storeId, storeName: order.order!.storeName, ownerId: order.order!.ownerId, hasDelivered: order.order!.hasDelivered, caseClosed: false)
+                let receipt = Receipts(items: order.order!.items, date: order.order!.date, hasDeliveryTime: order.order!.hasDeliveryTime, deliveryTime: order.order!.deliveryTime, purchaserId: order.order!.purchaserId, purchaserName: order.order!.purchaserName, purchaserAddress: order.order!.purchaserAddress, storeId: order.order!.storeId, storeName: order.order!.storeName, ownerId: order.order!.ownerId, hasDelivered: order.order!.hasDelivered, caseClosed: false, orderId: order.documentId!)
                 let docData = try! FirestoreEncoder().encode(receipt)
                 
                 db.collection("receipt").addDocument(data: docData) { (error) in
