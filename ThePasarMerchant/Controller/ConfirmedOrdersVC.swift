@@ -99,6 +99,10 @@ extension ConfirmedOrdersVC{
 }
 
 extension ConfirmedOrdersVC:completeOrderDelegate{
+    func openWaze(item: ReceiptDocument) {
+        print(item.order?.purchaserAddress)
+    }
+    
     func completeOrder(item: ReceiptDocument) {
         OrderServices.instance.orderHaveBeenDelivered(receipt: item) { (isSuccess) in
             if isSuccess{

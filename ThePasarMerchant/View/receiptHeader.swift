@@ -9,6 +9,7 @@
 import UIKit
 protocol completeOrderDelegate{
     func completeOrder(item:ReceiptDocument)
+    func openWaze(item:ReceiptDocument)
 }
 
 class receiptHeader: UITableViewCell, SlideButtonDelegate {
@@ -29,6 +30,9 @@ class receiptHeader: UITableViewCell, SlideButtonDelegate {
         slideBtn.delegate = self
         completeBtn.layer.cornerRadius = 20
         completeBtn.clipsToBounds = true
+        
+        deliveryAddress.isUserInteractionEnabled = true
+        deliveryAddress.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openWaze)))
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -36,6 +40,11 @@ class receiptHeader: UITableViewCell, SlideButtonDelegate {
 
         // Configure the view for the selected state
     }
+    
+    @objc func openWaze(){
+        delegate?.openWaze(item: item!)
+    }
+    
     @IBAction func completeBtnPressed(_ sender: UIButton) {
         delegate?.completeOrder(item: item!)
     }
