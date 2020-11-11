@@ -100,7 +100,20 @@ extension ConfirmedOrdersVC{
 
 extension ConfirmedOrdersVC:completeOrderDelegate{
     func openWaze(item: ReceiptDocument) {
-        print(item.order?.purchaserAddress)
+
+        let addStr = item.order?.purchaserAddress
+        var dataStr = addStr!.replacingOccurrences(of: " ", with: "%20")
+
+        let url = URL(string: "https://waze.com/ul")
+        if UIApplication.shared.canOpenURL(url!){
+            let urlStr = "https://waze.com/ul?q=\(dataStr)"
+            print(urlStr)
+            if let urls = URL(string: urlStr){
+                UIApplication.shared.openURL(urls)
+            }
+        }else{
+            print("opps")
+        }
     }
     
     func completeOrder(item: ReceiptDocument) {
