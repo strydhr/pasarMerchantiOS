@@ -9,6 +9,22 @@
 import UIKit
 
 class MainTabVC: UIViewController {
+    // Hints for First timers
+    @IBOutlet weak var hintMainContainer: UIView!
+    @IBOutlet weak var firstHint: UIView!
+    @IBOutlet weak var firstBlinky: UIImageView!
+    @IBOutlet weak var secondHint: UIView!
+    @IBOutlet weak var secondBlinky: UIImageView!
+    @IBOutlet weak var thirdHint: UIView!
+    @IBOutlet weak var thirdBlinky: UIImageView!
+    @IBOutlet weak var fourthHint: UIView!
+    @IBOutlet weak var fourthBlinky: UIImageView!
+    
+    var page = 1
+    let defaults = UserDefaults.standard
+    //
+    
+    
     @IBOutlet weak var popupBackground: UIView!
     @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var registerBtn: UIButton!
@@ -17,11 +33,34 @@ class MainTabVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hintMainContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(nextHint)))
         if userGlobal?.storeCount == 0{
             popupBackground.isHidden = false
             popupView.isHidden = false
         }else{
             loadStore()
+        }
+        
+    }
+    
+    @objc func nextHint(){
+        if page == 1{
+            firstHint.isHidden = true
+            secondHint.isHidden = false
+            page = 2
+        }else if page == 2{
+            secondHint.isHidden = true
+            thirdHint.isHidden = false
+            page = 3
+        }else if page == 3{
+            thirdHint.isHidden = true
+            fourthHint.isHidden = false
+            page = 4
+        }else if page == 4{
+            fourthHint.isHidden = true
+            hintMainContainer.isHidden = true
+            defaults.set(true, forKey: "mainTabHint")
+            
         }
     }
     
@@ -74,6 +113,11 @@ extension MainTabVC: hasStoreDelegate{
         if status{
             popupBackground.isHidden = true
             popupView.isHidden = true
+            let isFirstTime = UserDefaults.exist(key: "addOrderHintDone")
+            print(isFirstTime)
+            if isFirstTime == false{
+                firstTimeHelper()
+            }
         }
     }
     
@@ -84,7 +128,34 @@ extension MainTabVC{
     func loadStore(){
         StoreServices.instance.listMyStore { (storelist) in
             userGlobalStores = storelist
+            let isFirstTime = UserDefaults.exist(key: "mainTabHint")
+            print(isFirstTime)
+            if isFirstTime == false{
+                self.firstTimeHelper()
+            }
+        }
+    }
+    
+    func firstTimeHelper(){
+        hintMainContainer.isHidden = false
+        firstHint.isHidden = false
+        secondHint.isHidden = true
+        thirdHint.isHidden = true
+        fourthHint.isHidden = true
+        page = 1
+        
+        self.firstBlinky.alpha = 0
+        self.secondBlinky.alpha = 0
+        self.thirdBlinky.alpha = 0
+        self.fourthBlinky.alpha = 0
+        UIView.animate(withDuration: 1, delay: 0.0, options: [.curveLinear, .repeat, .autoreverse]) {
+            self.firstBlinky.alpha = 1
+            self.secondBlinky.alpha = 1
+            self.thirdBlinky.alpha = 1
+            self.fourthBlinky.alpha = 1
+        } completion: { (success) in
             
         }
+
     }
 }

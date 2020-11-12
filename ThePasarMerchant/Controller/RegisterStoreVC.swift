@@ -24,7 +24,7 @@ class RegisterStoreVC: UIViewController {
     
     let typePicker = UIPickerView()
     let doneBtn = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector (donePicking))
-    let category = ["Meals","Pastry","Dessert","Handmade"]
+    let category = ["Meals","Pastry","Dessert","Handmade","Second Hands"]
     let nameIndexPath:IndexPath = [0,0]
     let typeIndexPath:IndexPath = [0,1]
     let locationIndexPath:IndexPath = [0,2]
@@ -80,7 +80,7 @@ class RegisterStoreVC: UIViewController {
 
             let filter = GMSAutocompleteFilter()
             filter.country = "MY"
-            filter.type = .address
+//            filter.type = .address
             autocompleteController.autocompleteFilter = filter
 
             present(autocompleteController, animated: true, completion: nil)
@@ -136,6 +136,7 @@ extension RegisterStoreVC: UITableViewDelegate, UITableViewDataSource{
         switch indexPath.row {
         case 0:
             cell.editTF.attributedPlaceholder = NSAttributedString(string: "Name")
+            cell.editTF.autocapitalizationType = .words
             return cell
         case 1:
             cell.editTF.attributedPlaceholder = NSAttributedString(string: "Type")

@@ -39,19 +39,9 @@ extension ProfileVC:UITableViewDelegate,UITableViewDataSource{
         if indexPath.row == 0{
             cell.contentLabel.text = userGlobal?.name
         }else if indexPath.row == 1{
-            let address = userGlobal?.address
-            let wantedString = address?.components(separatedBy: ", ")
-            var add = ""
-            if userGlobal?.unitNumber != ""{
-                add = "\((userGlobal?.unitNumber)!)\n"
-            }
-            
-            for word in wantedString!{
-                add.append("\(word)\n")
-            }
-            cell.contentLabel.text = add
+            cell.contentLabel.text = "\((userGlobal?.storeCount)!) Stores"
             cell.editBtn.isHidden = false
-            cell.delegate = self
+//            cell.delegate = self
         }else if indexPath.row == 2{
             cell.contentLabel.text = "Enable Hints"
         }else if indexPath.row == 3{
@@ -105,20 +95,20 @@ extension ProfileVC:UITableViewDelegate,UITableViewDataSource{
     
 }
 
-extension ProfileVC:editProfileDetailsDelegate,doneUpdateProfileDelegate{
-    func updatedProfile(user: User) {
-        profileTable.reloadData()
-    }
-    
-    func editDetails(user: User) {
-        let updateAddress = updateAddressPopup()
-        updateAddress.delegate = self
-        updateAddress.modalPresentationStyle = .custom
-        present(updateAddress, animated: true, completion: nil)
-    }
-    
-    
-}
+//extension ProfileVC:editProfileDetailsDelegate,doneUpdateProfileDelegate{
+//    func updatedProfile(user: User) {
+//        profileTable.reloadData()
+//    }
+//    
+//    func editDetails(user: User) {
+//        let updateAddress = updateAddressPopup()
+//        updateAddress.delegate = self
+//        updateAddress.modalPresentationStyle = .custom
+//        present(updateAddress, animated: true, completion: nil)
+//    }
+//    
+//    
+//}
 
 extension UserDefaults{
     class func clear(){
