@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D20A1D01255D0E6B00E0C231 /* multipleStoreSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20A1CFF255D0E6B00E0C231 /* multipleStoreSelection.swift */; };
+		D20A1D02255D0E6B00E0C231 /* multipleStoreSelection.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20A1D00255D0E6B00E0C231 /* multipleStoreSelection.xib */; };
+		D20A1D06255D101500E0C231 /* storeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20A1D04255D101400E0C231 /* storeCell.swift */; };
+		D20A1D07255D101500E0C231 /* storeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20A1D05255D101500E0C231 /* storeCell.xib */; };
 		D24C649624EF921B00C5A31B /* ConfirmedOrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24C649524EF921B00C5A31B /* ConfirmedOrdersVC.swift */; };
 		D24C649924EF9B3E00C5A31B /* receiptHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24C649724EF9B3E00C5A31B /* receiptHeader.swift */; };
 		D24C649A24EF9B3E00C5A31B /* receiptHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24C649824EF9B3E00C5A31B /* receiptHeader.xib */; };
@@ -71,6 +75,10 @@
 		39D97116B60FA1860105D5D6 /* Pods_ThePasarMerchant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThePasarMerchant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CF3C16D218615D2865020E6 /* Pods-ThePasarMerchant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePasarMerchant.debug.xcconfig"; path = "Target Support Files/Pods-ThePasarMerchant/Pods-ThePasarMerchant.debug.xcconfig"; sourceTree = "<group>"; };
 		A1B8055D2AE2A69794F8A65C /* Pods-ThePasarMerchant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThePasarMerchant.release.xcconfig"; path = "Target Support Files/Pods-ThePasarMerchant/Pods-ThePasarMerchant.release.xcconfig"; sourceTree = "<group>"; };
+		D20A1CFF255D0E6B00E0C231 /* multipleStoreSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = multipleStoreSelection.swift; sourceTree = "<group>"; };
+		D20A1D00255D0E6B00E0C231 /* multipleStoreSelection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = multipleStoreSelection.xib; sourceTree = "<group>"; };
+		D20A1D04255D101400E0C231 /* storeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = storeCell.swift; sourceTree = "<group>"; };
+		D20A1D05255D101500E0C231 /* storeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = storeCell.xib; sourceTree = "<group>"; };
 		D24C649524EF921B00C5A31B /* ConfirmedOrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmedOrdersVC.swift; sourceTree = "<group>"; };
 		D24C649724EF9B3E00C5A31B /* receiptHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = receiptHeader.swift; sourceTree = "<group>"; };
 		D24C649824EF9B3E00C5A31B /* receiptHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = receiptHeader.xib; sourceTree = "<group>"; };
@@ -259,6 +267,8 @@
 		D253A17424CC185500D75E26 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D20A1D04255D101400E0C231 /* storeCell.swift */,
+				D20A1D05255D101500E0C231 /* storeCell.xib */,
 				D24D4CF0255C240700C6D219 /* profileCell.swift */,
 				D24D4CEF255C240600C6D219 /* profileCell.xib */,
 				D25DE00924ED004400E2BB56 /* rejectedCommentPopup.swift */,
@@ -283,6 +293,8 @@
 				D2D8987A25038D0200309541 /* legendCell.xib */,
 				D2535A722510B9B300554D58 /* stockCell.swift */,
 				D2535A732510B9B300554D58 /* stockCell.xib */,
+				D20A1CFF255D0E6B00E0C231 /* multipleStoreSelection.swift */,
+				D20A1D00255D0E6B00E0C231 /* multipleStoreSelection.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -371,6 +383,7 @@
 			files = (
 				D2C2D50F24CFF9D0007A4526 /* registerStoreImageCell.xib in Resources */,
 				D24D4CF1255C240700C6D219 /* profileCell.xib in Resources */,
+				D20A1D02255D0E6B00E0C231 /* multipleStoreSelection.xib in Resources */,
 				D24DF47224F618530047BA32 /* monthlySalesCell.xib in Resources */,
 				D2D8987C25038D0200309541 /* legendCell.xib in Resources */,
 				D25283B524DA9E6300325978 /* orderHeader.xib in Resources */,
@@ -379,6 +392,7 @@
 				D253A16624CC0E4D00D75E26 /* LaunchScreen.storyboard in Resources */,
 				D2BEFF8024CEDC3600B997EC /* registerStoreCell.xib in Resources */,
 				D2535A752510B9B300554D58 /* stockCell.xib in Resources */,
+				D20A1D07255D101500E0C231 /* storeCell.xib in Resources */,
 				D25A3C4D24D057CB00E91AC5 /* addProductPopup.xib in Resources */,
 				D25283B924DAA73900325978 /* orderCell.xib in Resources */,
 				D253A16E24CC10B800D75E26 /* GoogleService-Info.plist in Resources */,
@@ -480,6 +494,8 @@
 				D2C2D51524D01436007A4526 /* GeoHash.swift in Sources */,
 				D24DF47124F618530047BA32 /* monthlySalesCell.swift in Sources */,
 				D253A15A24CC0E4A00D75E26 /* AppDelegate.swift in Sources */,
+				D20A1D06255D101500E0C231 /* storeCell.swift in Sources */,
+				D20A1D01255D0E6B00E0C231 /* multipleStoreSelection.swift in Sources */,
 				D253A17D24CC189900D75E26 /* SignUpVC.swift in Sources */,
 				D2AC0AF024FF8DD100C649C6 /* PieChart.swift in Sources */,
 				D253A18124CC18BA00D75E26 /* AuthServices.swift in Sources */,

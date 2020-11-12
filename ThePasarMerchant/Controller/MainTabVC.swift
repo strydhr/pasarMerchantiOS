@@ -86,12 +86,14 @@ class MainTabVC: UIViewController {
     }
     @IBAction func productBtnPressed(_ sender: UIButton) {
         if userGlobal?.storeCount == 1{
-            StoreServices.instance.listMyStore { (storelist) in
-//                self.storeList = storelist
                 self.performSegue(withIdentifier: "productSegue", sender: self)
                 
                 
-            }
+
+            
+        }else{
+            let storeList = multipleStoreSelection()
+            storeList.storeList = userStores
             
         }
     }
@@ -116,6 +118,7 @@ extension MainTabVC: hasStoreDelegate{
             let isFirstTime = UserDefaults.exist(key: "addOrderHintDone")
             print(isFirstTime)
             if isFirstTime == false{
+                loadStore()
                 firstTimeHelper()
             }
         }
