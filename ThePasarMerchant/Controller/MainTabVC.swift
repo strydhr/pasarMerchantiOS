@@ -29,7 +29,8 @@ class MainTabVC: UIViewController {
     @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var registerBtn: UIButton!
     
-//    var storeList = [StoreDocument]()
+    var multipleStore = false
+    var choosenStore:StoreDocument?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +71,8 @@ class MainTabVC: UIViewController {
             destination.delegate = self
         }else if segue.identifier == "productSegue"{
             let destination = segue.destination as! ProductVC
-            destination.myStore = userGlobalStores.first?.store
+                destination.myStore = choosenStore?.store
+            
             
             
         }else if segue.identifier == "confirmedOrderSegue"{
@@ -87,13 +89,15 @@ class MainTabVC: UIViewController {
     @IBAction func productBtnPressed(_ sender: UIButton) {
         if userGlobal?.storeCount == 1{
                 self.performSegue(withIdentifier: "productSegue", sender: self)
-                
+            choosenStore = userGlobalStores.first
                 
 
             
         }else{
             let storeList = multipleStoreSelection()
-            storeList.storeList = userStores
+            storeList.storeList = userGlobalStores
+            storeList.delegate = self
+            present(storeList, animated: true, completion: nil)
             
         }
     }
@@ -110,7 +114,12 @@ class MainTabVC: UIViewController {
     }
     
 }
-extension MainTabVC: hasStoreDelegate{
+extension MainTabVC: hasStoreDelegate,chooseStoreDelegate{
+    func storeChoosen(store: StoreDocument) {
+        choosenStore = store
+        self.performSegue(withIdentifier: "productSegue", sender: self)
+    }
+    
     func hasStore(status: Bool) {
         if status{
             popupBackground.isHidden = true

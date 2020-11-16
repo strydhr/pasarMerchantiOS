@@ -33,7 +33,7 @@ class addProductPopup: UIViewController {
     var store:Store?
     let typePicker = UIPickerView()
     let doneBtn = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector (donePicking))
-    let category = ["Meals","Pastry","Dessert","Handmade"]
+    let category = ["Meals","Pastry","Dessert","Handmade","Second Hands"]
     
     var isProductImageSet = false
     var selectedImage: UIImage?

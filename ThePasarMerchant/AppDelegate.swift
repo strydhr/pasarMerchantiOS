@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSPlacesClient.provideAPIKey(GOOGLEAPI)
         let defaults = UserDefaults.standard
         
+        if #available(iOS 13.0,*){
+            window!.overrideUserInterfaceStyle = .light
+        }
+        
         if(!defaults.bool(forKey: "hasRunBefore")){
             do{
                 try Auth.auth().signOut()

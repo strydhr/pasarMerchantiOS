@@ -7,13 +7,18 @@
 //
 
 import UIKit
+protocol chooseStoreDelegate{
+    func storeChoosen(store:StoreDocument)
+}
 
 class multipleStoreSelection: UIViewController {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var storeTable: UITableView!
     
-    var storeList:[Store]?
+    var delegate:chooseStoreDelegate?
+    
+    var storeList:[StoreDocument]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,17 +44,20 @@ extension multipleStoreSelection: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "storeCell")as? storeCell else {return UITableViewCell()}
         let store = storeList![indexPath.row]
-        cell.storeImage.cacheImage(imageUrl: store.profileImage)
-        cell.storeLabel.text = store.name
-        cell.storeType.text = store.type
+        print(store.store?.profileImage)
+        cell.storeImage.cacheImage(imageUrl: store.store!.profileImage)
+        cell.storeLabel.text = store.store!.name
+        cell.storeType.text = store.store!.type
         
         cell.storeAddress.numberOfLines = 0
-        cell.storeAddress.text = store.location
+        cell.storeAddress.text = store.store!.location
         
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let store = storeList![indexPath.row]
+        delegate?.storeChoosen(store: store)
+        dismiss(animated: true, completion: nil)
 //        selectedStore = store
 //        tableView.deselectRow(at: indexPath, animated: true)
 //        performSegue(withIdentifier: "viewProductSegue", sender: self)

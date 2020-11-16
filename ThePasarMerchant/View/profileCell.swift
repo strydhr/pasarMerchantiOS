@@ -9,15 +9,16 @@
 import UIKit
 
 protocol editProfileDetailsDelegate {
-    func editDetails(user:User)
+    func editDetails(user:Merchant)
 }
 
 class profileCell: UITableViewCell {
+    @IBOutlet weak var outterCellView: UIView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var editBtn: UIImageView!
     
-//    var delegate:editProfileDetailsDelegate?
+    var delegate:editProfileDetailsDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,7 +31,7 @@ class profileCell: UITableViewCell {
     }
     
     @objc func editBtnPressed(){
-//        delegate?.editDetails(user: userGlobal!)
+        delegate?.editDetails(user: userGlobal!)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

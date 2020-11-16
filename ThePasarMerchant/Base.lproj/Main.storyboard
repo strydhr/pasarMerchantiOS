@@ -925,6 +925,7 @@
                     <navigationItem key="navigationItem" id="Pfb-e1-4Po"/>
                     <connections>
                         <outlet property="profileTable" destination="kxd-B0-6Yo" id="RkA-4M-L3J"/>
+                        <segue destination="XJJ-0H-SFU" kind="show" identifier="registerStoreSegue" id="cD8-ne-amN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gcg-i3-alk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -943,24 +944,103 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <view hidden="YES" alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Shr-Q8-kIy">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z6E-cX-Mis">
+                                <rect key="frame" x="108" y="88" width="286" height="153"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteup" translatesAutoresizingMaskIntoConstraints="NO" id="JN9-Hx-DXH">
+                                        <rect key="frame" x="233" y="0.0" width="45" height="63"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="45" id="W2f-u2-RaU"/>
+                                            <constraint firstAttribute="height" constant="63" id="fTt-si-Cqg"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new product to your store" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1f-ZH-eV1">
+                                        <rect key="frame" x="116" y="63" width="156" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="156" id="d95-Ke-dwb"/>
+                                            <constraint firstAttribute="height" constant="44" id="fdu-Xc-DOW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="JN9-Hx-DXH" secondAttribute="trailing" constant="8" id="33j-Wm-Rdp"/>
+                                    <constraint firstAttribute="height" constant="153" id="Icx-Ll-1dH"/>
+                                    <constraint firstItem="JN9-Hx-DXH" firstAttribute="top" secondItem="z6E-cX-Mis" secondAttribute="top" id="mW5-5g-d1N"/>
+                                    <constraint firstAttribute="trailing" secondItem="E1f-ZH-eV1" secondAttribute="trailing" constant="14" id="mXA-Gy-F0I"/>
+                                    <constraint firstItem="E1f-ZH-eV1" firstAttribute="top" secondItem="JN9-Hx-DXH" secondAttribute="bottom" id="mak-dZ-LXS"/>
+                                    <constraint firstAttribute="width" constant="286" id="ogn-qc-92y"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69j-5t-wCx">
+                                <rect key="frame" x="40" y="88" width="297" height="128"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteleft" translatesAutoresizingMaskIntoConstraints="NO" id="Jm8-9w-RdZ">
+                                        <rect key="frame" x="8" y="14" width="63" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="Xxk-NF-dAU"/>
+                                            <constraint firstAttribute="width" constant="63" id="pv3-wV-EkY"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe to edit or delete product" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1i-kE-41G">
+                                        <rect key="frame" x="76" y="1" width="145" height="51"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="145" id="Okv-jX-eUF"/>
+                                            <constraint firstAttribute="height" constant="51" id="oTZ-Iy-zoH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="297" id="0H4-Lq-SWG"/>
+                                    <constraint firstAttribute="height" constant="128" id="OpR-Eu-Ac7"/>
+                                    <constraint firstItem="v1i-kE-41G" firstAttribute="leading" secondItem="Jm8-9w-RdZ" secondAttribute="trailing" constant="5" id="Pqf-Hy-vql"/>
+                                    <constraint firstItem="Jm8-9w-RdZ" firstAttribute="leading" secondItem="69j-5t-wCx" secondAttribute="leading" constant="8" id="UEy-Ur-PJC"/>
+                                    <constraint firstItem="v1i-kE-41G" firstAttribute="top" secondItem="69j-5t-wCx" secondAttribute="top" constant="1" id="eVH-oo-Mme"/>
+                                    <constraint firstItem="Jm8-9w-RdZ" firstAttribute="top" secondItem="69j-5t-wCx" secondAttribute="top" constant="14" id="hjE-aL-dBV"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bod-fP-tTH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="LHJ-7b-ehb" firstAttribute="leading" secondItem="bod-fP-tTH" secondAttribute="leading" id="3kn-Kn-ls0"/>
                             <constraint firstItem="bod-fP-tTH" firstAttribute="bottom" secondItem="LHJ-7b-ehb" secondAttribute="bottom" id="4bU-l5-Cni"/>
+                            <constraint firstItem="bod-fP-tTH" firstAttribute="bottom" secondItem="Shr-Q8-kIy" secondAttribute="bottom" id="4su-4X-Vud"/>
+                            <constraint firstItem="bod-fP-tTH" firstAttribute="trailing" secondItem="z6E-cX-Mis" secondAttribute="trailing" constant="20" id="8kf-hO-own"/>
+                            <constraint firstItem="Shr-Q8-kIy" firstAttribute="top" secondItem="bod-fP-tTH" secondAttribute="top" id="C38-j8-jn0"/>
                             <constraint firstItem="bod-fP-tTH" firstAttribute="trailing" secondItem="LHJ-7b-ehb" secondAttribute="trailing" id="IdK-hl-e3g"/>
+                            <constraint firstItem="69j-5t-wCx" firstAttribute="top" secondItem="bod-fP-tTH" secondAttribute="top" id="Pjc-z4-TKb"/>
+                            <constraint firstItem="Shr-Q8-kIy" firstAttribute="leading" secondItem="bod-fP-tTH" secondAttribute="leading" id="bb1-Ik-i5V"/>
+                            <constraint firstItem="z6E-cX-Mis" firstAttribute="top" secondItem="bod-fP-tTH" secondAttribute="top" id="q3m-U5-8ng"/>
+                            <constraint firstItem="bod-fP-tTH" firstAttribute="trailing" secondItem="Shr-Q8-kIy" secondAttribute="trailing" id="sGz-vS-hss"/>
                             <constraint firstItem="LHJ-7b-ehb" firstAttribute="top" secondItem="bod-fP-tTH" secondAttribute="top" id="tL3-uf-kqK"/>
+                            <constraint firstItem="69j-5t-wCx" firstAttribute="leading" secondItem="bod-fP-tTH" secondAttribute="leading" constant="40" id="ygm-F6-hFK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JEE-Pg-7iT"/>
                     <connections>
+                        <outlet property="firstBlinky" destination="JN9-Hx-DXH" id="LHV-mD-2rf"/>
+                        <outlet property="firstHint" destination="z6E-cX-Mis" id="p4K-3f-Vs1"/>
+                        <outlet property="mainHintContainer" destination="Shr-Q8-kIy" id="F3K-5Z-HVW"/>
                         <outlet property="productTable" destination="LHJ-7b-ehb" id="OGO-uF-uvw"/>
+                        <outlet property="secondBlinky" destination="Jm8-9w-RdZ" id="2pR-sV-fZi"/>
+                        <outlet property="secondHint" destination="69j-5t-wCx" id="me5-k8-s7w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EbZ-oB-hJ8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9943" y="-276"/>
+            <point key="canvasLocation" x="9942.0289855072479" y="-276.5625"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="S9f-3V-Ezc">
@@ -1311,6 +1391,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="O2H-a7-owe"/>
+        <segue reference="cD8-ne-amN"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="1920" height="1080"/>
@@ -1320,7 +1401,71 @@
         <image name="next" width="94" height="94"/>
         <image name="password" width="21" height="31"/>
         <image name="whitedown" width="32" height="51"/>
+        <image name="whiteleft" width="51" height="32"/>
         <image name="whiteup" width="32" height="52"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

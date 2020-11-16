@@ -21,6 +21,7 @@ class RegisterStoreVC: UIViewController {
     @IBOutlet weak var confirmBtn: UIButton!
     
     var delegate:hasStoreDelegate?
+    var fromMain = true
     
     let typePicker = UIPickerView()
     let doneBtn = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector (donePicking))
@@ -308,10 +309,18 @@ extension RegisterStoreVC{
                         if isSuccess{
                             AuthServices.instance.updateStoreCount(merchant: userGlobal!) { (isUpdated) in
                                 if isUpdated{
-                                    userStores.append(store)
                                     userGlobal!.storeCount = userGlobal!.storeCount + 1
+                                    if self.fromMain{
+                                        
+                                    }else{
+                                        let storeDoc = StoreDocument(documentId: uid, store: store)
+                                        userGlobalStores.append(storeDoc)
+                                    }
                                     self.delegate?.hasStore(status: true)
                                     self.navigationController?.popViewController(animated: true)
+//                                    userStores.append(store)
+                                    
+                                    
                                 }
                             }
                             
@@ -324,7 +333,7 @@ extension RegisterStoreVC{
     
     func uploadImages(image: UIImage,requestURL: @escaping(_ url:String)->()){
 //        let imageName = autoID(length: 28)
-        let imageName = "Store"
+        let imageName = "Store\((userGlobal?.storeCount)!)"
         let storage = Storage.storage()
         let storageRef = storage.reference().child("UsersFiles").child((Auth.auth().currentUser?.uid)!).child("Store")
         
