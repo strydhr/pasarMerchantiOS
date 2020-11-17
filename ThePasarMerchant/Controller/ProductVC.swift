@@ -54,6 +54,9 @@ class ProductVC: UIViewController {
             
         }
     }
+    @objc func backgroundTapped(){
+        self.dismiss(animated: true, completion: nil)
+    }
     
 
     @objc func addProduct(){
@@ -89,18 +92,20 @@ extension ProductVC: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
+        let delete = deleteAction(at: indexPath)
         let edit = editAction(at: indexPath)
-        return UISwipeActionsConfiguration(actions: [edit])
+        return UISwipeActionsConfiguration(actions: [edit, delete])
     }
     
     func editAction(at indexPath:IndexPath) -> UIContextualAction {
         let done = UIContextualAction(style: .normal, title: "Edit") { (action, view, completion) in
             let selectedProduct = self.productList[indexPath.row]
-            let complaintPopup = lodgeComplaintPopup()
-            complaintPopup.receipt = selectedReceipt
-            complaintPopup.delegate = self
-            complaintPopup.modalPresentationStyle = .custom
-            self.present(complaintPopup, animated: true, completion: nil)
+            let editPopup = addProductPopup()
+            editPopup.isEdit = true
+            editPopup.delegate = self
+            editPopup.product = selectedProduct
+            editPopup.modalPresentationStyle = .custom
+            self.present(editPopup, animated: true, completion: nil)
 
             
         }
@@ -108,6 +113,46 @@ extension ProductVC: UITableViewDelegate, UITableViewDataSource{
         
         return done
     }
+    func deleteAction(at indexPath:IndexPath) -> UIContextualAction {
+        let done = UIContextualAction(style: .normal, title: "Delete") { (action, view, completion) in
+            let selectedProduct = self.productList[indexPath.row]
+            //
+//            self.productList.remove(at: indexPath.row)
+//            self.productTable.deleteRows(at: [indexPath], with: .automatic)
+//            self.productTable.reloadData()
+            let deletePopup = UIAlertController(title: "Remove Product?", message: "Are you sure you want to remove this product?", preferredStyle: .alert)
+            deletePopup.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (buttonTapped) in
+                StoreServices.instance.deleteProduct(product: selectedProduct) { (isSuccess) in
+                    if isSuccess{
+                        print("deleted")
+                        self.productList.remove(at: indexPath.row)
+                        self.productTable.deleteRows(at: [indexPath], with: .automatic)
+                        self.productTable.reloadData()
+                    }
+
+                }
+
+
+            }))
+            deletePopup.addAction(UIAlertAction(title: "No", style: .default, handler: { (buttonTapped) in
+                deletePopup.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapped)))
+
+
+            }))
+
+            self.present(deletePopup, animated: true, completion:  {
+
+                deletePopup.view.superview?.isUserInteractionEnabled = true
+                deletePopup.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapped)))
+            })
+            
+            
+        }
+        
+        done.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        
+        return done
+      }
     
     
 }

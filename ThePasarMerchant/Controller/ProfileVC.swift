@@ -99,42 +99,42 @@ extension ProfileVC:UITableViewDelegate,UITableViewDataSource{
         return 2
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        switch indexPath.row {
-//        case 2:
-//            let domain = Bundle.main.bundleIdentifier
-//            defaults.removePersistentDomain(forName: domain!)
-//            defaults.synchronize()
-////            UserDefaults.clear()
-//        case 3:
-//            let logOutPopUP = UIAlertController(title: "Logout?", message: "Are you sure you want to log out?", preferredStyle: .alert)
-//            logOutPopUP.addAction(UIAlertAction(title: "Logout", style: .default, handler: { (buttonTapped) in
-//                do{
-//                    try Auth.auth().signOut()
-//                    let initialVC = self.storyboard?.instantiateViewController(withIdentifier: "initialVC")
-//                    //probelm logging out then sign new acc
-//                    userGlobal = nil
-//
-//                    //
-//                    initialVC?.modalPresentationStyle = .fullScreen
-//                    self.present(initialVC!, animated: true, completion: nil)
-//                } catch{
-//                    print(error)
-//
-//                }
-//
-//
-//            }))
-//            present(logOutPopUP, animated: true, completion:  {
-//
-//                logOutPopUP.view.superview?.isUserInteractionEnabled = true
-//                logOutPopUP.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapped)))
-//            })
-//        default:
-//            print("None")
-//        }
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        switch indexPath.row {
+        case 2:
+            let domain = Bundle.main.bundleIdentifier
+            defaults.removePersistentDomain(forName: domain!)
+            defaults.synchronize()
+//            UserDefaults.clear()
+        case 3:
+            let logOutPopUP = UIAlertController(title: "Logout?", message: "Are you sure you want to log out?", preferredStyle: .alert)
+            logOutPopUP.addAction(UIAlertAction(title: "Logout", style: .default, handler: { (buttonTapped) in
+                do{
+                    try Auth.auth().signOut()
+                    let initialVC = self.storyboard?.instantiateViewController(withIdentifier: "initialVC")
+                    //probelm logging out then sign new acc
+                    userGlobal = nil
+
+                    //
+                    initialVC?.modalPresentationStyle = .fullScreen
+                    self.present(initialVC!, animated: true, completion: nil)
+                } catch{
+                    print(error)
+
+                }
+
+
+            }))
+            present(logOutPopUP, animated: true, completion:  {
+
+                logOutPopUP.view.superview?.isUserInteractionEnabled = true
+                logOutPopUP.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapped)))
+            })
+        default:
+            print("None")
+        }
+    }
     
 }
 

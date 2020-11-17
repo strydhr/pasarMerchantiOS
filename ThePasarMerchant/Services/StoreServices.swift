@@ -94,4 +94,34 @@ class StoreServices {
             }
         }
     }
+    
+    func updateProduct(product:ProductDocument,requestComplete:@escaping(_ status:Bool)->()){
+        db.collection("product").document(product.documentId!).updateData(["details":product.product?.details,"price":product.product?.price,"profileImage":product.product?.profileImage,"name":product.product?.name,"type":product.product?.type,"count":product.product?.count]) { (error) in
+            if error == nil{
+                requestComplete(true)
+            }
+        }
+    }
+    
+    
+    func deleteProduct(product:ProductDocument,requestComplete:@escaping(_ status:Bool)->()){
+        let storage = Storage.storage()
+        db.collection("product").document(product.documentId!).delete { (err) in
+            if err == nil{
+                let images = product.product?.uid
+                print("deleting..")
+                let storageRef = storage.reference().child("UsersFiles").child(userGlobal!.uid).child("Store")
+                storageRef.child("\((product.product?.uid)!)").delete { (error) in
+                    print("done")
+                    if error != nil{
+                        return
+                    }else{
+                        
+                        requestComplete(true)
+                    }
+                    
+                }
+            }
+        }
+    }
 }

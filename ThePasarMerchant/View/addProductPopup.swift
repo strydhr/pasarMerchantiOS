@@ -40,6 +40,12 @@ class addProductPopup: UIViewController {
     
     var stockCount = 0
     
+    //For Edits
+    var isEdit = false
+    var product:ProductDocument?
+    var imageChanged = false
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         image.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
@@ -92,7 +98,10 @@ class addProductPopup: UIViewController {
     @IBAction func confirmBtnPressed(_ sender: UIButton) {
         errorHandler(productName: nameTF.text!, productPrice: priceTF.text!,productDetails: detailsTF.text!, productType: typeTF.text!)
     }
-
+    @IBAction func closeBtnPressed(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 extension addProductPopup:UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -106,7 +115,7 @@ extension addProductPopup:UIImagePickerControllerDelegate,UINavigationController
         }
         image.image = selectedImage
         isProductImageSet = true
-        
+        imageChanged = true
   
 
         dismiss(animated: true, completion: nil)
@@ -121,20 +130,16 @@ extension addProductPopup:UIImagePickerControllerDelegate,UINavigationController
             let metaData = StorageMetadata()
             metaData.contentType = "image/jpg"
             let uploadTask = storageRef.child(imageName).putData(uploaddata, metadata: metaData)
-//            SVProgressHUD.show()
+            //            SVProgressHUD.show()
             _ = uploadTask.observe(.success) { (snapshot) in
                 print(snapshot.status)
-//                SVProgressHUD.dismiss()
+                //                SVProgressHUD.dismiss()
                 storageRef.child(imageName).downloadURL(completion: { (url, _) in
                     let urlString = url?.absoluteString
                     
                     requestURL(urlString!)
-                    
-                    
+
                 })
-                
-                
-                
             }
         }
     }
@@ -178,32 +183,78 @@ extension addProductPopup{
             }
             
         }else{
-            if !isProductImageSet{
-                //Alert
-                let alert = UIAlertController(title: "Error", message: "Store image have not been uploaded", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                alert.addAction(okAction)
-                self.present(alert, animated: true, completion: nil)
-            }else{
+            if isEdit{
                 confirmBtn.isEnabled = false
                 if  typeTF.text == "Homemade"{
                     stockCount = Int(String(countTF.text!))!
                 }else{
                     stockCount = 0
                 }
-                
-                let uid = autoID(length: 28)
                 let productPricing = Double(productPrice)
-                uploadImages(image: selectedImage!, imageName: uid) { (imageurl) in
-                    let product = Product(uid: uid, name: productName, type: productType, details: productDetails, sid: self.store!.uid, count: self.stockCount, price: productPricing!, availability: true, profileImage: imageurl, hasCounter: false, colorClass: self.currentTotalProduct! + 1)
-                    StoreServices.instance.addItem(item: product) { (isSuccess) in
+                if imageChanged{
+                    uploadImages(image: selectedImage!, imageName: (product?.product!.uid)!) { (imageurl) in
+                        self.product?.product?.name = productName
+                        self.product?.product?.details = productDetails
+                        self.product?.product?.price = productPricing!
+                        self.product?.product?.type = productType
+                        self.product?.product?.profileImage = imageurl
+                        if productType == "Homemade"{
+                            self.product?.product?.count = self.stockCount
+                        }
+                        
+                        StoreServices.instance.updateProduct(product: self.product!) { (isSuccess) in
+                            if isSuccess{
+                                self.delegate?.reloadTable()
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }
+                    }
+                }else{
+                    self.product?.product?.name = productName
+                    self.product?.product?.details = productDetails
+                    self.product?.product?.price = productPricing!
+                    self.product?.product?.type = productType
+                    if productType == "Homemade"{
+                        self.product?.product?.count = self.stockCount
+                    }
+                    
+                    StoreServices.instance.updateProduct(product: self.product!) { (isSuccess) in
                         if isSuccess{
                             self.delegate?.reloadTable()
                             self.dismiss(animated: true, completion: nil)
                         }
                     }
                 }
+                
+            }else{
+                if !isProductImageSet{
+                    //Alert
+                    let alert = UIAlertController(title: "Error", message: "Store image have not been uploaded", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                }else{
+                    confirmBtn.isEnabled = false
+                    if  typeTF.text == "Homemade"{
+                        stockCount = Int(String(countTF.text!))!
+                    }else{
+                        stockCount = 0
+                    }
+                    
+                    let uid = autoID(length: 28)
+                    let productPricing = Double(productPrice)
+                    uploadImages(image: selectedImage!, imageName: uid) { (imageurl) in
+                        let product = Product(uid: uid, name: productName, type: productType, details: productDetails, sid: self.store!.uid, count: self.stockCount, price: productPricing!, availability: true, profileImage: imageurl, hasCounter: false, colorClass: self.currentTotalProduct! + 1)
+                        StoreServices.instance.addItem(item: product) { (isSuccess) in
+                            if isSuccess{
+                                self.delegate?.reloadTable()
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }
+                    }
+                }
             }
+            
         }
     }
     
@@ -221,6 +272,7 @@ extension addProductPopup{
         
         countTF.isHidden = true
         priceHeightConstraint.constant = 20
+        loadData()
     }
     
     func createTypePicker(){
@@ -234,6 +286,22 @@ extension addProductPopup{
         newToolbar.setItems([doneBtn], animated: false)
         newToolbar.isUserInteractionEnabled = true
         typeTF.inputAccessoryView = newToolbar
+    }
+    
+    func loadData(){
+        if isEdit{
+            nameTF.text = product?.product?.name
+            priceTF.text = String(format: "%.2f", (product?.product?.price)!)
+            typeTF.text = product?.product?.type
+            detailsTF.text = product?.product?.details
+            detailsTF.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            image.cacheImage(imageUrl: (product?.product!.profileImage)!)
+            if product?.product?.type == "Handmade"{
+                countTF.isHidden = false
+                priceHeightConstraint.constant = 80
+                countTF.text = "\((product?.product?.count)!)"
+            }
+        }
     }
 }
 
