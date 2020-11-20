@@ -22,8 +22,9 @@ class Product: Codable {
     var profileImage:String
     var hasCounter:Bool
     var colorClass:Int
+    var isDisabled:Bool
     
-    init(uid:String,name:String,type:String,details:String,sid:String,count:Int,price:Double,availability:Bool,profileImage:String,hasCounter:Bool,colorClass:Int) {
+    init(uid:String,name:String,type:String,details:String,sid:String,count:Int,price:Double,availability:Bool,profileImage:String,hasCounter:Bool,colorClass:Int,isDisabled:Bool) {
         self.uid = uid
         self.name = name
         self.type = type
@@ -35,6 +36,7 @@ class Product: Codable {
         self.profileImage = profileImage
         self.hasCounter = hasCounter
         self.colorClass = colorClass
+        self.isDisabled = isDisabled
     }
 }
 

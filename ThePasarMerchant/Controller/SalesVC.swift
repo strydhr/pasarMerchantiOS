@@ -10,6 +10,16 @@ import UIKit
 import Macaw
 
 class SalesVC: UIViewController {
+    //FirtTimer Hints
+    @IBOutlet weak var mainHintContainer: UIView!
+    @IBOutlet weak var firstHint: UIView!
+    @IBOutlet weak var firstBlinky: UIImageView!
+    @IBOutlet weak var secondHInt: UIView!
+    
+    var page = 1
+    let defaults = UserDefaults.standard
+    //
+    
     @IBOutlet weak var salesTable: UITableView!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var previousBtn: UIButton!
@@ -47,6 +57,21 @@ class SalesVC: UIViewController {
         legendCollectView.register(UINib(nibName: "legendCell", bundle: nil), forCellWithReuseIdentifier: "legendCell")
         legendCollectView.delegate = self
         legendCollectView.dataSource = self
+        
+        mainHintContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(nextHint)))
+    }
+    
+    @objc func nextHint(){
+        if page == 1{
+            firstHint.isHidden = true
+            secondHInt.isHidden = false
+            page = 2
+        }else if page == 2{
+            secondHInt.isHidden = true
+            mainHintContainer.isHidden = true
+            defaults.set(true, forKey: "salesTabHint")
+            
+        }
     }
     
     @IBAction func nextBtnPressed(_ sender: UIButton) {
@@ -113,10 +138,31 @@ extension SalesVC{
     func loadLegend(){
         StoreServices.instance.listMyStoreProducts(store: myStore!) { (productlist) in
             self.productList = productlist
-            print("Productlist")
-            print(productlist.count)
+            self.productList.sort(by: {!($0.product?.isDisabled)! && (($1.product?.isDisabled) != nil)})
             self.legendCollectView.reloadData()
+            
+            if productlist.count > 0 {
+                let isFirstTime = UserDefaults.exist(key: "salesTabHint")
+                if isFirstTime == false{
+                    self.firstTimeHelper()
+                }
+            }
         }
+    }
+    
+    func firstTimeHelper(){
+        mainHintContainer.isHidden = false
+        firstHint.isHidden = false
+        secondHInt.isHidden = true
+        page = 1
+        
+        self.firstBlinky.alpha = 0
+        UIView.animate(withDuration: 1, delay: 0.0, options: [.curveLinear, .repeat, .autoreverse]) {
+            self.firstBlinky.alpha = 1
+        } completion: { (success) in
+            
+        }
+
     }
     
     func loadPreviewsYear(year:Int){
@@ -204,6 +250,9 @@ extension SalesVC:UICollectionViewDataSource,UICollectionViewDelegate,UICollecti
         
         cell.productColor.backgroundColor = UIColor(rgb: color)
         cell.productLabel.text = product.product?.name
+        if product.product?.isDisabled == true{
+            cell.productLabel.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+        }
         return cell
     }
     

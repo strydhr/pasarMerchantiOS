@@ -15,6 +15,7 @@ class ProductVC: UIViewController {
     @IBOutlet weak var firstBlinky: UIImageView!
     @IBOutlet weak var secondHint: UIView!
     @IBOutlet weak var secondBlinky: UIImageView!
+    @IBOutlet weak var thirdHint: UIView!
     
     var page = 1
     let defaults = UserDefaults.standard
@@ -49,9 +50,13 @@ class ProductVC: UIViewController {
             page = 2
         }else if page == 2{
             secondHint.isHidden = true
+            thirdHint.isHidden = false
+            page = 3
+            
+        }else if page == 3{
+            thirdHint.isHidden = true
             mainHintContainer.isHidden = true
             defaults.set(true, forKey: "productTabHint")
-            
         }
     }
     @objc func backgroundTapped(){
@@ -87,6 +92,29 @@ extension ProductVC: UITableViewDelegate, UITableViewDataSource{
         cell.productPrice.text = "RM" + String(format: "%.2f", product!.price)
         cell.productDetails.text = product?.details
         
+        let blurEffect = UIBlurEffect(style: .extraLight)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.tag = 100
+        blurEffectView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        
+        
+        
+        if ((product?.isDisabled) == true){
+            cell.productName.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            cell.productPrice.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            
+            
+            cell.productImage.addSubview(blurEffectView)
+        }
+        else{
+            cell.productName.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            cell.productPrice.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            if let blurView = cell.productImage.viewWithTag(100){
+                blurView.removeFromSuperview()
+            }
+        }
+        
         return cell
     }
     
@@ -94,7 +122,15 @@ extension ProductVC: UITableViewDelegate, UITableViewDataSource{
         
         let delete = deleteAction(at: indexPath)
         let edit = editAction(at: indexPath)
-        return UISwipeActionsConfiguration(actions: [edit, delete])
+        let reactivate = reactivateAction(at: indexPath)
+        
+        let product = productList[indexPath.row]
+        if product.product?.isDisabled == true{
+            return UISwipeActionsConfiguration(actions: [edit, reactivate])
+        }else{
+            return UISwipeActionsConfiguration(actions: [edit, delete])
+        }
+        
     }
     
     func editAction(at indexPath:IndexPath) -> UIContextualAction {
@@ -124,9 +160,8 @@ extension ProductVC: UITableViewDelegate, UITableViewDataSource{
             deletePopup.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (buttonTapped) in
                 StoreServices.instance.deleteProduct(product: selectedProduct) { (isSuccess) in
                     if isSuccess{
-                        print("deleted")
-                        self.productList.remove(at: indexPath.row)
-                        self.productTable.deleteRows(at: [indexPath], with: .automatic)
+                        self.productList[indexPath.row].product?.isDisabled = true
+                        self.productList.sort(by: {!($0.product?.isDisabled)! && (($1.product?.isDisabled) != nil)})
                         self.productTable.reloadData()
                     }
 
@@ -153,6 +188,23 @@ extension ProductVC: UITableViewDelegate, UITableViewDataSource{
         
         return done
       }
+    func reactivateAction(at indexPath:IndexPath) -> UIContextualAction {
+        let done = UIContextualAction(style: .normal, title: "Activate") { (action, view, completion) in
+            let selectedProduct = self.productList[indexPath.row]
+            StoreServices.instance.reactivateProduct(product: selectedProduct) { (isSuccess) in
+                if isSuccess{
+                    print("reactivate")
+                    self.productList[indexPath.row].product?.isDisabled = false
+                    self.productTable.reloadData()
+                }
+            }
+
+            
+        }
+        done.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+        
+        return done
+    }
     
     
 }
@@ -169,6 +221,7 @@ extension ProductVC{
     func loadDatas(){
         StoreServices.instance.listMyStoreProducts(store: myStore!) { (productlist) in
             self.productList = productlist
+            self.productList.sort(by: {!($0.product?.isDisabled)! && (($1.product?.isDisabled) != nil)})
             self.productTable.reloadData()
             if productlist.count == 0{
                 let isFirstTime = UserDefaults.exist(key: "productTabHint")

@@ -103,25 +103,40 @@ class StoreServices {
         }
     }
     
-    
     func deleteProduct(product:ProductDocument,requestComplete:@escaping(_ status:Bool)->()){
-        let storage = Storage.storage()
-        db.collection("product").document(product.documentId!).delete { (err) in
-            if err == nil{
-                let images = product.product?.uid
-                print("deleting..")
-                let storageRef = storage.reference().child("UsersFiles").child(userGlobal!.uid).child("Store")
-                storageRef.child("\((product.product?.uid)!)").delete { (error) in
-                    print("done")
-                    if error != nil{
-                        return
-                    }else{
-                        
-                        requestComplete(true)
-                    }
-                    
-                }
+        db.collection("product").document(product.documentId!).updateData(["isDisabled":true]) { (error) in
+            if error == nil{
+                requestComplete(true)
             }
         }
     }
+    func reactivateProduct(product:ProductDocument,requestComplete:@escaping(_ status:Bool)->()){
+        db.collection("product").document(product.documentId!).updateData(["isDisabled":false]) { (error) in
+            if error == nil{
+                requestComplete(true)
+            }
+        }
+    }
+    
+    
+//    func deleteProduct(product:ProductDocument,requestComplete:@escaping(_ status:Bool)->()){
+//        let storage = Storage.storage()
+//        db.collection("product").document(product.documentId!).delete { (err) in
+//            if err == nil{
+//                let images = product.product?.uid
+//                print("deleting..")
+//                let storageRef = storage.reference().child("UsersFiles").child(userGlobal!.uid).child("Store")
+//                storageRef.child("\((product.product?.uid)!)").delete { (error) in
+//                    print("done")
+//                    if error != nil{
+//                        return
+//                    }else{
+//                        
+//                        requestComplete(true)
+//                    }
+//                    
+//                }
+//            }
+//        }
+//    }
 }

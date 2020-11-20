@@ -9,6 +9,20 @@
 import UIKit
 
 class ConfirmedOrdersVC: UIViewController {
+    //FirstTime Hint
+    @IBOutlet weak var mainHintContainer: UIView!
+    @IBOutlet weak var initialHint: UIView!
+    @IBOutlet weak var firstHint: UIView!
+    @IBOutlet weak var firstBlinky: UIImageView!
+    @IBOutlet weak var secondHint: UIView!
+    @IBOutlet weak var secondBlinky: UIImageView!
+    @IBOutlet weak var thirdHint: UIView!
+    @IBOutlet weak var thirdBlinky: UIImageView!
+    
+    var page = 1
+    let defaults = UserDefaults.standard
+    //
+    
     @IBOutlet weak var ordersTable: UITableView!
     
     var ordersList = [ReceiptDocument]()
@@ -22,6 +36,23 @@ class ConfirmedOrdersVC: UIViewController {
         ordersTable.separatorStyle = .none
         ordersTable.register(UINib(nibName: "receiptHeader", bundle: nil), forCellReuseIdentifier: "receiptHeader")
         ordersTable.register(UINib(nibName: "orderCell", bundle: nil), forCellReuseIdentifier: "orderCell")
+    }
+    
+    @objc func nextHint(){
+        if page == 1{
+            firstHint.isHidden = true
+            secondHint.isHidden = false
+            page = 2
+        }else if page == 2{
+            secondHint.isHidden = true
+            thirdHint.isHidden = false
+            page = 3
+            
+        }else if page == 3{
+            thirdHint.isHidden = true
+            mainHintContainer.isHidden = true
+            defaults.set(true, forKey: "confirmedOrdersTabHint")
+        }
     }
     
 
@@ -94,7 +125,37 @@ extension ConfirmedOrdersVC{
 //            print(orderlist.count)
             self.ordersList = orderlist
             self.ordersTable.reloadData()
+            
+            if orderlist.count == 0 {
+                self.mainHintContainer.isHidden = false
+                self.initialHint.isHidden = false
+            }else if orderlist.count > 0{
+                let isFirstTime = UserDefaults.exist(key: "confirmedOrdersTabHint")
+                if isFirstTime == false{
+                    self.firstTimeHelper()
+                    self.mainHintContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.nextHint)))
+                }
+            }
         }
+    }
+    
+    func firstTimeHelper(){
+        mainHintContainer.isHidden = false
+        firstHint.isHidden = false
+        secondHint.isHidden = true
+        page = 1
+        
+        self.firstBlinky.alpha = 0
+        self.secondBlinky.alpha = 0
+        self.thirdBlinky.alpha = 0
+        UIView.animate(withDuration: 1, delay: 0.0, options: [.curveLinear, .repeat, .autoreverse]) {
+            self.firstBlinky.alpha = 1
+            self.secondBlinky.alpha = 1
+            self.thirdBlinky.alpha = 1
+        } completion: { (success) in
+            
+        }
+
     }
 }
 

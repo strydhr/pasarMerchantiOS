@@ -7,8 +7,20 @@
 //
 
 import UIKit
+import CoreLocation
 
 class OrdersVC: UIViewController {
+    //First Time Hints
+    @IBOutlet weak var mainHintContainer: UIView!
+    @IBOutlet weak var firstHint: UIView!
+    @IBOutlet weak var firstBlinky: UIImageView!
+    @IBOutlet weak var secondHint: UIView!
+    @IBOutlet weak var secondBlinky: UIImageView!
+    
+    var page = 1
+    let defaults = UserDefaults.standard
+    
+    
     @IBOutlet weak var ordersTable: UITableView!
     
     var ordersList = [OrderDocument]()
@@ -28,15 +40,17 @@ class OrdersVC: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func nextHint(){
+        if page == 1{
+            firstHint.isHidden = true
+            secondHint.isHidden = false
+            page = 2
+        }else if page == 2{
+            secondHint.isHidden = true
+            mainHintContainer.isHidden = true
+            defaults.set(true, forKey: "ordersTabHint")
+        }
     }
-    */
 
 }
 extension OrdersVC:UITableViewDelegate,UITableViewDataSource{
@@ -55,6 +69,11 @@ extension OrdersVC:UITableViewDelegate,UITableViewDataSource{
         for item in header.order!.items{
             totalItems += item.itemCount
         }
+        //
+        if let store = userGlobalStores.filter({$0.store?.uid == header.order?.storeId}).first{
+            
+        }
+        //
         
         cell.orderCount.text = String(totalItems)
         cell.deliveryTime.text = getTimeLabel(dates: header.order!.deliveryTime.dateValue())
@@ -104,7 +123,30 @@ extension OrdersVC{
 //            print(orderlist.count)
             self.ordersList = orderlist.sorted(by: {$0.order!.deliveryTime.dateValue().compare($1.order!.deliveryTime.dateValue()) == .orderedDescending})
             self.ordersTable.reloadData()
+            if orderlist.count > 0{
+                let isFirstTime = UserDefaults.exist(key: "ordersTabHint")
+                if isFirstTime == false{
+                    self.firstTimeHelper()
+                    self.mainHintContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.nextHint)))
+                }
+            }
         }
+    }
+    func firstTimeHelper(){
+        mainHintContainer.isHidden = false
+        firstHint.isHidden = false
+        secondHint.isHidden = true
+        page = 1
+        
+        self.firstBlinky.alpha = 0
+        self.secondBlinky.alpha = 0
+        UIView.animate(withDuration: 1, delay: 0.0, options: [.curveLinear, .repeat, .autoreverse]) {
+            self.firstBlinky.alpha = 1
+            self.secondBlinky.alpha = 1
+        } completion: { (success) in
+            
+        }
+
     }
     
     func loadProduct(){

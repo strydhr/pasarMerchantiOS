@@ -244,7 +244,7 @@ extension addProductPopup{
                     let uid = autoID(length: 28)
                     let productPricing = Double(productPrice)
                     uploadImages(image: selectedImage!, imageName: uid) { (imageurl) in
-                        let product = Product(uid: uid, name: productName, type: productType, details: productDetails, sid: self.store!.uid, count: self.stockCount, price: productPricing!, availability: true, profileImage: imageurl, hasCounter: false, colorClass: self.currentTotalProduct! + 1)
+                        let product = Product(uid: uid, name: productName, type: productType, details: productDetails, sid: self.store!.uid, count: self.stockCount, price: productPricing!, availability: true, profileImage: imageurl, hasCounter: false, colorClass: self.currentTotalProduct! + 1, isDisabled: false)
                         StoreServices.instance.addItem(item: product) { (isSuccess) in
                             if isSuccess{
                                 self.delegate?.reloadTable()
