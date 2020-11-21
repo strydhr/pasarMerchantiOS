@@ -71,7 +71,10 @@ extension OrdersVC:UITableViewDelegate,UITableViewDataSource{
         }
         //
         if let store = userGlobalStores.filter({$0.store?.uid == header.order?.storeId}).first{
-            
+            let coor1 = CLLocation(latitude: (store.store?.l[0])!, longitude: (store.store?.l[1])!)
+            let coor2 = CLLocation(latitude: (header.order?.purchaserCoor[0])!, longitude: (header.order?.purchaserCoor[1])!)
+            let dist = String(format: "%0.2f", coor1.distance(from: coor2)/1000)
+            cell.distance.text = "\(dist) km"
         }
         //
         
