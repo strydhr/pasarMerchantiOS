@@ -10,6 +10,7 @@ import UIKit
 protocol completeOrderDelegate{
     func completeOrder(item:ReceiptDocument)
     func openWaze(item:ReceiptDocument)
+    func phoneCustomer(item:ReceiptDocument)
 }
 
 class receiptHeader: UITableViewCell, SlideButtonDelegate {
@@ -17,6 +18,7 @@ class receiptHeader: UITableViewCell, SlideButtonDelegate {
     
     @IBOutlet weak var deliveryTime: UILabel!
     @IBOutlet weak var deliveryAddress: UILabel!
+    @IBOutlet weak var phoneBtn: UIButton!
     @IBOutlet weak var orderCount: UILabel!
     @IBOutlet weak var completeBtn: UIButton!
     @IBOutlet weak var slideBtn: MMSlidingButton!
@@ -33,12 +35,16 @@ class receiptHeader: UITableViewCell, SlideButtonDelegate {
         
         deliveryAddress.isUserInteractionEnabled = true
         deliveryAddress.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openWaze)))
+        phoneBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(phoneMsgCustomer)))
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    @objc func phoneMsgCustomer(){
+        delegate?.phoneCustomer(item: item!)
     }
     
     @objc func openWaze(){

@@ -11,6 +11,9 @@ import UIKit
 protocol editProfileDetailsDelegate {
     func editDetails(user:Merchant)
 }
+protocol logoutDelegate {
+    func logout()
+}
 
 class profileCell: UITableViewCell {
     @IBOutlet weak var outterCellView: UIView!
@@ -19,6 +22,9 @@ class profileCell: UITableViewCell {
     @IBOutlet weak var editBtn: UIImageView!
     
     var delegate:editProfileDetailsDelegate?
+    var delegate2:logoutDelegate?
+    
+    var usingLogout = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,10 +34,19 @@ class profileCell: UITableViewCell {
         
         editBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(editBtnPressed)))
         editBtn.isUserInteractionEnabled = true
+        
     }
     
     @objc func editBtnPressed(){
+        if usingLogout{
+            delegate2?.logout()
+        }else{
         delegate?.editDetails(user: userGlobal!)
+        }
+    }
+    
+    @objc func loggingOut(){
+        delegate2?.logout()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

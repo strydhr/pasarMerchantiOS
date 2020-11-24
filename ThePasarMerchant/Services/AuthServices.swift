@@ -63,6 +63,29 @@ class AuthServices {
         }
     }
     
+    func updateDeviceToken(){
+        InstanceID.instanceID().instanceID { (result, error) in
+            if error == nil{
+                let token = result?.token
+                    db.collection("Merchant").document(Auth.auth().currentUser!.uid).updateData(["deviceToken":token!])
+                    let dbRef = db.collection("store").whereField("ownerId", isEqualTo: Auth.auth().currentUser?.uid)
+                    dbRef.getDocuments { (snapshot, error) in
+                        if error == nil{
+                            guard let document = snapshot?.documents else {return}
+                            for item in document{
+                                db.collection("store").document(item.documentID).updateData(["deviceToken":token!])
+                            }
+                        }
+                    }
+                    
+                
+                
+                
+            }
+        }
+        
+    }
+    
 //    func registerNewUser(email:String,password:String,requestComplete:@escaping(_ status: Bool,_ error: Error?)->()){
 //        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
 //            if error == nil{

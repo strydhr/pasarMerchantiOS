@@ -153,6 +153,7 @@ extension LoginVC{
                             if snapshot!.exists{
                                 guard let snapShot = snapshot?.data() else {return}
                                 userGlobal = try! FirestoreDecoder().decode(Merchant.self, from: snapShot )
+                                AuthServices.instance.updateDeviceToken()
                                 let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                                 let authVC = storyboard.instantiateViewController(withIdentifier: "loggedIn")
                                 

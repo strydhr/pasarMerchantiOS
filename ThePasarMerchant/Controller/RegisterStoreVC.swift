@@ -23,6 +23,11 @@ class RegisterStoreVC: UIViewController {
     var delegate:hasStoreDelegate?
     var fromMain = true
     
+    var isEdit = false
+    var store:StoreDocument?
+    var newEditImage = false
+    var imageName = ""
+    
     let typePicker = UIPickerView()
     let doneBtn = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector (donePicking))
     let category = ["Meals","Pastry","Dessert","Handmade","Second Hands"]
@@ -44,7 +49,7 @@ class RegisterStoreVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadDatas()
         editTable.delegate = self
         editTable.dataSource = self
         editTable.separatorStyle = .none
@@ -53,7 +58,12 @@ class RegisterStoreVC: UIViewController {
         typePicker.delegate = self
         typePicker.dataSource = self
         
-        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bgTapped)))
+    }
+    
+    @objc func bgTapped(){
+        let cell = editTable.cellForRow(at: nameIndexPath) as! registerStoreCell
+        cell.editTF.resignFirstResponder()
     }
     
     @objc func donePicking(){
@@ -134,39 +144,77 @@ extension RegisterStoreVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "registerStoreCell")as? registerStoreCell else {return UITableViewCell()}
         guard let cellb = tableView.dequeueReusableCell(withIdentifier: "registerStoreImageCell")as? registerStoreImageCell else {return UITableViewCell()}
-        switch indexPath.row {
-        case 0:
-            cell.editTF.attributedPlaceholder = NSAttributedString(string: "Name")
-            cell.editTF.autocapitalizationType = .words
-            return cell
-        case 1:
-            cell.editTF.attributedPlaceholder = NSAttributedString(string: "Type")
-            //
-            
-            typePicker.showsSelectionIndicator = true
-            cell.editTF.inputView = typePicker
-            
-            
-            let newToolbar = UIToolbar()
-            newToolbar.sizeToFit()
-            
-            
-            newToolbar.setItems([doneBtn], animated: false)
-            newToolbar.isUserInteractionEnabled = true
-            cell.editTF.inputAccessoryView = newToolbar
-            return cell
-            //
-        case 2:
-            cell.editTF.attributedPlaceholder = NSAttributedString(string: "Location")
-            cell.editTF.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addAddress)))
-            return cell
-        default:
-            cellb.storeImage.image = UIImage(named: "defaultImg")
-            cellb.storeImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
-            cellb.storeImage.isUserInteractionEnabled = true
-            return cellb
-            
+        
+        if isEdit{
+            switch indexPath.row {
+            case 0:
+                cell.editTF.text = store?.store?.name
+                cell.editTF.autocapitalizationType = .words
+                return cell
+            case 1:
+                cell.editTF.text = store?.store?.type
+                //
+                
+                typePicker.showsSelectionIndicator = true
+                cell.editTF.inputView = typePicker
+                
+                
+                let newToolbar = UIToolbar()
+                newToolbar.sizeToFit()
+                
+                
+                newToolbar.setItems([doneBtn], animated: false)
+                newToolbar.isUserInteractionEnabled = true
+                cell.editTF.inputAccessoryView = newToolbar
+                return cell
+                //
+            case 2:
+                cell.editTF.text = store?.store?.location
+                cell.editTF.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addAddress)))
+                return cell
+            default:
+                cellb.storeImage.cacheImage(imageUrl: (store?.store!.profileImage)!)
+                cellb.storeImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
+                cellb.storeImage.isUserInteractionEnabled = true
+                return cellb
+                
+            }
+        }else{
+            switch indexPath.row {
+            case 0:
+                cell.editTF.attributedPlaceholder = NSAttributedString(string: "Name")
+                cell.editTF.autocapitalizationType = .words
+                return cell
+            case 1:
+                cell.editTF.attributedPlaceholder = NSAttributedString(string: "Type")
+                //
+                
+                typePicker.showsSelectionIndicator = true
+                cell.editTF.inputView = typePicker
+                
+                
+                let newToolbar = UIToolbar()
+                newToolbar.sizeToFit()
+                
+                
+                newToolbar.setItems([doneBtn], animated: false)
+                newToolbar.isUserInteractionEnabled = true
+                cell.editTF.inputAccessoryView = newToolbar
+                return cell
+                //
+            case 2:
+                cell.editTF.attributedPlaceholder = NSAttributedString(string: "Location")
+                cell.editTF.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addAddress)))
+                return cell
+            default:
+                cellb.storeImage.image = UIImage(named: "defaultImg")
+                cellb.storeImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
+                cellb.storeImage.isUserInteractionEnabled = true
+                return cellb
+                
+            }
         }
+        
         
         
     }
@@ -230,41 +278,26 @@ extension RegisterStoreVC:UIImagePickerControllerDelegate,UINavigationController
         let storeImage = editTable.cellForRow(at: imageIndexPath) as! registerStoreImageCell
         storeImage.storeImage.image = selectedImage
             isStoreImageSet = true
-        
+        if isEdit{
+            newEditImage = true
+        }
   
 
         dismiss(animated: true, completion: nil)
         
     }
     
-    func uploadImages(image: UIImage,imageName: String,requestURL: @escaping(_ url:String)->()){
-        let storage = Storage.storage()
-        let storageRef = storage.reference().child("UsersFiles").child((Auth.auth().currentUser?.uid)!)
-        
-        if let uploaddata = image.jpegData(compressionQuality: 0.6){
-            let metaData = StorageMetadata()
-            metaData.contentType = "image/jpg"
-            let uploadTask = storageRef.child(imageName).putData(uploaddata, metadata: metaData)
-//            SVProgressHUD.show()
-            _ = uploadTask.observe(.success) { (snapshot) in
-                print(snapshot.status)
-//                SVProgressHUD.dismiss()
-                storageRef.child(imageName).downloadURL(completion: { (url, _) in
-                    let urlString = url?.absoluteString
-                    
-                    requestURL(urlString!)
-                    
-                    
-                })
-                
-                
-                
-            }
-        }
-    }
+
 }
 
 extension RegisterStoreVC{
+    func loadDatas(){
+        if isEdit{
+            isStoreImageSet = true
+            imageName = splitUrl()
+        }
+        
+    }
     func errorHandler(storeName:String,type:String,location:String){
         if(storeName.isEmpty || type.isEmpty || location.isEmpty){
             if(storeName.isEmpty){
@@ -301,32 +334,71 @@ extension RegisterStoreVC{
                 self.present(alert, animated: true, completion: nil)
             }else{
                 confirmBtn.isEnabled = false
-                uploadImages(image: selectedImage!) { (imageurl) in
-                    let uid = autoID(length: 28)
-                    let date = Timestamp()
-                    let store = Store(uid: uid, name: storeName, type: type, location: location, lat: self.latitude!, lng: self.longitude!, g: self.geoHash!, startDate: date, ownerId: userGlobal!.uid, profileImage: imageurl, isEnabled: true, deviceToken: "1")
-                    StoreServices.instance.addStore(store: store) { (isSuccess) in
-                        if isSuccess{
-                            AuthServices.instance.updateStoreCount(merchant: userGlobal!) { (isUpdated) in
-                                if isUpdated{
-                                    userGlobal!.storeCount = userGlobal!.storeCount + 1
-                                    if self.fromMain{
-                                        
-                                    }else{
-                                        let storeDoc = StoreDocument(documentId: uid, store: store)
-                                        userGlobalStores.append(storeDoc)
-                                    }
+                if isEdit{
+                    if newEditImage{
+                        
+                        uploadEditedImage(image: selectedImage!, imageName: imageName) { (imageurl) in
+                            self.store?.store?.profileImage = imageurl
+                            self.store?.store?.name = storeName
+                            self.store?.store?.type = type
+                            self.store?.store?.location = location
+                            self.store?.store?.l[0] = self.latitude!
+                            self.store?.store?.l[1] = self.longitude!
+                            self.store?.store?.g = self.geoHash!
+                            StoreServices.instance.editStorestore(store: self.store!) { (isSuccess) in
+                                if isSuccess{
                                     self.delegate?.hasStore(status: true)
                                     self.navigationController?.popViewController(animated: true)
-//                                    userStores.append(store)
-                                    
-                                    
                                 }
                             }
                             
                         }
+                    }else{
+                        self.store?.store?.name = storeName
+                        self.store?.store?.type = type
+                        self.store?.store?.location = location
+                        if self.latitude != nil{
+                        self.store?.store?.l[0] = self.latitude!
+                        self.store?.store?.l[1] = self.longitude!
+                        self.store?.store?.g = self.geoHash!
+                        }
+                        StoreServices.instance.editStorestore(store: self.store!) { (isSuccess) in
+                            if isSuccess{
+                                self.delegate?.hasStore(status: true)
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        }
+                    }
+                }else{
+                    uploadImages(image: selectedImage!) { (imageurl) in
+                        let uid = autoID(length: 28)
+                        let date = Timestamp()
+                        let store = Store(uid: uid, name: storeName, type: type, location: location, lat: self.latitude!, lng: self.longitude!, g: self.geoHash!, startDate: date, ownerId: userGlobal!.uid, profileImage: imageurl, isEnabled: true, deviceToken: "1")
+                        StoreServices.instance.addStore(store: store) { (isSuccess) in
+                            if isSuccess{
+                                AuthServices.instance.updateStoreCount(merchant: userGlobal!) { (isUpdated) in
+                                    if isUpdated{
+                                        userGlobal!.storeCount = userGlobal!.storeCount + 1
+                                        if self.fromMain{
+                                            
+                                        }else{
+                                            let storeDoc = StoreDocument(documentId: uid, store: store)
+                                            userGlobalStores.append(storeDoc)
+                                        }
+                                        self.delegate?.hasStore(status: true)
+                                        self.navigationController?.popViewController(animated: true)
+    //                                    userStores.append(store)
+                                        
+                                        
+                                    }
+                                }
+                                
+                            }
+                        }
                     }
                 }
+                
+
             }
         }
     }
@@ -355,6 +427,50 @@ extension RegisterStoreVC{
                 
                 
                 
+            }
+        }
+    }
+    func uploadEditedImage(image: UIImage,imageName: String,requestURL: @escaping(_ url:String)->()){
+        let storage = Storage.storage()
+        let storageRef = storage.reference().child("UsersFiles").child((Auth.auth().currentUser?.uid)!).child("Store")
+        
+        if let uploaddata = image.jpegData(compressionQuality: 0.6){
+            let metaData = StorageMetadata()
+            metaData.contentType = "image/jpg"
+            let uploadTask = storageRef.child(imageName).putData(uploaddata, metadata: metaData)
+//            SVProgressHUD.show()
+            _ = uploadTask.observe(.success) { (snapshot) in
+                print(snapshot.status)
+//                SVProgressHUD.dismiss()
+                storageRef.child(imageName).downloadURL(completion: { (url, _) in
+                    let urlString = url?.absoluteString
+                    
+                    requestURL(urlString!)
+                    
+                    
+                })
+                
+                
+                
+            }
+        }
+    }
+    func splitUrl()->String{
+        var url = store?.store?.profileImage
+        var unwantedStr = "https://firebasestorage.googleapis.com/v0/b/thepasar-c78f6.appspot.com/o/UsersFiles%2F" + userGlobal!.uid + "%2FStore%2F"
+
+        let newStr = url?.slice(from: unwantedStr, to: "?alt")
+
+        return newStr!
+    }
+}
+extension String {
+
+    func slice(from: String, to: String) -> String? {
+
+        return (range(of: from)?.upperBound).flatMap { substringFrom in
+            (range(of: to, range: substringFrom..<endIndex)?.lowerBound).map { substringTo in
+                String(self[substringFrom..<substringTo])
             }
         }
     }

@@ -9,6 +9,7 @@
 import Foundation
 
 let GOOGLEAPI = "AIzaSyD0B7e0r5qkUK5QQdmQjDOZz1GCBKqTa7Y"
+let serverKey = "AAAAUJA7Y08:APA91bG1yX3iyxgdhD3jFB-ag3TlD6HxixV_GAR3aOhz-QoIU7a2s51I_GpWUsCXiRaXSXvguU2kIysHmJfVK5wWlgpC2L17j9ROxba_avFWQ9ciVPZp9U-Aht95BMyGj0Jx2A_cDPz0"
 
 var userGlobal:Merchant?
 //var userStores = [Store]()

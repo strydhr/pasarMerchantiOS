@@ -14,12 +14,19 @@ class ProfileVC: UIViewController {
     
     let defaults = UserDefaults.standard
     
+    var isEdit = false
+    var selectedStore:StoreDocument?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         profileTable.delegate = self
         profileTable.dataSource = self
         profileTable.separatorStyle = .none
         profileTable.register(UINib(nibName: "profileCell", bundle: nil), forCellReuseIdentifier: "profileCell")
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        isEdit = false
     }
     
 
@@ -30,6 +37,10 @@ class ProfileVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "registerStoreSegue"{
             let destination = segue.destination as! RegisterStoreVC
+            if isEdit{
+                destination.store = selectedStore
+                destination.isEdit = true
+            }
             destination.delegate = self
             destination.fromMain = false
         }
@@ -59,6 +70,10 @@ extension ProfileVC:UITableViewDelegate,UITableViewDataSource{
             cell.contentLabel.text = "Enable Hints"
         }else if section == 3{
             cell.contentLabel.text = "Log Out"
+            cell.usingLogout = true
+            cell.editBtn.isHidden = false
+            cell.editBtn.image = UIImage(named: "logout")
+            cell.delegate2 = self
         }
         
         
@@ -69,7 +84,6 @@ extension ProfileVC:UITableViewDelegate,UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell")as? profileCell else {return UITableViewCell()}
         if indexPath.section == 1{
             let store = userGlobalStores[indexPath.row]
-
             cell.contentLabel.text = store.store?.name
 //            cell.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             cell.containerView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
@@ -101,36 +115,12 @@ extension ProfileVC:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        switch indexPath.row {
-        case 2:
-            let domain = Bundle.main.bundleIdentifier
-            defaults.removePersistentDomain(forName: domain!)
-            defaults.synchronize()
-//            UserDefaults.clear()
-        case 3:
-            let logOutPopUP = UIAlertController(title: "Logout?", message: "Are you sure you want to log out?", preferredStyle: .alert)
-            logOutPopUP.addAction(UIAlertAction(title: "Logout", style: .default, handler: { (buttonTapped) in
-                do{
-                    try Auth.auth().signOut()
-                    let initialVC = self.storyboard?.instantiateViewController(withIdentifier: "initialVC")
-                    //probelm logging out then sign new acc
-                    userGlobal = nil
+        switch indexPath.section {
+        case 1:
+            selectedStore = userGlobalStores[indexPath.row]
+            isEdit = true
+            performSegue(withIdentifier: "registerStoreSegue", sender: self)
 
-                    //
-                    initialVC?.modalPresentationStyle = .fullScreen
-                    self.present(initialVC!, animated: true, completion: nil)
-                } catch{
-                    print(error)
-
-                }
-
-
-            }))
-            present(logOutPopUP, animated: true, completion:  {
-
-                logOutPopUP.view.superview?.isUserInteractionEnabled = true
-                logOutPopUP.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapped)))
-            })
         default:
             print("None")
         }
@@ -138,7 +128,34 @@ extension ProfileVC:UITableViewDelegate,UITableViewDataSource{
     
 }
 
-extension ProfileVC:editProfileDetailsDelegate,hasStoreDelegate{
+extension ProfileVC:editProfileDetailsDelegate,hasStoreDelegate, logoutDelegate{
+    func logout() {
+        let logOutPopUP = UIAlertController(title: "Logout?", message: "Are you sure you want to log out?", preferredStyle: .alert)
+        logOutPopUP.addAction(UIAlertAction(title: "Logout", style: .default, handler: { (buttonTapped) in
+            do{
+                try Auth.auth().signOut()
+                let initialVC = self.storyboard?.instantiateViewController(withIdentifier: "initialVC")
+                //probelm logging out then sign new acc
+                userGlobal = nil
+
+                //
+                initialVC?.modalPresentationStyle = .fullScreen
+                self.present(initialVC!, animated: true, completion: nil)
+            } catch{
+                print(error)
+
+            }
+
+
+        }))
+        present(logOutPopUP, animated: true, completion:  {
+
+            logOutPopUP.view.superview?.isUserInteractionEnabled = true
+            logOutPopUP.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapped)))
+        })
+ 
+    }
+    
     func hasStore(status: Bool) {
         profileTable.reloadData()
     }

@@ -25,6 +25,16 @@ class StoreServices {
         }
     }
     
+    func editStorestore(
+        store:StoreDocument,requestComplete:@escaping(_ status:Bool)->()){
+        db.collection("store").document(store.documentId!).updateData(["name":store.store?.name,"location":store.store?.location,"profileImage":store.store?.profileImage,"type":store.store?.type,"l":[store.store?.l[0],store.store?.l[1]],"g":store.store?.g]) { (error) in
+            if error == nil{
+                requestComplete(true)
+            }
+        }
+        
+    }
+    
     func addItem(item:Product,requestComplete:@escaping(_ status:Bool)->()){
         let docData = try! FirestoreEncoder().encode(item)
         

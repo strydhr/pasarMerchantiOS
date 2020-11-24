@@ -160,6 +160,49 @@ extension ConfirmedOrdersVC{
 }
 
 extension ConfirmedOrdersVC:completeOrderDelegate{
+    func phoneCustomer(item: ReceiptDocument) {
+        let contact = item.order?.purchaserPhone
+        let alert = UIAlertController(title: "Contact Customer By:", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Phone", style: .default, handler: { (photoAlert) in
+            if let url = URL(string: "tel://\(contact)"), UIApplication.shared.canOpenURL(url) {
+                if #available(iOS 10, *) {
+                    UIApplication.shared.open(url)
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "WhatsApp", style: .default, handler: { (libraryAlert) in
+            let urlWhats = "https://wa.me/\(contact)"
+            if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed){
+                if let whatsappURL = URL(string: urlString) {
+                    if UIApplication.shared.canOpenURL(whatsappURL){
+                        if #available(iOS 10.0, *) {
+                            UIApplication.shared.open(whatsappURL, options: [:], completionHandler: nil)
+                        } else {
+                            UIApplication.shared.openURL(whatsappURL)
+                        }
+                    }
+                    else {
+    //                    let alert = UIAlertController(title: "WhatsApp Error", message: "You require the app WhatsApp to continue", preferredStyle: .alert)
+    //                    let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+    //                    alert.addAction(okAction)
+    //                    self.present(alert, animated: true, completion: nil)
+                    }
+                }
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { (libraryAlert) in
+            print("Cancel")
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+        
+//        let urlWhats = "https://wa.me/+60129695527"
+    }
+    
     func openWaze(item: ReceiptDocument) {
 
         let addStr = item.order?.purchaserAddress
