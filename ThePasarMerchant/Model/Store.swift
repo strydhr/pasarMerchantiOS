@@ -23,9 +23,10 @@ class Store: Codable {
     var ownerId:String
     var profileImage:String
     var isEnabled:Bool
-    var deviceToken:String?
+    var isClosed:Bool
+    var deviceToken:String
     
-    init(uid:String,name:String,type:String,location:String,lat:Double,lng:Double,g:String,startDate:Timestamp,ownerId:String,profileImage:String,isEnabled:Bool,deviceToken:String) {
+    init(uid:String,name:String,type:String,location:String,lat:Double,lng:Double,g:String,startDate:Timestamp,ownerId:String,profileImage:String,isEnabled:Bool,isClosed:Bool,deviceToken:String) {
         self.uid = uid
         self.name = name
         self.type = type
@@ -36,6 +37,7 @@ class Store: Codable {
         self.ownerId = ownerId
         self.profileImage = profileImage
         self.isEnabled = isEnabled
+        self.isClosed = isClosed
         self.deviceToken = deviceToken
     }
 }

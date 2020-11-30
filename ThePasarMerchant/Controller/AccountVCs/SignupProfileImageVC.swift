@@ -122,7 +122,10 @@ extension SignupProfileImageVC{
     
     func errorHandler(){
             if !isProfilePicSet{
-                
+                let alert = UIAlertController(title: "Error", message: "Please add a profile image", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                alert.addAction(okAction)
+                self.present(alert, animated: true, completion: nil)
             }else{
 //                SVProgressHUD.show()
                 uploadImages(image: profileImage.image!, imageName: "profile") { (url) in
@@ -131,7 +134,7 @@ extension SignupProfileImageVC{
 //                            SVProgressHUD.dismiss()
                             let defaults = UserDefaults.standard
                             defaults.set(true, forKey: "isFirstTime")
-                            //                        AuthServices.instance.updateDeviceToken(accType: accType!)
+                            AuthServices.instance.registerDeviceToken()
 
                             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                             let authVC = storyboard.instantiateViewController(withIdentifier: "loggedIn")

@@ -11,8 +11,9 @@
 		D20A1D02255D0E6B00E0C231 /* multipleStoreSelection.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20A1D00255D0E6B00E0C231 /* multipleStoreSelection.xib */; };
 		D20A1D06255D101500E0C231 /* storeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20A1D04255D101400E0C231 /* storeCell.swift */; };
 		D20A1D07255D101500E0C231 /* storeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20A1D05255D101500E0C231 /* storeCell.xib */; };
-		D21948A8256C007F005F2069 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21948A7256C007F005F2069 /* GoogleService-Info.plist */; };
 		D21948AB256C0354005F2069 /* NotificationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21948AA256C0354005F2069 /* NotificationServices.swift */; };
+		D22812C125713DC100A4490E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D22812C025713DC100A4490E /* GoogleService-Info.plist */; };
+		D234CB90256E31A30046EB83 /* PasswordResetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D234CB8F256E31A30046EB83 /* PasswordResetVC.swift */; };
 		D24C649624EF921B00C5A31B /* ConfirmedOrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24C649524EF921B00C5A31B /* ConfirmedOrdersVC.swift */; };
 		D24C649924EF9B3E00C5A31B /* receiptHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24C649724EF9B3E00C5A31B /* receiptHeader.swift */; };
 		D24C649A24EF9B3E00C5A31B /* receiptHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24C649824EF9B3E00C5A31B /* receiptHeader.xib */; };
@@ -80,9 +81,10 @@
 		D20A1D00255D0E6B00E0C231 /* multipleStoreSelection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = multipleStoreSelection.xib; sourceTree = "<group>"; };
 		D20A1D04255D101400E0C231 /* storeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = storeCell.swift; sourceTree = "<group>"; };
 		D20A1D05255D101500E0C231 /* storeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = storeCell.xib; sourceTree = "<group>"; };
-		D21948A7256C007F005F2069 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D21948AA256C0354005F2069 /* NotificationServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationServices.swift; sourceTree = "<group>"; };
 		D21948AD256C0593005F2069 /* ThePasarMerchant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThePasarMerchant.entitlements; sourceTree = "<group>"; };
+		D22812C025713DC100A4490E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D234CB8F256E31A30046EB83 /* PasswordResetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetVC.swift; sourceTree = "<group>"; };
 		D24C649524EF921B00C5A31B /* ConfirmedOrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmedOrdersVC.swift; sourceTree = "<group>"; };
 		D24C649724EF9B3E00C5A31B /* receiptHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = receiptHeader.swift; sourceTree = "<group>"; };
 		D24C649824EF9B3E00C5A31B /* receiptHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = receiptHeader.xib; sourceTree = "<group>"; };
@@ -206,7 +208,7 @@
 				D253A15F24CC0E4A00D75E26 /* Main.storyboard */,
 				D253A16224CC0E4D00D75E26 /* Assets.xcassets */,
 				D253A16424CC0E4D00D75E26 /* LaunchScreen.storyboard */,
-				D21948A7256C007F005F2069 /* GoogleService-Info.plist */,
+				D22812C025713DC100A4490E /* GoogleService-Info.plist */,
 				D253A16724CC0E4D00D75E26 /* Info.plist */,
 			);
 			path = ThePasarMerchant;
@@ -321,6 +323,7 @@
 				D253A17A24CC189800D75E26 /* LoginVC.swift */,
 				D253A17824CC189700D75E26 /* SignupProfileImageVC.swift */,
 				D253A17924CC189800D75E26 /* SignUpVC.swift */,
+				D234CB8F256E31A30046EB83 /* PasswordResetVC.swift */,
 			);
 			path = AccountVCs;
 			sourceTree = "<group>";
@@ -399,9 +402,9 @@
 				D2535A752510B9B300554D58 /* stockCell.xib in Resources */,
 				D20A1D07255D101500E0C231 /* storeCell.xib in Resources */,
 				D25A3C4D24D057CB00E91AC5 /* addProductPopup.xib in Resources */,
-				D21948A8256C007F005F2069 /* GoogleService-Info.plist in Resources */,
 				D25283B924DAA73900325978 /* orderCell.xib in Resources */,
 				D253A16324CC0E4D00D75E26 /* Assets.xcassets in Resources */,
+				D22812C125713DC100A4490E /* GoogleService-Info.plist in Resources */,
 				D253A16124CC0E4A00D75E26 /* Main.storyboard in Resources */,
 				D24C649A24EF9B3E00C5A31B /* receiptHeader.xib in Resources */,
 			);
@@ -516,6 +519,7 @@
 				D21948AB256C0354005F2069 /* NotificationServices.swift in Sources */,
 				D2C2D51324D00F64007A4526 /* StoreServices.swift in Sources */,
 				D25548C324F76980007793AE /* Sales.swift in Sources */,
+				D234CB90256E31A30046EB83 /* PasswordResetVC.swift in Sources */,
 				D2BEFF7924CEBE5000B997EC /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -673,7 +677,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Strydhr.ThePasarMerchant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -694,7 +698,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Strydhr.ThePasarMerchant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

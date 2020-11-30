@@ -41,7 +41,6 @@ class MainTabVC: UIViewController {
         }else{
             loadStore()
         }
-        
     }
     
     @objc func nextHint(){

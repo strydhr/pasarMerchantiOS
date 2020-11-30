@@ -373,7 +373,7 @@ extension RegisterStoreVC{
                     uploadImages(image: selectedImage!) { (imageurl) in
                         let uid = autoID(length: 28)
                         let date = Timestamp()
-                        let store = Store(uid: uid, name: storeName, type: type, location: location, lat: self.latitude!, lng: self.longitude!, g: self.geoHash!, startDate: date, ownerId: userGlobal!.uid, profileImage: imageurl, isEnabled: true, deviceToken: "1")
+                        let store = Store(uid: uid, name: storeName, type: type, location: location, lat: self.latitude!, lng: self.longitude!, g: self.geoHash!, startDate: date, ownerId: userGlobal!.uid, profileImage: imageurl, isEnabled: true, isClosed: false, deviceToken: userGlobal!.deviceToken!)
                         StoreServices.instance.addStore(store: store) { (isSuccess) in
                             if isSuccess{
                                 AuthServices.instance.updateStoreCount(merchant: userGlobal!) { (isUpdated) in

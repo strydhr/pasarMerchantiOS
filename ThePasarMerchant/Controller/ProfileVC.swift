@@ -49,7 +49,7 @@ class ProfileVC: UIViewController {
 }
 extension ProfileVC:UITableViewDelegate,UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 3
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1{
@@ -67,8 +67,6 @@ extension ProfileVC:UITableViewDelegate,UITableViewDataSource{
             cell.editBtn.isHidden = false
             cell.delegate = self
         }else if section == 2{
-            cell.contentLabel.text = "Enable Hints"
-        }else if section == 3{
             cell.contentLabel.text = "Log Out"
             cell.usingLogout = true
             cell.editBtn.isHidden = false

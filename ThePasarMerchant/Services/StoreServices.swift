@@ -34,6 +34,24 @@ class StoreServices {
         }
         
     }
+    func closeStore(
+        store:Store,requestComplete:@escaping(_ status:Bool)->()){
+        db.collection("store").document(store.uid).updateData(["isClosed":true]) { (error) in
+            if error == nil{
+                requestComplete(true)
+            }
+        }
+        
+    }
+    func openStore(
+        store:Store,requestComplete:@escaping(_ status:Bool)->()){
+        db.collection("store").document(store.uid).updateData(["isClosed":false]) { (error) in
+            if error == nil{
+                requestComplete(true)
+            }
+        }
+        
+    }
     
     func addItem(item:Product,requestComplete:@escaping(_ status:Bool)->()){
         let docData = try! FirestoreEncoder().encode(item)

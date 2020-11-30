@@ -4,7 +4,7 @@
 //
 //  Created by Satyia Anand on 05/08/2020.
 //  Copyright © 2020 Satyia Anand. All rights reserved.
-//
+// Add alert to call customer when stock is not enough
 
 import UIKit
 import CoreLocation
@@ -198,6 +198,7 @@ extension OrdersVC:rejectOrderDelegate,confirmOrderDelegate,removeRejectedOrderD
         if item.order!.hasDeliveryTime{
             OrderServices.instance.confirmReadyOrder(order: item) { (isConfirmed) in
                 if isConfirmed{
+                    NotificationServices.instance.sendNotification(deviceToken: item.order!.purchaserDeviceToken, title: "Order Confirmed", body: "We are preparing your order")
                     if let confirmOrderIndex = self.ordersList.firstIndex(where: {$0.documentId == item.documentId}){
                         self.ordersList.remove(at: confirmOrderIndex)
                         self.ordersTable.reloadData()
@@ -214,6 +215,7 @@ extension OrdersVC:rejectOrderDelegate,confirmOrderDelegate,removeRejectedOrderD
                             self.productList = newUpdatedList
                             OrderServices.instance.confirmStockOrder(order: item) { (isConfirmed) in
                                 if isConfirmed{
+                                    NotificationServices.instance.sendNotification(deviceToken: item.order!.purchaserDeviceToken, title: "Order Confirmed", body: "We will contact you when we are about to send your order")
                                     if let confirmOrderIndex = self.ordersList.firstIndex(where: {$0.documentId == item.documentId}){
                                         self.ordersList.remove(at: confirmOrderIndex)
                                         self.ordersTable.reloadData()
@@ -224,12 +226,39 @@ extension OrdersVC:rejectOrderDelegate,confirmOrderDelegate,removeRejectedOrderD
                         }
                     }
                 }else{
-                    let appliedDoneAlert = UIAlertController(title: "Not enough stock", message: "Please call customer that there aren't enough stock", preferredStyle: .alert)
-                    self.present(appliedDoneAlert, animated: true, completion: nil)
-                    let timer = DispatchTime.now() + 3.5
-                    DispatchQueue.main.asyncAfter(deadline: timer, execute: {
-                        appliedDoneAlert.dismiss(animated: true, completion: nil)
-                    })
+                    let contact = item.order?.purchaserPhone
+                    let alert = UIAlertController(title: "Not enough stock", message: "Please call customer that there aren't enough stock", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Phone", style: .default, handler: { (photoAlert) in
+                        if let url = URL(string: "tel://\(contact)"), UIApplication.shared.canOpenURL(url) {
+                            if #available(iOS 10, *) {
+                                UIApplication.shared.open(url)
+                            } else {
+                                UIApplication.shared.openURL(url)
+                            }
+                        }
+                    }))
+                    alert.addAction(UIAlertAction(title: "WhatsApp", style: .default, handler: { (libraryAlert) in
+                        let urlWhats = "https://wa.me/\(contact)"
+                        if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed){
+                            if let whatsappURL = URL(string: urlString) {
+                                if UIApplication.shared.canOpenURL(whatsappURL){
+                                    if #available(iOS 10.0, *) {
+                                        UIApplication.shared.open(whatsappURL, options: [:], completionHandler: nil)
+                                    } else {
+                                        UIApplication.shared.openURL(whatsappURL)
+                                    }
+                                }
+                                else {
+                                }
+                            }
+                        }
+                    }))
+                    
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { (libraryAlert) in
+                        print("Cancel")
+                    }))
+                    
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
         }

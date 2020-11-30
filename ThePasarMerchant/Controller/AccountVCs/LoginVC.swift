@@ -21,7 +21,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var passwordLineView: UIView!
     @IBOutlet weak var loginBtn: RoundButton!
-    @IBOutlet weak var forgotPwBtn: UIButton!
+
     @IBOutlet weak var signupBtn: UIButton!
     
     @IBOutlet weak var btmConstraint: NSLayoutConstraint!
@@ -89,8 +89,7 @@ class LoginVC: UIViewController {
         errorHandler(email: emailTF.text!, password: passwordTF.text!)
     }
     
-    @IBAction func forgotPwBtnPressed(_ sender: UIButton) {
-    }
+
     @IBAction func signupBtnPressed(_ sender: UIButton) {
     }
     

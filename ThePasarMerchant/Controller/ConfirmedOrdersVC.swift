@@ -224,6 +224,7 @@ extension ConfirmedOrdersVC:completeOrderDelegate{
         OrderServices.instance.orderHaveBeenDelivered(receipt: item) { (isSuccess) in
             if isSuccess{
                 if let doneDeliveredIndex = self.ordersList.firstIndex(where: {$0.documentId == item.documentId}){
+                    NotificationServices.instance.sendNotification(deviceToken: item.order!.purchaserDeviceToken, title: "Order Delivered", body: "We just delivered your order")
                     self.ordersList[doneDeliveredIndex].order?.hasDelivered = true
                     self.ordersTable.reloadData()
                 }

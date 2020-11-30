@@ -20,17 +20,34 @@ class ProductVC: UIViewController {
     var page = 1
     let defaults = UserDefaults.standard
     //
+    @IBOutlet weak var shopIndicatorView: UIView!
     
+    @IBOutlet weak var indicatorHeight: NSLayoutConstraint!
     @IBOutlet weak var productTable: UITableView!
+    @IBOutlet weak var closeSign: UILabel!
     
     var addBtn = UIBarButtonItem()
+    var closeBtn = UIBarButtonItem()
+    var openBtn = UIBarButtonItem()
     var myStore:Store?
     var productList = [ProductDocument]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addBtn = UIBarButtonItem(title: "Add Item", style: .done, target: self, action: #selector(addProduct))
-        navigationItem.rightBarButtonItems = [addBtn]
+        closeBtn = UIBarButtonItem(title: "Close Shop", style: .done, target: self, action: #selector(closeShop))
+        openBtn = UIBarButtonItem(title: "Open Shop", style: .done, target: self, action: #selector(openShop))
+        if ((myStore?.isClosed) == true){
+            shopIndicatorView.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+            indicatorHeight.constant = 50
+            closeSign.isHidden = false
+            navigationItem.rightBarButtonItems = [addBtn,openBtn]
+        }else if myStore?.isClosed == false{
+            indicatorHeight.constant = 0
+            closeSign.isHidden = true
+            navigationItem.rightBarButtonItems = [addBtn,closeBtn]
+        }
+        
         productTable.register(UINib(nibName: "productCell", bundle: nil), forCellReuseIdentifier: "productCell")
         
         productTable.delegate = self
@@ -40,6 +57,7 @@ class ProductVC: UIViewController {
         loadDatas()
         mainHintContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(nextHint)))
         
+        indicatorHeight.isActive = true
         
     }
     
@@ -71,6 +89,55 @@ class ProductVC: UIViewController {
         addProduct.currentTotalProduct = productList.count
         addProduct.modalPresentationStyle = .custom
         present(addProduct, animated: true, completion: nil)
+    }
+    
+    @objc func closeShop(){
+        let closeShopPopUP = UIAlertController(title: "Close Shop For the Day?", message: "Are you sure you want to close the shop, you will need to open the back the shop to start receiving orders", preferredStyle: .alert)
+        closeShopPopUP.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (buttonTapped) in
+            StoreServices.instance.closeStore(store: self.myStore!) { (isSuccess) in
+                if isSuccess{
+
+                    self.indicatorHeight.constant = 50
+
+                    UIView.animate(withDuration: 1) {
+                        self.view.layoutIfNeeded()
+                        self.closeSign.isHidden = false
+                    }
+
+                    
+                    userGlobalStores.filter({$0.documentId == self.myStore?.uid}).first?.store?.isClosed = true
+                    self.navigationItem.rightBarButtonItems = [self.addBtn,self.openBtn]
+                }
+            }
+
+
+        }))
+        closeShopPopUP.addAction(UIAlertAction(title: "No", style: .default, handler: { (buttonTapped) in
+            closeShopPopUP.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapped)))
+
+
+        }))
+        present(closeShopPopUP, animated: true, completion:  {
+
+            closeShopPopUP.view.superview?.isUserInteractionEnabled = true
+            closeShopPopUP.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapped)))
+        })
+    }
+    @objc func openShop(){
+        StoreServices.instance.openStore(store: myStore!) { (isSuccess) in
+            if isSuccess{
+                self.indicatorHeight.constant = 0
+
+                UIView.animate(withDuration: 1) {
+                    self.view.layoutIfNeeded()
+                    self.closeSign.isHidden = true
+                }
+                userGlobalStores.filter({$0.documentId == self.myStore?.uid}).first?.store?.isClosed = false
+                self.navigationItem.rightBarButtonItems = [self.addBtn,self.closeBtn]
+            }
+        }
+            
+
     }
 
 }
