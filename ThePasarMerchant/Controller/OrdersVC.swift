@@ -237,7 +237,7 @@ extension OrdersVC:rejectOrderDelegate,confirmOrderDelegate,removeRejectedOrderD
                             }
                         }
                     }))
-                    alert.addAction(UIAlertAction(title: "WhatsApp", style: .default, handler: { (libraryAlert) in
+                    alert.addAction(UIAlertAction(title: "WhatsApp", style: .default, handler: { (libraryAlert) in 
                         let urlWhats = "https://wa.me/\(contact)"
                         if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed){
                             if let whatsappURL = URL(string: urlString) {

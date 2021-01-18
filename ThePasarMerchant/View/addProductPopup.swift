@@ -185,7 +185,7 @@ extension addProductPopup{
         }else{
             if isEdit{
                 confirmBtn.isEnabled = false
-                if  typeTF.text == "Homemade"{
+                if  typeTF.text == "Handmade"{
                     stockCount = Int(String(countTF.text!))!
                 }else{
                     stockCount = 0
@@ -198,7 +198,7 @@ extension addProductPopup{
                         self.product?.product?.price = productPricing!
                         self.product?.product?.type = productType
                         self.product?.product?.profileImage = imageurl
-                        if productType == "Homemade"{
+                        if productType == "Handmade"{
                             self.product?.product?.count = self.stockCount
                         }
                         
@@ -214,7 +214,7 @@ extension addProductPopup{
                     self.product?.product?.details = productDetails
                     self.product?.product?.price = productPricing!
                     self.product?.product?.type = productType
-                    if productType == "Homemade"{
+                    if productType == "Handmade"{
                         self.product?.product?.count = self.stockCount
                     }
                     
@@ -229,13 +229,13 @@ extension addProductPopup{
             }else{
                 if !isProductImageSet{
                     //Alert
-                    let alert = UIAlertController(title: "Error", message: "Store image have not been uploaded", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Error", message: "Product image have not been uploaded", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
                     alert.addAction(okAction)
                     self.present(alert, animated: true, completion: nil)
                 }else{
                     confirmBtn.isEnabled = false
-                    if  typeTF.text == "Homemade"{
+                    if  typeTF.text == "Handmade"{
                         stockCount = Int(String(countTF.text!))!
                     }else{
                         stockCount = 0
@@ -244,7 +244,7 @@ extension addProductPopup{
                     let uid = autoID(length: 28)
                     let productPricing = Double(productPrice)
                     uploadImages(image: selectedImage!, imageName: uid) { (imageurl) in
-                        let product = Product(uid: uid, name: productName, type: productType, details: productDetails, sid: self.store!.uid, count: self.stockCount, price: productPricing!, availability: true, profileImage: imageurl, hasCounter: false, colorClass: self.currentTotalProduct! + 1, isDisabled: false)
+                        let product = Product(uid: uid, name: productName, type: productType, details: productDetails, sid: self.store!.uid, oid: userGlobal!.uid, count: self.stockCount, price: productPricing!, availability: true, profileImage: imageurl, hasCounter: false, colorClass: self.currentTotalProduct! + 1, isDisabled: false)
                         StoreServices.instance.addItem(item: product) { (isSuccess) in
                             if isSuccess{
                                 self.delegate?.reloadTable()

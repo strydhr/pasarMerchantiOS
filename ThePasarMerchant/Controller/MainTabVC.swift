@@ -29,6 +29,9 @@ class MainTabVC: UIViewController {
     @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var registerBtn: UIButton!
     
+    //ButtonConstaint
+
+    
     var multipleStore = false
     var choosenStore:StoreDocument?
     
@@ -41,6 +44,7 @@ class MainTabVC: UIViewController {
         }else{
             loadStore()
         }
+
     }
     
     @objc func nextHint(){

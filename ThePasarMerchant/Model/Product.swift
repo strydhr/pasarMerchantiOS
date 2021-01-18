@@ -16,6 +16,7 @@ class Product: Codable {
     var type:String
     var details:String
     var sid: String
+    var oid: String
     var count: Int
     var price: Double
     var availability:Bool
@@ -24,12 +25,13 @@ class Product: Codable {
     var colorClass:Int
     var isDisabled:Bool
     
-    init(uid:String,name:String,type:String,details:String,sid:String,count:Int,price:Double,availability:Bool,profileImage:String,hasCounter:Bool,colorClass:Int,isDisabled:Bool) {
+    init(uid:String,name:String,type:String,details:String,sid:String,oid:String,count:Int,price:Double,availability:Bool,profileImage:String,hasCounter:Bool,colorClass:Int,isDisabled:Bool) {
         self.uid = uid
         self.name = name
         self.type = type
         self.details = details
         self.sid = sid
+        self.oid = oid
         self.count = count
         self.price = price
         self.availability = availability
