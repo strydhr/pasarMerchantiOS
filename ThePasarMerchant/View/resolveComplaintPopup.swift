@@ -8,16 +8,19 @@
 
 import UIKit
 
+protocol updateComplaintTableDelegate {
+    func didupdate(status:Bool,item:ComplaintDocument)
+}
+
 class resolveComplaintPopup: UIViewController {
     @IBOutlet weak var complaintTable: UITableView!
     
+    var delegate:updateComplaintTableDelegate?
     var complaint:ComplaintDocument?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        loadDatas()
-        
         complaintTable.delegate = self
         complaintTable.dataSource = self
         complaintTable.separatorStyle = .none
@@ -60,6 +63,9 @@ extension resolveComplaintPopup: UITableViewDelegate,UITableViewDataSource{
         }
         cell.customerAddress.text = add
         
+        cell.customerAddressLabel.numberOfLines = 0
+        cell.customerAddressLabel.sizeToFit()
+        
         return cell
     }
 //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -85,7 +91,8 @@ extension resolveComplaintPopup: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "bottomComponent")as? bottomComponent else {return UITableViewCell()}
         cell.complaintComment.text = complaint?.complaint?.complaint
-        
+        cell.delegate = self
+        cell.complaint = complaint
         return cell
     }
 //    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -95,10 +102,47 @@ extension resolveComplaintPopup: UITableViewDelegate,UITableViewDataSource{
     
 }
 
-extension resolveComplaintPopup{
-    func loadDatas(){
-        print(complaint?.documentId)
+extension resolveComplaintPopup:resolveComplaintDelegate{
+    func resolveComplaint(item: ComplaintDocument) {
+        let resolveActionPopup = UIAlertController(title: "Resolve Complaint", message: "Have you resolved customer compplaint", preferredStyle: .alert)
+        resolveActionPopup.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (buttonTapped) in
+            ComplaintServices.instance.resolveComplaint(complaint: item) { (isSuccess) in
+                if isSuccess{
+                    self.delegate?.didupdate(status: true,item:self.complaint!)
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+
+
+        }))
+        resolveActionPopup.addAction(UIAlertAction(title: "No,Whatsapp Customer Now", style: .default, handler: { (buttonTapped) in
+            let urlWhats = "https://wa.me/\((self.complaint?.complaint?.purchaserPhone)!)"
+            if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed){
+                if let whatsappURL = URL(string: urlString) {
+                    if UIApplication.shared.canOpenURL(whatsappURL){
+                        if #available(iOS 10.0, *) {
+                            UIApplication.shared.open(whatsappURL, options: [:], completionHandler: nil)
+                        } else {
+                            UIApplication.shared.openURL(whatsappURL)
+                        }
+                    }
+                    else {
+                        let alert = UIAlertController(title: "WhatsApp Error", message: "You require the app WhatsApp to continue", preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                        alert.addAction(okAction)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+            }
+//            self.dismiss(animated: true, completion: nil)
+
+
+        }))
+        present(resolveActionPopup, animated: true, completion:  nil)
+        
+
     }
+
     func lodgeDateStr(dates:Date)->String{
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"

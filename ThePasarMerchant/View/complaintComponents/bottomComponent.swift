@@ -8,9 +8,16 @@
 
 import UIKit
 
+protocol resolveComplaintDelegate {
+    func resolveComplaint(item:ComplaintDocument)
+}
+
 class bottomComponent: UITableViewCell {
     @IBOutlet weak var complaintComment: UILabel!
     @IBOutlet weak var resolveBtn: UIButton!
+    
+    var delegate:resolveComplaintDelegate?
+    var complaint:ComplaintDocument?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +30,7 @@ class bottomComponent: UITableViewCell {
         // Configure the view for the selected state
     }
     @IBAction func resolveBtnPressed(_ sender: UIButton) {
+        delegate?.resolveComplaint(item: complaint!)
     }
     
 }

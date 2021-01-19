@@ -14,9 +14,11 @@ class topComponent: UITableViewCell {
     @IBOutlet weak var lodgeDate: UILabel!
     @IBOutlet weak var customerAddress: UILabel!
     
+    @IBOutlet weak var customerAddressLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        customerAddressLabel.sizeToFit()
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -65,10 +65,11 @@ extension ComplaintVC:UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let selectedComplaint = complaintList[indexPath.row]
         let complaintPopup = resolveComplaintPopup()
         complaintPopup.complaint = selectedComplaint
-
+        complaintPopup.delegate = self
         present(complaintPopup, animated: true, completion: nil)
 
     }
@@ -77,7 +78,18 @@ extension ComplaintVC:UITableViewDelegate, UITableViewDataSource{
     
 }
 
-extension ComplaintVC{
+extension ComplaintVC:updateComplaintTableDelegate{
+    func didupdate(status: Bool, item: ComplaintDocument) {
+        if status{
+            if let index = complaintList.firstIndex(where: {$0.documentId == item.documentId}){
+                complaintList.remove(at: index)
+                complaintTable.reloadData()
+            }
+        }
+    }
+    
+
+    
     func loadDatas(){
         ComplaintServices.instance.listMyComplaint { (complaintlist) in
             self.complaintList = complaintlist.sorted(by: {$0.complaint!.date.dateValue().compare($1.complaint!.date.dateValue()) == .orderedDescending})
