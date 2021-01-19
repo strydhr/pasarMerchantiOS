@@ -22,7 +22,7 @@ func autoID(length: Int)->String{
 
 func getDateLabel(dates:Date)->String{
     let formatter = DateFormatter()
-    formatter.dateFormat = "dd/MM/yyyy"
+    formatter.dateFormat = "dd-MM-yyyy"
     let dateStr = formatter.string(from: dates)
     return dateStr
 }

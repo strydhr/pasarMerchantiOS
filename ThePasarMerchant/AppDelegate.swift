@@ -35,6 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
             window!.overrideUserInterfaceStyle = .light
         }
         
+        let tabBar = UITabBar.appearance()
+        tabBar.barTintColor = UIColor.clear
+        tabBar.backgroundImage = UIImage()
+        tabBar.shadowImage = UIImage()
+        
         application.registerForRemoteNotifications()
         
         Messaging.messaging().delegate = self

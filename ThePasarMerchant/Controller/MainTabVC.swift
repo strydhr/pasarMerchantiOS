@@ -41,7 +41,7 @@ class MainTabVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        initLayout()
         accountBtn.contentMode = .center
         accountBtn.imageView?.contentMode = .scaleAspectFit
         productBtn.contentMode = .center
@@ -154,6 +154,24 @@ extension MainTabVC: hasStoreDelegate,chooseStoreDelegate{
 }
 
 extension MainTabVC{
+    
+    func initLayout(){
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = UIColor.clear
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
+        
+        let navLabel = UILabel()
+//        let navTitle = NSMutableAttributedString(string: "Orders ", attributes: [NSAttributedString.Key.font :UIFont(name: "Helvetica-Neue", size: 20.0)!,NSMutableAttributedString.Key.foregroundColor: UIColor.white])
+//
+//        navLabel.attributedText = navTitle
+        self.navigationItem.title = "Pasar Merchant"
+        
+        
+        
+    }
     func loadStore(){
         StoreServices.instance.listMyStore { (storelist) in
             userGlobalStores = storelist

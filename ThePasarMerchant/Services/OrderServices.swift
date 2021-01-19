@@ -41,32 +41,44 @@ class OrderServices {
         
         }
     }
+    func realtimeOrderUpdate(requestComplete:@escaping(_ orderList:[OrderDocument])->Void)->ListenerRegistration?{
+        var orderList = [OrderDocument]()
+        let todaysDate = Date()
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: todaysDate)
+        let dbRef = db.collection("orders").whereField("ownerId", isEqualTo: (userGlobal?.uid)!).whereField("hasDelivered", isEqualTo: false)
+        return dbRef.addSnapshotListener { (snapshot, error) in
+            if error == nil{
+                guard let document = snapshot else {return}
+                document.documentChanges.forEach { (diff) in
+                    if(diff.type == .added){
+                        let order = try! FirestoreDecoder().decode(Order.self, from: diff.document.data())
+                        let orderDoc = OrderDocument(documentId: diff.document.documentID, order: order)
+                        if order.hasDeliveryTime{
+                            if order.date.dateValue() > startOfDay{
+                            orderList.append(orderDoc)
+                            }
+                        }else{
+                            orderList.append(orderDoc)
+                        }
+                        
+                    }
+//                    if(diff.type == .modified){
+//                        let neworder = try! FirestoreDecoder().decode(Order.self, from: diff.document.data())
+//                        if let modifiedOrderIndex = orderList.firstIndex(where: {$0.documentId == diff.document.documentID}){
+//                            orderList[modifiedOrderIndex].order = neworder
+//                        }
+//
+//                    }
+                    print("new order")
+                    requestComplete(orderList)
+                }
+            }
+        }
+        
+    }
     
-//    func realtimeListUpdate(requestComplete:@escaping(_ orderList:[Receipts])->()){
-//                var orderList = [Receipts]()
-//
-//        let dbRef = db.collection("receipts").whereField("ownerId", isEqualTo: (userGlobal?.uid)!).whereField("hasDelivered", isEqualTo: false)
-//        dbRef.addSnapshotListener { (snapshot, error) in
-//             if error == nil{
-//                           guard let document = snapshot?.documents else {return}
-//                           if document.isEmpty{
-//                               requestComplete(orderList)
-//                           }else{
-//                               for items in document{
-//                                   let docData = items.data()
-//                                   print(docData)
-//                                   let receipts = try! FirestoreDecoder().decode(Receipts.self, from: docData)
-//                                   orderList.append(receipts)
-//
-//
-//                               }
-//                               requestComplete(orderList)
-//
-//                           }
-//                       }
-//        }
-//
-//    }
+
     func realtimeOrderListUpdate(requestComplete:@escaping(_ orderList:[OrderDocument])->()){
         var orderList = [OrderDocument]()
         let todaysDate = Date()

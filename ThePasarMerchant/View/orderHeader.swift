@@ -16,6 +16,7 @@ protocol confirmOrderDelegate{
 }
 
 class orderHeader: UITableViewCell {
+    @IBOutlet weak var deliveryTitle: UILabel!
     @IBOutlet weak var deliveryTime: UILabel!
     @IBOutlet weak var deliveryAddress: UILabel!
     @IBOutlet weak var distance: UILabel!

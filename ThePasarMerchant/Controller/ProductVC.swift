@@ -34,6 +34,7 @@ class ProductVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        initLayout()
         addBtn = UIBarButtonItem(title: "Add Item", style: .done, target: self, action: #selector(addProduct))
         closeBtn = UIBarButtonItem(title: "Close Shop", style: .done, target: self, action: #selector(closeShop))
         openBtn = UIBarButtonItem(title: "Open Shop", style: .done, target: self, action: #selector(openShop))
@@ -285,6 +286,24 @@ extension ProductVC:updateProductsDelegate{
 }
 
 extension ProductVC{
+    
+    func initLayout(){
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = UIColor.clear
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
+        
+        let navLabel = UILabel()
+        let navTitle = NSMutableAttributedString(string: "Products ", attributes: [NSAttributedString.Key.font :UIFont(name: "Roboto-Light", size: 20.0)!,NSMutableAttributedString.Key.foregroundColor: UIColor.white])
+        
+        navLabel.attributedText = navTitle
+        self.navigationItem.titleView = navLabel
+        
+        
+        
+    }
     func loadDatas(){
         StoreServices.instance.listMyStoreProducts(store: myStore!) { (productlist) in
             self.productList = productlist

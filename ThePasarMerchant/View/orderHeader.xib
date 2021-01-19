@@ -123,6 +123,7 @@
                 <outlet property="confirmBtn" destination="m0p-Ec-6cD" id="FgZ-jU-Ynn"/>
                 <outlet property="deliveryAddress" destination="SsT-8q-egp" id="wNs-dk-rp5"/>
                 <outlet property="deliveryTime" destination="dMy-ue-GPq" id="TAH-bw-QvW"/>
+                <outlet property="deliveryTitle" destination="H2k-cH-pxV" id="g1J-dN-NL9"/>
                 <outlet property="distance" destination="n9P-E6-MEF" id="jPO-s4-GU3"/>
                 <outlet property="orderCount" destination="kho-jh-sJh" id="xXG-8W-PPq"/>
                 <outlet property="rejectBtn" destination="4YQ-1j-f2k" id="rtn-dv-GxX"/>

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import Firebase
 
 class OrdersVC: UIViewController {
     //First Time Hints
@@ -23,12 +24,14 @@ class OrdersVC: UIViewController {
     
     @IBOutlet weak var ordersTable: UITableView!
     
+    var listner:ListenerRegistration?
     var ordersList = [OrderDocument]()
     
     var productList = [ProductDocument]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initLayout()
         loadProduct()
         loadDatas()
         
@@ -51,6 +54,14 @@ class OrdersVC: UIViewController {
             defaults.set(true, forKey: "ordersTabHint")
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadDatas()
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        listner?.remove()
+    }
 
 }
 extension OrdersVC:UITableViewDelegate,UITableViewDataSource{
@@ -61,6 +72,13 @@ extension OrdersVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "orderHeader")as? orderHeader else {return UITableViewCell()}
         let header = ordersList[section]
+        if (header.order?.hasDeliveryTime ==  true){
+            cell.deliveryTitle.text = "Delivery Time :"
+            cell.deliveryTime.text = getTimeLabel(dates: header.order!.deliveryTime.dateValue())
+        }else{
+            cell.deliveryTitle.text = "Ordered On :"
+            cell.deliveryTime.text = getDateLabel(dates: header.order!.deliveryTime.dateValue())
+        }
         cell.deliveryAddress.text = header.order?.purchaserAddress
         cell.delegate = self
         cell.delegate2 = self
@@ -79,7 +97,7 @@ extension OrdersVC:UITableViewDelegate,UITableViewDataSource{
         //
         
         cell.orderCount.text = String(totalItems)
-        cell.deliveryTime.text = getTimeLabel(dates: header.order!.deliveryTime.dateValue())
+        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -116,24 +134,47 @@ extension OrdersVC:UITableViewDelegate,UITableViewDataSource{
 }
 
 extension OrdersVC{
+    func initLayout(){
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = UIColor.clear
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
+        
+        let navLabel = UILabel()
+//        let navTitle = NSMutableAttributedString(string: "Orders ", attributes: [NSAttributedString.Key.font :UIFont(name: "Helvetica-Neue", size: 20.0)!,NSMutableAttributedString.Key.foregroundColor: UIColor.white])
+//        
+//        navLabel.attributedText = navTitle
+        self.navigationItem.title = "Orders"
+        
+        
+        
+    }
     func loadDatas(){
-        OrderServices.instance.realtimeOrderListUpdate{ (orderlist) in
-//            let todaysDate = Date()
-//            let calendar = Calendar.current
-//            let components = calendar.dateComponents([.day], from: todaysDate)
-//            let startOfDay = calendar.startOfDay(for: todaysDate)
-//            self.ordersList = orderlist.filter({$0.order!.deliveryTime.dateValue() > todaysDate})
-//            print(orderlist.count)
-            self.ordersList = orderlist.sorted(by: {$0.order!.deliveryTime.dateValue().compare($1.order!.deliveryTime.dateValue()) == .orderedDescending})
+//        OrderServices.instance.realtimeOrderListUpdate{ (orderlist) in
+////            let todaysDate = Date()
+////            let calendar = Calendar.current
+////            let components = calendar.dateComponents([.day], from: todaysDate)
+////            let startOfDay = calendar.startOfDay(for: todaysDate)
+////            self.ordersList = orderlist.filter({$0.order!.deliveryTime.dateValue() > todaysDate})
+////            print(orderlist.count)
+//            self.ordersList = orderlist.sorted(by: {$0.order!.deliveryTime.dateValue().compare($1.order!.deliveryTime.dateValue()) == .orderedDescending})
+//            self.ordersTable.reloadData()
+//            if orderlist.count > 0{
+//                let isFirstTime = UserDefaults.exist(key: "ordersTabHint")
+//                if isFirstTime == false{
+//                    self.firstTimeHelper()
+//                    self.mainHintContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.nextHint)))
+//                }
+//            }
+//        }
+        
+        self.listner = OrderServices.instance.realtimeOrderUpdate(requestComplete: { (orderlist) in
+            self.ordersList = orderlist
+            self.ordersList = orderlist.sorted(by: {$0.order!.deliveryTime.dateValue().compare($1.order!.date.dateValue()) == .orderedDescending})
             self.ordersTable.reloadData()
-            if orderlist.count > 0{
-                let isFirstTime = UserDefaults.exist(key: "ordersTabHint")
-                if isFirstTime == false{
-                    self.firstTimeHelper()
-                    self.mainHintContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.nextHint)))
-                }
-            }
-        }
+        })
     }
     func firstTimeHelper(){
         mainHintContainer.isHidden = false
