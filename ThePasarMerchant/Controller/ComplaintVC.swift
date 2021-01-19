@@ -64,6 +64,15 @@ extension ComplaintVC:UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedComplaint = complaintList[indexPath.row]
+        let complaintPopup = resolveComplaintPopup()
+        complaintPopup.complaint = selectedComplaint
+
+        present(complaintPopup, animated: true, completion: nil)
+
+    }
+    
     
     
 }

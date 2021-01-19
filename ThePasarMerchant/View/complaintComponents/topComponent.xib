@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="topComponent" rowHeight="271" id="KGk-i7-Jjw" customClass="topComponent" customModule="ThePasarMerchant" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="510" height="271"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="510" height="271"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Complaint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEg-bt-GVG">
+                        <rect key="frame" x="159.5" y="15" width="191" height="46"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0tU-wQ-QZL">
+                        <rect key="frame" x="65" y="77" width="380" height="21"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZV-gH-kEl">
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="Urx-vh-BTg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Marianne Tan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tU4-cV-UXA">
+                                <rect key="frame" x="168" y="0.0" width="212" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="212" id="r5W-Vy-BAZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="x86-X7-1if">
+                        <rect key="frame" x="65" y="108" width="380" height="21"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Receipt Number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cY-cH-dSC">
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="xYH-wu-aSV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Marianne Tan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzX-1C-TUP">
+                                <rect key="frame" x="168" y="0.0" width="212" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="212" id="6ru-j8-0RM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5UA-KV-i40">
+                        <rect key="frame" x="65" y="139" width="380" height="21"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lodge Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mio-oi-yUY">
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="x6B-XC-myp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Marianne Tan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRj-4t-p5Y">
+                                <rect key="frame" x="168" y="0.0" width="212" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="212" id="ocJ-S4-Xzu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="HGw-aO-5Eg">
+                        <rect key="frame" x="65" y="170" width="380" height="21"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Address:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcX-PI-jpZ">
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="N5A-LI-UEh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Marianne Tan" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uui-Eo-W8P">
+                                <rect key="frame" x="168" y="0.0" width="212" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="212" id="Shs-yT-vtc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKb-Ow-PYg">
+                        <rect key="frame" x="0.0" y="221" width="510" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purchanse Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDU-sR-h2n">
+                                <rect key="frame" x="186.5" y="13.5" width="137.5" height="23"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="BDU-sR-h2n" firstAttribute="centerY" secondItem="nKb-Ow-PYg" secondAttribute="centerY" id="Ccg-9y-4OW"/>
+                            <constraint firstAttribute="height" constant="50" id="Cob-e8-9qJ"/>
+                            <constraint firstItem="BDU-sR-h2n" firstAttribute="centerX" secondItem="nKb-Ow-PYg" secondAttribute="centerX" id="fzv-J8-2p2"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.88200944660000002" green="0.89006263019999998" blue="0.90242308380000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="5UA-KV-i40" firstAttribute="top" secondItem="x86-X7-1if" secondAttribute="bottom" constant="10" id="22k-yj-0Y1"/>
+                    <constraint firstItem="nKb-Ow-PYg" firstAttribute="top" secondItem="HGw-aO-5Eg" secondAttribute="bottom" constant="30" id="C5D-Uy-yCT"/>
+                    <constraint firstItem="x86-X7-1if" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Ckt-fs-ADx"/>
+                    <constraint firstItem="x86-X7-1if" firstAttribute="top" secondItem="0tU-wQ-QZL" secondAttribute="bottom" constant="10" id="ETk-tx-xIH"/>
+                    <constraint firstItem="5UA-KV-i40" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="FOY-AN-hAU"/>
+                    <constraint firstItem="nKb-Ow-PYg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Fh9-oY-0Se"/>
+                    <constraint firstItem="PEg-bt-GVG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="QsU-Mv-rnF"/>
+                    <constraint firstItem="HGw-aO-5Eg" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="eaO-Nw-hKC"/>
+                    <constraint firstItem="0tU-wQ-QZL" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ep8-b0-BCJ"/>
+                    <constraint firstAttribute="trailing" secondItem="nKb-Ow-PYg" secondAttribute="trailing" id="gMf-LY-E9O"/>
+                    <constraint firstItem="0tU-wQ-QZL" firstAttribute="top" secondItem="PEg-bt-GVG" secondAttribute="bottom" constant="16" id="h2J-5Z-Y5Q"/>
+                    <constraint firstAttribute="bottom" secondItem="nKb-Ow-PYg" secondAttribute="bottom" id="hhB-wW-Uuc"/>
+                    <constraint firstItem="PEg-bt-GVG" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="wAD-yC-IJE"/>
+                    <constraint firstItem="HGw-aO-5Eg" firstAttribute="top" secondItem="5UA-KV-i40" secondAttribute="bottom" constant="10" id="wZO-5b-pxB"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="customerAddress" destination="Uui-Eo-W8P" id="LZv-Y1-kq0"/>
+                <outlet property="customerName" destination="tU4-cV-UXA" id="Ya6-kX-tF6"/>
+                <outlet property="lodgeDate" destination="hRj-4t-p5Y" id="5TA-on-STK"/>
+                <outlet property="receiptNumber" destination="qzX-1C-TUP" id="edR-QG-Ops"/>
+            </connections>
+            <point key="canvasLocation" x="278.26086956521743" y="172.43303571428569"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

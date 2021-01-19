@@ -27,6 +27,12 @@
 		D250F5BE25B5C5E800D28AFD /* ComplaintServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D250F5BD25B5C5E800D28AFD /* ComplaintServices.swift */; };
 		D250F5C225B5E1CF00D28AFD /* resolveComplaintPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D250F5C025B5E1CF00D28AFD /* resolveComplaintPopup.swift */; };
 		D250F5C325B5E1CF00D28AFD /* resolveComplaintPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D250F5C125B5E1CF00D28AFD /* resolveComplaintPopup.xib */; };
+		D250F5C925B5E56A00D28AFD /* topComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D250F5C725B5E56A00D28AFD /* topComponent.swift */; };
+		D250F5CA25B5E56A00D28AFD /* topComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = D250F5C825B5E56A00D28AFD /* topComponent.xib */; };
+		D251780725B68FF200344225 /* bottomComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251780525B68FF200344225 /* bottomComponent.swift */; };
+		D251780825B68FF200344225 /* bottomComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = D251780625B68FF200344225 /* bottomComponent.xib */; };
+		D251780C25B6928D00344225 /* middleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251780A25B6928D00344225 /* middleComponent.swift */; };
+		D251780D25B6928D00344225 /* middleComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = D251780B25B6928D00344225 /* middleComponent.xib */; };
 		D25283B124DA8D0400325978 /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25283B024DA8D0400325978 /* OrdersVC.swift */; };
 		D25283B424DA9E6300325978 /* orderHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25283B224DA9E6300325978 /* orderHeader.swift */; };
 		D25283B524DA9E6300325978 /* orderHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25283B324DA9E6300325978 /* orderHeader.xib */; };
@@ -105,6 +111,12 @@
 		D250F5BD25B5C5E800D28AFD /* ComplaintServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplaintServices.swift; sourceTree = "<group>"; };
 		D250F5C025B5E1CF00D28AFD /* resolveComplaintPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resolveComplaintPopup.swift; sourceTree = "<group>"; };
 		D250F5C125B5E1CF00D28AFD /* resolveComplaintPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = resolveComplaintPopup.xib; sourceTree = "<group>"; };
+		D250F5C725B5E56A00D28AFD /* topComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = topComponent.swift; sourceTree = "<group>"; };
+		D250F5C825B5E56A00D28AFD /* topComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = topComponent.xib; sourceTree = "<group>"; };
+		D251780525B68FF200344225 /* bottomComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bottomComponent.swift; sourceTree = "<group>"; };
+		D251780625B68FF200344225 /* bottomComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = bottomComponent.xib; sourceTree = "<group>"; };
+		D251780A25B6928D00344225 /* middleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = middleComponent.swift; sourceTree = "<group>"; };
+		D251780B25B6928D00344225 /* middleComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = middleComponent.xib; sourceTree = "<group>"; };
 		D25283B024DA8D0400325978 /* OrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersVC.swift; sourceTree = "<group>"; };
 		D25283B224DA9E6300325978 /* orderHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderHeader.swift; sourceTree = "<group>"; };
 		D25283B324DA9E6300325978 /* orderHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = orderHeader.xib; sourceTree = "<group>"; };
@@ -186,6 +198,19 @@
 				39D97116B60FA1860105D5D6 /* Pods_ThePasarMerchant.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D250F5C525B5E50000D28AFD /* complaintComponents */ = {
+			isa = PBXGroup;
+			children = (
+				D250F5C725B5E56A00D28AFD /* topComponent.swift */,
+				D250F5C825B5E56A00D28AFD /* topComponent.xib */,
+				D251780525B68FF200344225 /* bottomComponent.swift */,
+				D251780625B68FF200344225 /* bottomComponent.xib */,
+				D251780A25B6928D00344225 /* middleComponent.swift */,
+				D251780B25B6928D00344225 /* middleComponent.xib */,
+			);
+			path = complaintComponents;
 			sourceTree = "<group>";
 		};
 		D253A14D24CC0E4A00D75E26 = {
@@ -290,6 +315,7 @@
 		D253A17424CC185500D75E26 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D250F5C525B5E50000D28AFD /* complaintComponents */,
 				D20A1D04255D101400E0C231 /* storeCell.swift */,
 				D20A1D05255D101500E0C231 /* storeCell.xib */,
 				D24D4CF0255C240700C6D219 /* profileCell.swift */,
@@ -412,12 +438,14 @@
 			files = (
 				D2C2D50F24CFF9D0007A4526 /* registerStoreImageCell.xib in Resources */,
 				D2E493DA25B58EE6003F58A2 /* complaintCell.xib in Resources */,
+				D250F5CA25B5E56A00D28AFD /* topComponent.xib in Resources */,
 				D24D4CF1255C240700C6D219 /* profileCell.xib in Resources */,
 				D20A1D02255D0E6B00E0C231 /* multipleStoreSelection.xib in Resources */,
 				D24DF47224F618530047BA32 /* monthlySalesCell.xib in Resources */,
 				D2D8987C25038D0200309541 /* legendCell.xib in Resources */,
 				D25283B524DA9E6300325978 /* orderHeader.xib in Resources */,
 				D25DE00A24ED004500E2BB56 /* rejectedCommentPopup.xib in Resources */,
+				D251780D25B6928D00344225 /* middleComponent.xib in Resources */,
 				D254C02A24D12B2400E7C69E /* productCell.xib in Resources */,
 				D253A16624CC0E4D00D75E26 /* LaunchScreen.storyboard in Resources */,
 				D2BEFF8024CEDC3600B997EC /* registerStoreCell.xib in Resources */,
@@ -427,6 +455,7 @@
 				D25A3C4D24D057CB00E91AC5 /* addProductPopup.xib in Resources */,
 				D25283B924DAA73900325978 /* orderCell.xib in Resources */,
 				D253A16324CC0E4D00D75E26 /* Assets.xcassets in Resources */,
+				D251780825B68FF200344225 /* bottomComponent.xib in Resources */,
 				D22812C125713DC100A4490E /* GoogleService-Info.plist in Resources */,
 				D253A16124CC0E4A00D75E26 /* Main.storyboard in Resources */,
 				D24C649A24EF9B3E00C5A31B /* receiptHeader.xib in Resources */,
@@ -523,6 +552,7 @@
 				D2BEFF7C24CEC8D900B997EC /* RegisterStoreVC.swift in Sources */,
 				D25C2DCF25B56AB50097B238 /* ComplaintVC.swift in Sources */,
 				D24D4CED255C1D6500C6D219 /* ProfileVC.swift in Sources */,
+				D251780725B68FF200344225 /* bottomComponent.swift in Sources */,
 				D2535A712510B91200554D58 /* RestockVC.swift in Sources */,
 				D253A15E24CC0E4A00D75E26 /* ViewController.swift in Sources */,
 				D2C2D51524D01436007A4526 /* GeoHash.swift in Sources */,
@@ -541,7 +571,9 @@
 				D2E493D925B58EE6003F58A2 /* complaintCell.swift in Sources */,
 				D2BEFF7F24CEDC3600B997EC /* registerStoreCell.swift in Sources */,
 				D2535A742510B9B300554D58 /* stockCell.swift in Sources */,
+				D251780C25B6928D00344225 /* middleComponent.swift in Sources */,
 				D253A18724CC1A5600D75E26 /* RoundImage.swift in Sources */,
+				D250F5C925B5E56A00D28AFD /* topComponent.swift in Sources */,
 				D25283B424DA9E6300325978 /* orderHeader.swift in Sources */,
 				D253A17F24CC189900D75E26 /* MainTabVC.swift in Sources */,
 				D21948AB256C0354005F2069 /* NotificationServices.swift in Sources */,
