@@ -31,12 +31,26 @@ class MainTabVC: UIViewController {
     
     //ButtonConstaint
 
+    @IBOutlet weak var accountBtn: UIButton!
+    @IBOutlet weak var productBtn: UIButton!
+    @IBOutlet weak var purchasesBtn: UIButton!
+    @IBOutlet weak var restockBtn: UIButton!
     
     var multipleStore = false
     var choosenStore:StoreDocument?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        accountBtn.contentMode = .center
+        accountBtn.imageView?.contentMode = .scaleAspectFit
+        productBtn.contentMode = .center
+        productBtn.imageView?.contentMode = .scaleAspectFit
+        purchasesBtn.contentMode = .center
+        purchasesBtn.imageView?.contentMode = .scaleAspectFit
+        restockBtn.contentMode = .center
+        restockBtn.imageView?.contentMode = .scaleAspectFit
+        
         hintMainContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(nextHint)))
         if userGlobal?.storeCount == 0{
             popupBackground.isHidden = false

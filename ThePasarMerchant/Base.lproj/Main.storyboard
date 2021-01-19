@@ -316,46 +316,47 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="abd-Ic-yKU">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gbT-dR-40L">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="gbT-dR-40L">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="At6-Pf-k4f">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="362.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="At6-Pf-k4f">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="361"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5PN-KS-vni">
-                                                <rect key="frame" x="0.0" y="0.0" width="207" height="362.5"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Accounts">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5PN-KS-vni">
+                                                <rect key="frame" x="0.0" y="0.0" width="205.5" height="361"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <state key="normal" image="sales">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="accountBtnPressed:" destination="rld-3q-eJu" eventType="touchUpInside" id="3vO-Rh-cAW"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPv-0U-ZRE">
-                                                <rect key="frame" x="207" y="0.0" width="207" height="362.5"/>
-                                                <state key="normal" title="Products"/>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPv-0U-ZRE">
+                                                <rect key="frame" x="208.5" y="0.0" width="205.5" height="361"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <state key="normal" image="products"/>
                                                 <connections>
                                                     <action selector="productBtnPressed:" destination="rld-3q-eJu" eventType="touchUpInside" id="aZj-ZG-OLA"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="iee-Uc-iDF">
-                                        <rect key="frame" x="0.0" y="362.5" width="414" height="362.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="iee-Uc-iDF">
+                                        <rect key="frame" x="0.0" y="364" width="414" height="361"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ue3-G6-JsG">
-                                                <rect key="frame" x="0.0" y="0.0" width="207" height="362.5"/>
-                                                <color key="backgroundColor" red="0.2784313725" green="0.69803921570000005" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Purchases"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ue3-G6-JsG">
+                                                <rect key="frame" x="0.0" y="0.0" width="205.5" height="361"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <state key="normal" image="deliveries"/>
                                                 <connections>
                                                     <action selector="purchasesBtnPressed:" destination="rld-3q-eJu" eventType="touchUpInside" id="Txg-wo-Kcr"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8e-t9-rHI">
-                                                <rect key="frame" x="207" y="0.0" width="207" height="362.5"/>
-                                                <color key="backgroundColor" red="0.1843137255" green="0.96862745100000003" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Restocks">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8e-t9-rHI">
+                                                <rect key="frame" x="208.5" y="0.0" width="205.5" height="361"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <state key="normal" image="stock_4">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -580,6 +581,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Mpp-m4-Bcg"/>
                     <connections>
+                        <outlet property="accountBtn" destination="5PN-KS-vni" id="mqb-u3-Egy"/>
                         <outlet property="firstBlinky" destination="Jv0-WR-RPP" id="peC-6e-cgF"/>
                         <outlet property="firstHint" destination="FMt-wy-4s6" id="niY-J9-ytF"/>
                         <outlet property="fourthBlinky" destination="qEa-Gd-vRk" id="tfF-eL-xfT"/>
@@ -587,7 +589,10 @@
                         <outlet property="hintMainContainer" destination="htr-gT-PDV" id="D6T-yr-Cq6"/>
                         <outlet property="popupBackground" destination="pes-gs-PN5" id="TIr-HK-llQ"/>
                         <outlet property="popupView" destination="nkC-s1-tFb" id="WA2-mc-CVJ"/>
+                        <outlet property="productBtn" destination="DPv-0U-ZRE" id="S6T-DZ-8wt"/>
+                        <outlet property="purchasesBtn" destination="ue3-G6-JsG" id="18z-4j-MaO"/>
                         <outlet property="registerBtn" destination="crP-SE-sSG" id="fpA-uk-NVu"/>
+                        <outlet property="restockBtn" destination="Y8e-t9-rHI" id="tJM-Dt-7pP"/>
                         <outlet property="secondBlinky" destination="XeX-nd-2TR" id="X5p-fP-l0O"/>
                         <outlet property="secondHint" destination="17g-dM-kHB" id="eV3-iB-NNP"/>
                         <outlet property="thirdBlinky" destination="hcl-T0-PLI" id="y2k-fA-D4N"/>
@@ -1928,7 +1933,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="O2H-a7-owe"/>
-        <segue reference="cD8-ne-amN"/>
+        <segue reference="u2v-pH-unj"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Complaint" width="39" height="38"/>
@@ -1940,18 +1945,25 @@
         <image name="Profile_1" width="38.5" height="38.5"/>
         <image name="background" width="1920" height="1080"/>
         <image name="defaultImage" width="222" height="222"/>
+        <image name="deliveries" width="501" height="530"/>
         <image name="email" width="23" height="27"/>
         <image name="example" width="828" height="449"/>
         <image name="logo" width="225" height="183"/>
         <image name="next" width="94" height="94"/>
         <image name="order" width="36" height="33.5"/>
         <image name="password" width="21" height="31"/>
+        <image name="products" width="501" height="530"/>
+        <image name="sales" width="502" height="531"/>
+        <image name="stock_4" width="501" height="530"/>
         <image name="whitedown" width="32" height="51"/>
         <image name="whiteleft" width="51" height="32"/>
         <image name="whiteright" width="51" height="32"/>
         <image name="whiteup" width="32" height="52"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
