@@ -10,18 +10,7 @@ import UIKit
 import AwesomeSpotlightView
 
 class MainTabVC: UIViewController {
-    // Hints for First timers
-    @IBOutlet weak var hintMainContainer: UIView!
-    @IBOutlet weak var firstHint: UIView!
-    @IBOutlet weak var firstBlinky: UIImageView!
-    @IBOutlet weak var secondHint: UIView!
-    @IBOutlet weak var secondBlinky: UIImageView!
-    @IBOutlet weak var thirdHint: UIView!
-    @IBOutlet weak var thirdBlinky: UIImageView!
-    @IBOutlet weak var fourthHint: UIView!
-    @IBOutlet weak var fourthBlinky: UIImageView!
-    
-    var page = 1
+
     let defaults = UserDefaults.standard
     //
     
@@ -43,7 +32,6 @@ class MainTabVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initLayout()
-        spotlght()
         accountBtn.contentMode = .center
         accountBtn.imageView?.contentMode = .scaleAspectFit
         productBtn.contentMode = .center
@@ -52,8 +40,7 @@ class MainTabVC: UIViewController {
         purchasesBtn.imageView?.contentMode = .scaleAspectFit
         restockBtn.contentMode = .center
         restockBtn.imageView?.contentMode = .scaleAspectFit
-        
-        hintMainContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(nextHint)))
+
         if userGlobal?.storeCount == 0{
             popupBackground.isHidden = false
             popupView.isHidden = false
@@ -63,26 +50,6 @@ class MainTabVC: UIViewController {
 
     }
     
-    @objc func nextHint(){
-        if page == 1{
-            firstHint.isHidden = true
-            secondHint.isHidden = false
-            page = 2
-        }else if page == 2{
-            secondHint.isHidden = true
-            thirdHint.isHidden = false
-            page = 3
-        }else if page == 3{
-            thirdHint.isHidden = true
-            fourthHint.isHidden = false
-            page = 4
-        }else if page == 4{
-            fourthHint.isHidden = true
-            hintMainContainer.isHidden = true
-            defaults.set(true, forKey: "mainTabHint")
-            
-        }
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "registerStoreSegue"{
@@ -147,7 +114,7 @@ extension MainTabVC: hasStoreDelegate,chooseStoreDelegate{
             print(isFirstTime)
             if isFirstTime == false{
                 loadStore()
-                firstTimeHelper()
+
             }
         }
     }
@@ -180,46 +147,69 @@ extension MainTabVC:AwesomeSpotlightViewDelegate{
             let isFirstTime = UserDefaults.exist(key: "mainTabHint")
             print(isFirstTime)
             if isFirstTime == false{
-                self.firstTimeHelper()
+                self.spotlght()
             }
         }
     }
     
-    func firstTimeHelper(){
-        hintMainContainer.isHidden = false
-        firstHint.isHidden = false
-        secondHint.isHidden = true
-        thirdHint.isHidden = true
-        fourthHint.isHidden = true
-        page = 1
-        
-        self.firstBlinky.alpha = 0
-        self.secondBlinky.alpha = 0
-        self.thirdBlinky.alpha = 0
-        self.fourthBlinky.alpha = 0
-        UIView.animate(withDuration: 1, delay: 0.0, options: [.curveLinear, .repeat, .autoreverse]) {
-            self.firstBlinky.alpha = 1
-            self.secondBlinky.alpha = 1
-            self.thirdBlinky.alpha = 1
-            self.fourthBlinky.alpha = 1
-        } completion: { (success) in
-            
-        }
-
-    }
     
     func spotlght(){
-        let height = frameForTabAtIndex(index: 1)
-        print(height.origin.y)
-        let accBtnSpotlight = CGRect(x: height.origin.x, y: height.origin.y, width: 100, height: 100)
-        let accBtnMargin = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        let spotlight1 = AwesomeSpotlight(withRect: accBtnSpotlight, shape: .circle, text: "Spotlight 1")
+
+
+        //Account Btn
+        let accBtnWidth = accountBtn.frame.size.width
+        let accBtnHeight = accountBtn.frame.size.height
+        let accBtnSpotlight = CGRect(x:accountBtn.frame.origin.x, y: accountBtn.frame.origin.y + (accBtnHeight/2), width: accBtnWidth, height: accBtnWidth)
+        var spotText = "To view you monthly sales"
+        let spotlight1 = AwesomeSpotlight(withRect: accBtnSpotlight, shape: .circle, text: spotText)
+
+        //Product Btn
+        let prdBtnWidth = productBtn.frame.size.width
+        let prdBtnHeight = productBtn.frame.size.height
+        let prdBtnSpotlight = CGRect(x:productBtn.frame.origin.x, y: productBtn.frame.origin.y + (prdBtnHeight/2), width: prdBtnWidth, height: prdBtnWidth)
+        spotText = "To add product to your store(s)"
+        let spotlight2 = AwesomeSpotlight(withRect: prdBtnSpotlight, shape: .circle, text: spotText)
+
         
-        let spotlightView = AwesomeSpotlightView(frame: view.frame, spotlight: [spotlight1])
+        //Purchases Btn
+        let pchBtnWidth = purchasesBtn.frame.size.width
+        let pchBtnHeight = purchasesBtn.frame.size.height
+        let pchBtnSpotlight = CGRect(x:purchasesBtn.frame.origin.x, y: purchasesBtn.frame.origin.y + (pchBtnHeight/2 + pchBtnHeight), width: pchBtnWidth, height: pchBtnWidth)
+        spotText = "To view where is your next deliveries"
+        let spotlight3 = AwesomeSpotlight(withRect: pchBtnSpotlight, shape: .circle, text: spotText)
+        
+        //Restock Btn
+        let rskBtnWidth = restockBtn.frame.size.width
+        let rskBtnHeight = restockBtn.frame.size.height
+        let rskBtnSpotlight = CGRect(x:restockBtn.frame.origin.x, y: restockBtn.frame.origin.y + (rskBtnHeight/2 + rskBtnHeight), width: prdBtnWidth, height: prdBtnWidth)
+        spotText = "To update your current stock"
+        let spotlight4 = AwesomeSpotlight(withRect: rskBtnSpotlight, shape: .circle, text: spotText)
+        
+        //OrderTab
+        let orderTab = frameForTabAtIndex(index: 1)
+        let orderSpotlight = CGRect(x:orderTab.origin.x + (35/2), y: orderTab.origin.y, width: 60, height: 60)
+        spotText = "To view your incoming orders"
+        let spotlight5 = AwesomeSpotlight(withRect: orderSpotlight, shape: .circle, text: spotText)
+        
+        //Complaintab
+        let compTab = frameForTabAtIndex(index: 2)
+        let compSpotlight = CGRect(x:compTab.origin.x + (35/2), y: compTab.origin.y, width: 60, height: 60)
+        spotText = "To view customer complaints"
+        let spotlight6 = AwesomeSpotlight(withRect: compSpotlight, shape: .circle, text: spotText)
+        
+        //Complaintab
+        let proTab = frameForTabAtIndex(index: 3)
+        let proSpotlight = CGRect(x:proTab.origin.x + (35/2), y: proTab.origin.y, width: 60, height: 60)
+        spotText = "To edit and add stores"
+        let spotlight7 = AwesomeSpotlight(withRect: proSpotlight, shape: .circle, text: spotText)
+        
+        
+        let spotlightView = AwesomeSpotlightView(frame: view.frame, spotlight: [spotlight1,spotlight2,spotlight3,spotlight4,spotlight5,spotlight6,spotlight7])
         spotlightView.cutoutRadius = 8
         spotlightView.delegate = self
         view.addSubview(spotlightView)
         spotlightView.start()
+        print("Done")
     }
     private func frameForTabAtIndex(index: Int) -> CGRect {
         guard let tabBarSubviews = tabBarController?.tabBar.subviews else {
@@ -233,6 +223,13 @@ extension MainTabVC:AwesomeSpotlightViewDelegate{
         }
         let item = allItems[index]
         return item.superview!.convert(item.frame, to: view)
+    }
+
+    func spotlightView(_ spotlightView: AwesomeSpotlightView, didNavigateToIndex index: Int) {
+        print(index)
+        if index == 6 {
+            defaults.set(true, forKey: "mainTabHint")
+        }
     }
 }
 
