@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AwesomeSpotlightView
 
 class MainTabVC: UIViewController {
     // Hints for First timers
@@ -42,6 +43,7 @@ class MainTabVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initLayout()
+        spotlght()
         accountBtn.contentMode = .center
         accountBtn.imageView?.contentMode = .scaleAspectFit
         productBtn.contentMode = .center
@@ -153,7 +155,7 @@ extension MainTabVC: hasStoreDelegate,chooseStoreDelegate{
     
 }
 
-extension MainTabVC{
+extension MainTabVC:AwesomeSpotlightViewDelegate{
     
     func initLayout(){
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
@@ -205,4 +207,46 @@ extension MainTabVC{
         }
 
     }
+    
+    func spotlght(){
+        let height = frameForTabAtIndex(index: 1)
+        print(height.origin.y)
+        let accBtnSpotlight = CGRect(x: height.origin.x, y: height.origin.y, width: 100, height: 100)
+        let accBtnMargin = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        let spotlight1 = AwesomeSpotlight(withRect: accBtnSpotlight, shape: .circle, text: "Spotlight 1")
+        
+        let spotlightView = AwesomeSpotlightView(frame: view.frame, spotlight: [spotlight1])
+        spotlightView.cutoutRadius = 8
+        spotlightView.delegate = self
+        view.addSubview(spotlightView)
+        spotlightView.start()
+    }
+    private func frameForTabAtIndex(index: Int) -> CGRect {
+        guard let tabBarSubviews = tabBarController?.tabBar.subviews else {
+            return CGRect.zero
+        }
+        var allItems = [UIView]()
+        for tabBarItem in tabBarSubviews {
+            if tabBarItem.isKind(of: NSClassFromString("UITabBarButton")!) {
+                allItems.append(tabBarItem)
+            }
+        }
+        let item = allItems[index]
+        return item.superview!.convert(item.frame, to: view)
+    }
 }
+
+//extension UITabBar{
+//    func getFrameAt(index:Int)->CGRect?{
+//        var frame = self.subviews.compactMap{return $0 is UIControl ? $0.frame : nil}
+//        frame.sort{ $0.origin.x < $1.origin.x}
+//        return frame[safe:index]
+//    }
+//
+//}
+//
+//extension Collection{
+//    subscript(safe index: Index)-> Element?{
+//        return indices.contains(index) ? self[index]:nil
+//    }
+//}

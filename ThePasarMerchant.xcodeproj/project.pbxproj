@@ -33,6 +33,9 @@
 		D251780825B68FF200344225 /* bottomComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = D251780625B68FF200344225 /* bottomComponent.xib */; };
 		D251780C25B6928D00344225 /* middleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251780A25B6928D00344225 /* middleComponent.swift */; };
 		D251780D25B6928D00344225 /* middleComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = D251780B25B6928D00344225 /* middleComponent.xib */; };
+		D251781125B6DBDC00344225 /* WalkthroughContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251780F25B6DBDB00344225 /* WalkthroughContentVC.swift */; };
+		D251781225B6DBDC00344225 /* WalkthroughPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251781025B6DBDC00344225 /* WalkthroughPageVC.swift */; };
+		D251781525B6DC8C00344225 /* WalkthroughVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251781425B6DC8C00344225 /* WalkthroughVC.swift */; };
 		D25283B124DA8D0400325978 /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25283B024DA8D0400325978 /* OrdersVC.swift */; };
 		D25283B424DA9E6300325978 /* orderHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25283B224DA9E6300325978 /* orderHeader.swift */; };
 		D25283B524DA9E6300325978 /* orderHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25283B324DA9E6300325978 /* orderHeader.xib */; };
@@ -117,6 +120,9 @@
 		D251780625B68FF200344225 /* bottomComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = bottomComponent.xib; sourceTree = "<group>"; };
 		D251780A25B6928D00344225 /* middleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = middleComponent.swift; sourceTree = "<group>"; };
 		D251780B25B6928D00344225 /* middleComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = middleComponent.xib; sourceTree = "<group>"; };
+		D251780F25B6DBDB00344225 /* WalkthroughContentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkthroughContentVC.swift; sourceTree = "<group>"; };
+		D251781025B6DBDC00344225 /* WalkthroughPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkthroughPageVC.swift; sourceTree = "<group>"; };
+		D251781425B6DC8C00344225 /* WalkthroughVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkthroughVC.swift; sourceTree = "<group>"; };
 		D25283B024DA8D0400325978 /* OrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersVC.swift; sourceTree = "<group>"; };
 		D25283B224DA9E6300325978 /* orderHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderHeader.swift; sourceTree = "<group>"; };
 		D25283B324DA9E6300325978 /* orderHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = orderHeader.xib; sourceTree = "<group>"; };
@@ -367,6 +373,9 @@
 		D2BEFF7A24CEC29000B997EC /* AccountVCs */ = {
 			isa = PBXGroup;
 			children = (
+				D251781425B6DC8C00344225 /* WalkthroughVC.swift */,
+				D251780F25B6DBDB00344225 /* WalkthroughContentVC.swift */,
+				D251781025B6DBDC00344225 /* WalkthroughPageVC.swift */,
 				D253A17A24CC189800D75E26 /* LoginVC.swift */,
 				D253A17824CC189700D75E26 /* SignupProfileImageVC.swift */,
 				D253A17924CC189800D75E26 /* SignUpVC.swift */,
@@ -541,9 +550,11 @@
 				D2C2D51124D006B7007A4526 /* Store.swift in Sources */,
 				D24C649624EF921B00C5A31B /* ConfirmedOrdersVC.swift in Sources */,
 				D25A3C4F24D05ED700E91AC5 /* Product.swift in Sources */,
+				D251781125B6DBDC00344225 /* WalkthroughContentVC.swift in Sources */,
 				D252E55024DBBF90000C6A22 /* OrderServices.swift in Sources */,
 				D253A17C24CC189900D75E26 /* SignupProfileImageVC.swift in Sources */,
 				D254C02924D12B2400E7C69E /* productCell.swift in Sources */,
+				D251781225B6DBDC00344225 /* WalkthroughPageVC.swift in Sources */,
 				D25DE00B24ED004500E2BB56 /* rejectedCommentPopup.swift in Sources */,
 				D250F5C225B5E1CF00D28AFD /* resolveComplaintPopup.swift in Sources */,
 				D253A17E24CC189900D75E26 /* LoginVC.swift in Sources */,
@@ -581,6 +592,7 @@
 				D25548C324F76980007793AE /* Sales.swift in Sources */,
 				D234CB90256E31A30046EB83 /* PasswordResetVC.swift in Sources */,
 				D2BEFF7924CEBE5000B997EC /* Constant.swift in Sources */,
+				D251781525B6DC8C00344225 /* WalkthroughVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
