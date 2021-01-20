@@ -37,6 +37,10 @@ class ConfirmedOrdersVC: UIViewController {
         ordersTable.register(UINib(nibName: "receiptHeader", bundle: nil), forCellReuseIdentifier: "receiptHeader")
         ordersTable.register(UINib(nibName: "orderCell", bundle: nil), forCellReuseIdentifier: "orderCell")
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadDatas()
+    }
     
     @objc func nextHint(){
         if page == 1{
@@ -116,7 +120,7 @@ extension ConfirmedOrdersVC:UITableViewDelegate,UITableViewDataSource{
 
 extension ConfirmedOrdersVC{
     func loadDatas(){
-        OrderServices.instance.realtimeReceiptListUpdate{ (orderlist) in
+        OrderServices.instance.receiptListUpdate{ (orderlist) in
 //            let todaysDate = Date()
 //            let calendar = Calendar.current
 //            let components = calendar.dateComponents([.day], from: todaysDate)

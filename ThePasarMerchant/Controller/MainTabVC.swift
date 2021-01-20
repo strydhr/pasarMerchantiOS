@@ -138,7 +138,7 @@ extension MainTabVC:AwesomeSpotlightViewDelegate{
 //        navLabel.attributedText = navTitle
         self.navigationItem.title = "Pasar Merchant"
         
-        
+        self.navigationController?.navigationBar.tintColor = UIColor.black
         
     }
     func loadStore(){

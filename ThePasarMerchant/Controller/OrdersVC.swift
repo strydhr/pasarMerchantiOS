@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import Firebase
+import AwesomeSpotlightView
 
 class OrdersVC: UIViewController {
     //First Time Hints
@@ -20,7 +21,7 @@ class OrdersVC: UIViewController {
     
     var page = 1
     let defaults = UserDefaults.standard
-    
+    var count = 0
     
     @IBOutlet weak var ordersTable: UITableView!
     
@@ -28,6 +29,7 @@ class OrdersVC: UIViewController {
     var ordersList = [OrderDocument]()
     
     var productList = [ProductDocument]()
+    let isFirstTime = UserDefaults.exist(key: "ordersTabHint")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +59,7 @@ class OrdersVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadDatas()
+        
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -173,6 +176,17 @@ extension OrdersVC{
         self.listner = OrderServices.instance.realtimeOrderUpdate(requestComplete: { (orderlist) in
             self.ordersList = orderlist
             self.ordersList = orderlist.sorted(by: {$0.order!.deliveryTime.dateValue().compare($1.order!.date.dateValue()) == .orderedDescending})
+            
+            if self.ordersList.count > 0 {
+                self.count += 1
+                if self.count == 1 {
+                    if self.isFirstTime == false {
+                        self.firstTimeHelper()
+                        self.mainHintContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.nextHint)))
+                    }
+                }
+                
+            }
             self.ordersTable.reloadData()
         })
     }
@@ -311,3 +325,4 @@ extension OrdersVC:rejectOrderDelegate,confirmOrderDelegate,removeRejectedOrderD
     
     
 }
+

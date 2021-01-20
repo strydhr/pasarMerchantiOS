@@ -70,7 +70,6 @@ class OrderServices {
 //                        }
 //
 //                    }
-                    print("new order")
                     requestComplete(orderList)
                 }
             }
@@ -100,19 +99,20 @@ class OrderServices {
         }
         
     }
-    func realtimeReceiptListUpdate(requestComplete:@escaping(_ orderList:[ReceiptDocument])->()){
+    func receiptListUpdate(requestComplete:@escaping(_ orderList:[ReceiptDocument])->()){
         var orderList = [ReceiptDocument]()
-        let todaysDate = Date()
-        let calendar = Calendar.current
-        
+
         let dbRef = db.collection("receipt").whereField("ownerId", isEqualTo: (userGlobal?.uid)!).whereField("caseClosed", isEqualTo: false)
-        dbRef.addSnapshotListener { (snapshot, error) in
+        dbRef.getDocuments { (snapshot, error) in
             if error == nil{
-                guard let document = snapshot else {return}
-                document.documentChanges.forEach { (diff) in
-                    if(diff.type == .added){
-                        let order = try! FirestoreDecoder().decode(Receipts.self, from: diff.document.data())
-                        let orderDoc = ReceiptDocument(documentId: diff.document.documentID, order: order)
+                guard let document = snapshot?.documents else {return}
+                if document.isEmpty{
+                    requestComplete(orderList)
+                }else{
+                    for items in document{
+                        let docData = items.data()
+                        let order = try! FirestoreDecoder().decode(Receipts.self, from: docData)
+                        let orderDoc = ReceiptDocument(documentId: items.documentID, order: order)
                         orderList.append(orderDoc)
                     }
                     requestComplete(orderList)
@@ -121,6 +121,27 @@ class OrderServices {
         }
         
     }
+//    func realtimeReceiptListUpdate(requestComplete:@escaping(_ orderList:[ReceiptDocument])->()){
+//        var orderList = [ReceiptDocument]()
+//        let todaysDate = Date()
+//        let calendar = Calendar.current
+//
+//        let dbRef = db.collection("receipt").whereField("ownerId", isEqualTo: (userGlobal?.uid)!).whereField("caseClosed", isEqualTo: false)
+//        dbRef.addSnapshotListener { (snapshot, error) in
+//            if error == nil{
+//                guard let document = snapshot else {return}
+//                document.documentChanges.forEach { (diff) in
+//                    if(diff.type == .added){
+//                        let order = try! FirestoreDecoder().decode(Receipts.self, from: diff.document.data())
+//                        let orderDoc = ReceiptDocument(documentId: diff.document.documentID, order: order)
+//                        orderList.append(orderDoc)
+//                    }
+//                    requestComplete(orderList)
+//                }
+//            }
+//        }
+//
+//    }
     func confirmReadyOrder(order:OrderDocument,requestComplete:@escaping(_ status:Bool)->()){
         db.collection("orders").document(order.documentId!).updateData(["confirmationStatus":2,"hasDelivered":true]) { (error) in
             if error == nil{

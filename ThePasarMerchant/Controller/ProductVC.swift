@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ProductVC: UIViewController {
     // First timers Hint
     @IBOutlet weak var mainHintContainer: UIView!
@@ -334,3 +335,26 @@ extension ProductVC{
 
     }
 }
+
+//extension ProductVC:AwesomeSpotlightViewDelegate{
+//    func spotlight(){
+//        let index = IndexPath(row: 0, section: 0)
+//        let cell = productTable.cellForRow(at: index) as! productCell
+//        print(cell.productPrice.frame.origin.x)
+//
+//        //Account Btn
+//        var addBarItem = self.navigationItem.rightBarButtonItems
+//        var addBtnView = addBarItem![0].value(forKeyPath: "view")as! UIView
+//
+//        var closeBarItem = self.navigationItem.rightBarButtonItems
+//        var closeBtnView = closeBarItem![0].value(forKeyPath: "view")as! UIView
+//        print(addBtnView.frame.origin.x)
+//        print(closeBtnView.frame.origin.x)
+//
+////        let addBtnWidth = addBtn.frame.size.width
+////        let accBtnHeight = accountBtn.frame.size.height
+////        let accBtnSpotlight = CGRect(x:accountBtn.frame.origin.x, y: accountBtn.frame.origin.y + (accBtnHeight/2), width: accBtnWidth, height: accBtnWidth)
+////        var spotText = "To view you monthly sales"
+////        let spotlight1 = AwesomeSpotlight(withRect: accBtnSpotlight, shape: .circle, text: spotText)
+//    }
+//}
