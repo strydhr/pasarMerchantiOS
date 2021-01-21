@@ -62,6 +62,10 @@
 		D253A4F025B149F800F22754 /* Complaint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D253A4EF25B149F800F22754 /* Complaint.swift */; };
 		D254C02924D12B2400E7C69E /* productCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D254C02724D12B2400E7C69E /* productCell.swift */; };
 		D254C02A24D12B2400E7C69E /* productCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D254C02824D12B2400E7C69E /* productCell.xib */; };
+		D2550A9625B9662600EE5B0E /* itemizePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2550A9425B9662600EE5B0E /* itemizePopup.swift */; };
+		D2550A9725B9662600EE5B0E /* itemizePopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2550A9525B9662600EE5B0E /* itemizePopup.xib */; };
+		D2550A9B25B96C4500EE5B0E /* salesItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2550A9925B96C4500EE5B0E /* salesItemCell.swift */; };
+		D2550A9C25B96C4500EE5B0E /* salesItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2550A9A25B96C4500EE5B0E /* salesItemCell.xib */; };
 		D25548C324F76980007793AE /* Sales.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25548C224F76980007793AE /* Sales.swift */; };
 		D25A3C4C24D057CB00E91AC5 /* addProductPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A3C4A24D057CB00E91AC5 /* addProductPopup.swift */; };
 		D25A3C4D24D057CB00E91AC5 /* addProductPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25A3C4B24D057CB00E91AC5 /* addProductPopup.xib */; };
@@ -151,6 +155,10 @@
 		D253A4EF25B149F800F22754 /* Complaint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Complaint.swift; sourceTree = "<group>"; };
 		D254C02724D12B2400E7C69E /* productCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = productCell.swift; sourceTree = "<group>"; };
 		D254C02824D12B2400E7C69E /* productCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = productCell.xib; sourceTree = "<group>"; };
+		D2550A9425B9662600EE5B0E /* itemizePopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemizePopup.swift; sourceTree = "<group>"; };
+		D2550A9525B9662600EE5B0E /* itemizePopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = itemizePopup.xib; sourceTree = "<group>"; };
+		D2550A9925B96C4500EE5B0E /* salesItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = salesItemCell.swift; sourceTree = "<group>"; };
+		D2550A9A25B96C4500EE5B0E /* salesItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = salesItemCell.xib; sourceTree = "<group>"; };
 		D25548C224F76980007793AE /* Sales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sales.swift; sourceTree = "<group>"; };
 		D25A3C4A24D057CB00E91AC5 /* addProductPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addProductPopup.swift; sourceTree = "<group>"; };
 		D25A3C4B24D057CB00E91AC5 /* addProductPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addProductPopup.xib; sourceTree = "<group>"; };
@@ -354,6 +362,10 @@
 				D2E493D825B58EE6003F58A2 /* complaintCell.xib */,
 				D250F5C025B5E1CF00D28AFD /* resolveComplaintPopup.swift */,
 				D250F5C125B5E1CF00D28AFD /* resolveComplaintPopup.xib */,
+				D2550A9425B9662600EE5B0E /* itemizePopup.swift */,
+				D2550A9525B9662600EE5B0E /* itemizePopup.xib */,
+				D2550A9925B96C4500EE5B0E /* salesItemCell.swift */,
+				D2550A9A25B96C4500EE5B0E /* salesItemCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -449,6 +461,7 @@
 				D2E493DA25B58EE6003F58A2 /* complaintCell.xib in Resources */,
 				D250F5CA25B5E56A00D28AFD /* topComponent.xib in Resources */,
 				D24D4CF1255C240700C6D219 /* profileCell.xib in Resources */,
+				D2550A9C25B96C4500EE5B0E /* salesItemCell.xib in Resources */,
 				D20A1D02255D0E6B00E0C231 /* multipleStoreSelection.xib in Resources */,
 				D24DF47224F618530047BA32 /* monthlySalesCell.xib in Resources */,
 				D2D8987C25038D0200309541 /* legendCell.xib in Resources */,
@@ -457,6 +470,7 @@
 				D251780D25B6928D00344225 /* middleComponent.xib in Resources */,
 				D254C02A24D12B2400E7C69E /* productCell.xib in Resources */,
 				D253A16624CC0E4D00D75E26 /* LaunchScreen.storyboard in Resources */,
+				D2550A9725B9662600EE5B0E /* itemizePopup.xib in Resources */,
 				D2BEFF8024CEDC3600B997EC /* registerStoreCell.xib in Resources */,
 				D2535A752510B9B300554D58 /* stockCell.xib in Resources */,
 				D20A1D07255D101500E0C231 /* storeCell.xib in Resources */,
@@ -576,6 +590,7 @@
 				D253A18124CC18BA00D75E26 /* AuthServices.swift in Sources */,
 				D253A4F025B149F800F22754 /* Complaint.swift in Sources */,
 				D24D4CF2255C240700C6D219 /* profileCell.swift in Sources */,
+				D2550A9B25B96C4500EE5B0E /* salesItemCell.swift in Sources */,
 				D25283B824DAA73900325978 /* orderCell.swift in Sources */,
 				D2C7532325073A9900D5C8E9 /* SlidingButton.swift in Sources */,
 				D2C2D51924D02711007A4526 /* StoreVC.swift in Sources */,
@@ -591,6 +606,7 @@
 				D2C2D51324D00F64007A4526 /* StoreServices.swift in Sources */,
 				D25548C324F76980007793AE /* Sales.swift in Sources */,
 				D234CB90256E31A30046EB83 /* PasswordResetVC.swift in Sources */,
+				D2550A9625B9662600EE5B0E /* itemizePopup.swift in Sources */,
 				D2BEFF7924CEBE5000B997EC /* Constant.swift in Sources */,
 				D251781525B6DC8C00344225 /* WalkthroughVC.swift in Sources */,
 			);
@@ -739,7 +755,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ThePasarMerchant/ThePasarMerchant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 93SA3SA2TF;
 				INFOPLIST_FILE = ThePasarMerchant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
@@ -747,7 +763,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Strydhr.ThePasarMerchant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -762,7 +778,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ThePasarMerchant/ThePasarMerchant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 93SA3SA2TF;
 				INFOPLIST_FILE = ThePasarMerchant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
@@ -770,7 +786,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Strydhr.ThePasarMerchant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -11,17 +11,21 @@ protocol completeOrderDelegate{
     func completeOrder(item:ReceiptDocument)
     func openWaze(item:ReceiptDocument)
     func phoneCustomer(item:ReceiptDocument)
+    func itemizeSales(item:ReceiptDocument)
 }
 
 class receiptHeader: UITableViewCell, SlideButtonDelegate {
 
+    @IBOutlet weak var background: UIView!
     
+    @IBOutlet weak var deliveryLabel: UILabel!
     @IBOutlet weak var deliveryTime: UILabel!
     @IBOutlet weak var deliveryAddress: UILabel!
     @IBOutlet weak var phoneBtn: UIButton!
     @IBOutlet weak var orderCount: UILabel!
     @IBOutlet weak var completeBtn: UIButton!
     @IBOutlet weak var slideBtn: MMSlidingButton!
+    @IBOutlet weak var totalCost: UILabel!
     
     var delegate: completeOrderDelegate?
     var item: ReceiptDocument?
@@ -36,6 +40,8 @@ class receiptHeader: UITableViewCell, SlideButtonDelegate {
         deliveryAddress.isUserInteractionEnabled = true
         deliveryAddress.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openWaze)))
         phoneBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(phoneMsgCustomer)))
+        totalCost.isUserInteractionEnabled = true
+        totalCost.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openItemize)))
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -49,6 +55,9 @@ class receiptHeader: UITableViewCell, SlideButtonDelegate {
     
     @objc func openWaze(){
         delegate?.openWaze(item: item!)
+    }
+    @objc func openItemize(){
+        delegate?.itemizeSales(item: item!)
     }
     
     @IBAction func completeBtnPressed(_ sender: UIButton) {

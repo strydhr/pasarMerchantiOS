@@ -29,7 +29,32 @@ func getDateLabel(dates:Date)->String{
 
 func getTimeLabel(dates:Date)->String{
     let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US_POSIX")
     formatter.dateFormat = "hh:mm a"
+    formatter.amSymbol = "AM"
+    formatter.pmSymbol = "PM"
     let dateStr = formatter.string(from: dates)
     return dateStr
+}
+
+func getDateTimeLabel(dates:Date)->String{
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd-MM-yyyy 'at' hh:mm a"
+    let dateStr = formatter.string(from: dates)
+    return dateStr
+}
+
+func dateChecker(date:Date)->Bool{
+    let calendar = Calendar.current
+    let orderDay = calendar.component(.day, from: date)
+    print(orderDay)
+    let date = Date()
+    let todayDay = calendar.component(.day, from: date)
+    
+    if todayDay == orderDay{
+        
+        return true
+    }else{
+        return false
+    }
 }

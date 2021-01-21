@@ -742,8 +742,8 @@
                                             <constraint firstAttribute="width" constant="69" id="dQC-ls-bzr"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Slide the button and tap on the COMPLETE button to complete the order after delivery" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3c-qe-mEy">
-                                        <rect key="frame" x="89" y="160" width="301" height="71"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Slide the button and tap on the COMPLETE button to complete the order after delivery" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3c-qe-mEy">
+                                        <rect key="frame" x="89" y="160" width="301" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="mOM-9c-zK3"/>
                                             <constraint firstAttribute="width" constant="301" id="zzl-jE-pMK"/>

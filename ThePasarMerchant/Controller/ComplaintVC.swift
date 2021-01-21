@@ -15,6 +15,7 @@ class ComplaintVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initLayout()
         loadDatas()
         
         complaintTable.delegate = self
@@ -79,6 +80,23 @@ extension ComplaintVC:UITableViewDelegate, UITableViewDataSource{
 }
 
 extension ComplaintVC:updateComplaintTableDelegate{
+    func initLayout(){
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = UIColor.clear
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
+        
+        let navLabel = UILabel()
+//        let navTitle = NSMutableAttributedString(string: "Orders ", attributes: [NSAttributedString.Key.font :UIFont(name: "Helvetica-Neue", size: 20.0)!,NSMutableAttributedString.Key.foregroundColor: UIColor.white])
+//
+//        navLabel.attributedText = navTitle
+        self.navigationItem.title = "Complaints"
+        
+        
+        
+    }
     func didupdate(status: Bool, item: ComplaintDocument) {
         if status{
             if let index = complaintList.firstIndex(where: {$0.documentId == item.documentId}){

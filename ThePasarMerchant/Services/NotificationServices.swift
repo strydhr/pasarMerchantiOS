@@ -20,7 +20,7 @@ class NotificationServices {
         let url = URL(string: "https://fcm.googleapis.com/fcm/send")!
 
         let paramString: [String : Any] = ["to" : deviceToken,
-                                               "notification" : ["title" : title, "body" : body],
+                                               "notification" : ["title" : title, "body" : body,"sound":"default"],
                                                "data" : ["user" : "test_id"]
             ]
             let request = NSMutableURLRequest(url: url as URL)

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="salesItemCell" rowHeight="58" id="KGk-i7-Jjw" customClass="salesItemCell" customModule="ThePasarMerchant" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="508" height="58"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="508" height="58"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3KU-5W-Pq2">
+                        <rect key="frame" x="10" y="12" width="42" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="k9w-n7-V8F"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="8gD-d6-8Zy">
+                        <rect key="frame" x="328.5" y="19" width="169.5" height="20"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RrY-lT-T7o">
+                                <rect key="frame" x="0.0" y="0.0" width="47.5" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLC-nS-Qf1">
+                                        <rect key="frame" x="0.0" y="0.0" width="10.5" height="20"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcb-lx-loV">
+                                        <rect key="frame" x="18.5" y="0.0" width="29" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="29" id="Fer-go-QD2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RM 1000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8P-3v-yXh">
+                                <rect key="frame" x="76.5" y="0.0" width="93" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Unit price - RM 15.20)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdB-iQ-pHr">
+                        <rect key="frame" x="12" y="40" width="111.5" height="6"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="8gD-d6-8Zy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="HNd-6I-wGK"/>
+                    <constraint firstAttribute="trailing" secondItem="8gD-d6-8Zy" secondAttribute="trailing" constant="10" id="N7T-xb-S33"/>
+                    <constraint firstItem="jdB-iQ-pHr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="QHH-df-Xe5"/>
+                    <constraint firstAttribute="bottom" secondItem="jdB-iQ-pHr" secondAttribute="bottom" constant="12" id="bVY-1Y-IBP"/>
+                    <constraint firstItem="3KU-5W-Pq2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="c2P-m8-Gsm"/>
+                    <constraint firstItem="jdB-iQ-pHr" firstAttribute="top" secondItem="3KU-5W-Pq2" secondAttribute="bottom" constant="8" id="kYt-aT-3MN"/>
+                    <constraint firstItem="3KU-5W-Pq2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="q5N-0M-g7G"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="count" destination="fcb-lx-loV" id="aZG-EZ-xBQ"/>
+                <outlet property="productName" destination="3KU-5W-Pq2" id="X8d-p2-1It"/>
+                <outlet property="totalPrice" destination="v8P-3v-yXh" id="EXB-OB-RXc"/>
+                <outlet property="unitPrice" destination="jdB-iQ-pHr" id="oO0-zp-BBF"/>
+            </connections>
+            <point key="canvasLocation" x="76.811594202898561" y="117.1875"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -51,6 +51,18 @@ class LoginVC: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardNotification(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if UserDefaults.standard.bool(forKey: "seenWalkthrough"){
+            return
+        }
+        if let walkthroughVC = storyboard?.instantiateViewController(identifier: "WalkthroughVC")as? WalkthroughVC{
+            walkthroughVC.modalPresentationStyle = .fullScreen
+            present(walkthroughVC, animated: true, completion: nil)
+        }
+        
+    }
+    
     @objc func bgTapped(){
         view.endEditing(true)
     }

@@ -19,6 +19,7 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initLayout()
         profileTable.delegate = self
         profileTable.dataSource = self
         profileTable.separatorStyle = .none
@@ -167,6 +168,25 @@ extension ProfileVC:editProfileDetailsDelegate,hasStoreDelegate, logoutDelegate{
     }
     
     
+}
+extension ProfileVC{
+    func initLayout(){
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = UIColor.clear
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
+        
+        let navLabel = UILabel()
+//        let navTitle = NSMutableAttributedString(string: "Orders ", attributes: [NSAttributedString.Key.font :UIFont(name: "Helvetica-Neue", size: 20.0)!,NSMutableAttributedString.Key.foregroundColor: UIColor.white])
+//
+//        navLabel.attributedText = navTitle
+        self.navigationItem.title = "Profile"
+        
+        
+        
+    }
 }
 
 extension UserDefaults{

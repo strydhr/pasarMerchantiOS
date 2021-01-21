@@ -36,6 +36,8 @@ class ConfirmedOrdersVC: UIViewController {
         ordersTable.separatorStyle = .none
         ordersTable.register(UINib(nibName: "receiptHeader", bundle: nil), forCellReuseIdentifier: "receiptHeader")
         ordersTable.register(UINib(nibName: "orderCell", bundle: nil), forCellReuseIdentifier: "orderCell")
+        ordersTable.sectionHeaderHeight = UITableView.automaticDimension
+        ordersTable.estimatedSectionHeaderHeight = 110
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -69,19 +71,43 @@ extension ConfirmedOrdersVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "receiptHeader")as? receiptHeader else {return UITableViewCell()}
         let header = ordersList[section]
-        cell.deliveryAddress.text = header.order?.purchaserAddress
+        let address = header.order!.purchaserAddress
+        let wantedString = address.components(separatedBy: ", ")
+        var add = ""
+        
+        for word in wantedString{
+            add.append("\(word)\n")
+        }
+        let finalAdd = add.dropLast(9)
+        cell.deliveryAddress.text = String(finalAdd)
         cell.delegate = self
         cell.item = header
         var totalItems = 0
+        var total = 0.0
         for item in header.order!.items{
             totalItems += item.itemCount
+            let price = item.productPrice * Double(item.itemCount)
+            total = total + price
         }
         
         cell.orderCount.text = String(totalItems)
+        cell.totalCost.text = "RM \((String(format: "%.2f", total)))"
         if header.order!.hasDeliveryTime{
-            cell.deliveryTime.text = getTimeLabel(dates: header.order!.deliveryTime.dateValue())
+            let todaysDate = Date()
+            let startOfDay = Calendar.current.startOfDay(for: todaysDate)
+            if startOfDay > (header.order?.deliveryTime.dateValue())! {
+                cell.deliveryLabel.text = "Late Delivery:"
+                cell.deliveryTime.text = getDateTimeLabel(dates: header.order!.deliveryTime.dateValue())
+            }else{
+                cell.deliveryLabel.text = "Delivery Time:"
+                cell.deliveryTime.text = getTimeLabel(dates: header.order!.deliveryTime.dateValue())
+            }
+            
+
         }else{
-            cell.deliveryTime.text = getDateLabel(dates: header.order!.deliveryTime.dateValue())
+            cell.deliveryLabel.text = "Ordered On:"
+            cell.deliveryTime.text = getDateLabel(dates: header.order!.date.dateValue())
+
         }
         
         if header.order!.hasDelivered{
@@ -92,11 +118,13 @@ extension ConfirmedOrdersVC:UITableViewDelegate,UITableViewDataSource{
             cell.slideBtn.isHidden = false
         }
         
+
+        
         return cell
     }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 115
-    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 115
+//    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -127,7 +155,8 @@ extension ConfirmedOrdersVC{
 //            let startOfDay = calendar.startOfDay(for: todaysDate)
 //            self.ordersList = orderlist.filter({$0.order!.deliveryTime.dateValue() > todaysDate})
 //            print(orderlist.count)
-            self.ordersList = orderlist
+//            self.ordersList = orderlist
+            self.ordersList = orderlist.sorted(by: {$0.order!.date.dateValue().compare($1.order!.date.dateValue()) == .orderedDescending})
             self.ordersTable.reloadData()
             
             if orderlist.count == 0 {
@@ -164,6 +193,13 @@ extension ConfirmedOrdersVC{
 }
 
 extension ConfirmedOrdersVC:completeOrderDelegate{
+    func itemizeSales(item: ReceiptDocument) {
+        print("nondi")
+        let itemize = itemizePopup()
+        itemize.receipt = item.order
+        present(itemize, animated: true, completion: nil)
+    }
+    
     func phoneCustomer(item: ReceiptDocument) {
         let contact = item.order?.purchaserPhone
         let alert = UIAlertController(title: "Contact Customer By:", message: "", preferredStyle: .actionSheet)
