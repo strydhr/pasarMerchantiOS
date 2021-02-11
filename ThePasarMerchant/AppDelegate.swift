@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //Notification Setup
+        FirebaseApp.configure()
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
@@ -45,10 +46,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
         Messaging.messaging().delegate = self
         
         let token = Messaging.messaging().fcmToken
+        if token != nil{
+            Messaging.messaging().subscribe(toTopic: "merchantUser")
+        }
         print("FCM token: \(token ?? "")")
         
+        
         //Firebase Configuration
-        FirebaseApp.configure()
+        
         GMSPlacesClient.provideAPIKey(GOOGLEAPI)
         let defaults = UserDefaults.standard
         
@@ -124,6 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
     // MARK:- Messaging Delegates
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         InstanceID.instanceID().instanceID { (result, error) in
+            Messaging.messaging().subscribe(toTopic: "merchantUser")
             if let error = error {
                 print("Error fetching remote instange ID: \(error)")
             } else if let result = result {
@@ -137,9 +143,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
         print("received remote notification")
     }
 
-
-
-    
 
 }
 

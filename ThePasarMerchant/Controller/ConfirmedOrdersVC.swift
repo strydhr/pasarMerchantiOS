@@ -18,6 +18,8 @@ class ConfirmedOrdersVC: UIViewController {
     @IBOutlet weak var secondBlinky: UIImageView!
     @IBOutlet weak var thirdHint: UIView!
     @IBOutlet weak var thirdBlinky: UIImageView!
+    @IBOutlet weak var forthHint: UIView!
+    @IBOutlet weak var fourthBlinky: UIImageView!
     
     var page = 1
     let defaults = UserDefaults.standard
@@ -56,6 +58,10 @@ class ConfirmedOrdersVC: UIViewController {
             
         }else if page == 3{
             thirdHint.isHidden = true
+            forthHint.isHidden = false
+            page = 4
+        }else if page == 4{
+            forthHint.isHidden = true
             mainHintContainer.isHidden = true
             defaults.set(true, forKey: "confirmedOrdersTabHint")
         }
@@ -181,10 +187,12 @@ extension ConfirmedOrdersVC{
         self.firstBlinky.alpha = 0
         self.secondBlinky.alpha = 0
         self.thirdBlinky.alpha = 0
+        self.fourthBlinky.alpha = 0
         UIView.animate(withDuration: 1, delay: 0.0, options: [.curveLinear, .repeat, .autoreverse]) {
             self.firstBlinky.alpha = 1
             self.secondBlinky.alpha = 1
             self.thirdBlinky.alpha = 1
+            self.fourthBlinky.alpha = 1
         } completion: { (success) in
             
         }
@@ -194,7 +202,7 @@ extension ConfirmedOrdersVC{
 
 extension ConfirmedOrdersVC:completeOrderDelegate{
     func itemizeSales(item: ReceiptDocument) {
-        print("nondi")
+
         let itemize = itemizePopup()
         itemize.receipt = item.order
         present(itemize, animated: true, completion: nil)
